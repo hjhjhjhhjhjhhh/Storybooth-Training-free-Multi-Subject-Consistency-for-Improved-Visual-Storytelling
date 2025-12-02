@@ -1,0 +1,2214 @@
+- index: 1
+  subjects:
+    - "A fluffy brown dog with short legs"
+    - "A white owl with bright yellow eyes"
+  subject_tokens: ["dog", "owl"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "on a beach at sunset"
+    - "in snowy mountains"
+    - "inside a cozy cafe"
+    - "in a futuristic city street"
+    - "beside a peaceful lake"
+  settings_types:
+    - background_changing
+    - background_changing
+    - background_changing
+    - background_changing
+    - background_changing
+  prompts:
+    - "A hyper-realistic digital painting of a fluffy brown dog with short legs and a white owl with bright yellow eyes, on a beach at sunset"
+    - "A hyper-realistic digital painting of a fluffy brown dog with short legs and a white owl with bright yellow eyes, in snowy mountains"
+    - "A hyper-realistic digital painting of a fluffy brown dog with short legs and a white owl with bright yellow eyes, inside a cozy cafe"
+    - "A hyper-realistic digital painting of a fluffy brown dog with short legs and a white owl with bright yellow eyes, in a futuristic city street"
+    - "A hyper-realistic digital painting of a fluffy brown dog with short legs and a white owl with bright yellow eyes, beside a peaceful lake"
+
+- index: 2
+  subjects:
+    - "A silver-gray fox with sharp amber eyes"
+    - "A small hedgehog with soft beige spikes"
+  subject_tokens: ["fox", "hedgehog"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A 3D animation of"
+  settings:
+    - "in a bamboo forest"
+    - "inside a laboratory"
+    - "in a desert at noon"
+    - "near a waterfall"
+    - "on a rooftop overlooking a city"
+  settings_types:
+    - background_changing
+    - background_changing
+    - background_changing
+    - background_changing
+    - background_changing
+  prompts:
+    - "A 3D animation of a silver-gray fox with sharp amber eyes and a small hedgehog with soft beige spikes, in a bamboo forest"
+    - "A 3D animation of a silver-gray fox with sharp amber eyes and a small hedgehog with soft beige spikes, inside a laboratory"
+    - "A 3D animation of a silver-gray fox with sharp amber eyes and a small hedgehog with soft beige spikes, in a desert at noon"
+    - "A 3D animation of a silver-gray fox with sharp amber eyes and a small hedgehog with soft beige spikes, near a waterfall"
+    - "A 3D animation of a silver-gray fox with sharp amber eyes and a small hedgehog with soft beige spikes, on a rooftop overlooking a city"
+
+- index: 3
+  subjects:
+    - "A black-and-white panda with round ears"
+    - "A graceful deer with light brown fur"
+  subject_tokens: ["panda", "deer"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a peaceful garden"
+    - "inside a castle courtyard"
+    - "in a futuristic city plaza"
+    - "at a bustling marketplace"
+    - "in an underwater dome"
+  settings_types:
+    - background_changing
+    - background_changing
+    - background_changing
+    - background_changing
+    - background_changing
+  prompts:
+    - "A watercolor illustration of a black-and-white panda with round ears and a graceful deer with light brown fur, in a peaceful garden"
+    - "A watercolor illustration of a black-and-white panda with round ears and a graceful deer with light brown fur, inside a castle courtyard"
+    - "A watercolor illustration of a black-and-white panda with round ears and a graceful deer with light brown fur, in a futuristic city plaza"
+    - "A watercolor illustration of a black-and-white panda with round ears and a graceful deer with light brown fur, at a bustling marketplace"
+    - "A watercolor illustration of a black-and-white panda with round ears and a graceful deer with light brown fur, in an underwater dome"
+
+- index: 4
+  subjects:
+    - "A tall horse with a sleek black mane"
+    - "A cheerful squirrel with a fluffy tail"
+  subject_tokens: ["horse", "squirrel"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a forest clearing"
+    - "inside a library"
+    - "in a snowy mountain village"
+    - "on a beach boardwalk"
+    - "at a train station"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a tall horse with a sleek black mane and a cheerful squirrel with a fluffy tail, in a forest clearing"
+    - "A storybook illustration of a tall horse with a sleek black mane and a cheerful squirrel with a fluffy tail, inside a library"
+    - "A storybook illustration of a tall horse with a sleek black mane and a cheerful squirrel with a fluffy tail, in a snowy mountain village"
+    - "A storybook illustration of a tall horse with a sleek black mane and a cheerful squirrel with a fluffy tail, on a beach boardwalk"
+    - "A storybook illustration of a tall horse with a sleek black mane and a cheerful squirrel with a fluffy tail, at a train station"
+
+- index: 5
+  subjects:
+    - "A gentle koala with soft grey fur"
+    - "A tiny penguin chick with fluffy white belly"
+  subject_tokens: ["koala", "penguin"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a futuristic city"
+    - "in a desert oasis"
+    - "on a snowy cliffside"
+    - "inside a cozy wooden cabin"
+    - "in a lush garden"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a gentle koala with soft grey fur and a tiny penguin chick with a fluffy white belly, in a futuristic city"
+    - "A digital illustration of a gentle koala with soft grey fur and a tiny penguin chick with a fluffy white belly, in a desert oasis"
+    - "A digital illustration of a gentle koala with soft grey fur and a tiny penguin chick with a fluffy white belly, on a snowy cliffside"
+    - "A digital illustration of a gentle koala with soft grey fur and a tiny penguin chick with a fluffy white belly, inside a cozy wooden cabin"
+    - "A digital illustration of a gentle koala with soft grey fur and a tiny penguin chick with a fluffy white belly, in a lush garden"
+
+# ===========================================================
+# MULTI-SUBJECT STORYBOARD DATASET (ITEMS 6–20 of 100)
+# ===========================================================
+
+- index: 6
+  subjects:
+    - "A fluffy white sheep with curled horns"
+    - "A mischievous monkey with bright expressive eyes"
+  subject_tokens: ["sheep", "monkey"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "on a sandy beach"
+    - "inside a laboratory"
+    - "in a bamboo forest"
+    - "in a snowy mountain pass"
+    - "in a futuristic neon-lit alley"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a fluffy white sheep with curled horns and a mischievous monkey with bright expressive eyes, on a sandy beach"
+    - "A hyper-realistic digital painting of a fluffy white sheep with curled horns and a mischievous monkey with bright expressive eyes, inside a laboratory"
+    - "A hyper-realistic digital painting of a fluffy white sheep with curled horns and a mischievous monkey with bright expressive eyes, in a bamboo forest"
+    - "A hyper-realistic digital painting of a fluffy white sheep with curled horns and a mischievous monkey with bright expressive eyes, in a snowy mountain pass"
+    - "A hyper-realistic digital painting of a fluffy white sheep with curled horns and a mischievous monkey with bright expressive eyes, in a futuristic neon-lit alley"
+
+- index: 7
+  subjects:
+    - "A large brown bear with thick fur"
+    - "A small duck with bright yellow feathers"
+  subject_tokens: ["bear", "duck"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "beside a peaceful lake"
+    - "in a dense forest clearing"
+    - "in a bustling marketplace"
+    - "on a rooftop overlooking a city"
+    - "in a quiet desert oasis"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a large brown bear with thick fur and a small duck with bright yellow feathers, beside a peaceful lake"
+    - "A watercolor illustration of a large brown bear with thick fur and a small duck with bright yellow feathers, in a dense forest clearing"
+    - "A watercolor illustration of a large brown bear with thick fur and a small duck with bright yellow feathers, in a bustling marketplace"
+    - "A watercolor illustration of a large brown bear with thick fur and a small duck with bright yellow feathers, on a rooftop overlooking a city"
+    - "A watercolor illustration of a large brown bear with thick fur and a small duck with bright yellow feathers, in a quiet desert oasis"
+
+- index: 8
+  subjects:
+    - "A tall wolf with silver fur"
+    - "A tiny rabbit with long ears"
+  subject_tokens: ["wolf", "rabbit"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A 3D animation of"
+  settings:
+    - "in a futuristic city plaza"
+    - "in a bamboo forest"
+    - "inside a castle courtyard"
+    - "in snowy mountains"
+    - "inside a cozy wooden cabin"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A 3D animation of a tall wolf with silver fur and a tiny rabbit with long ears, in a futuristic city plaza"
+    - "A 3D animation of a tall wolf with silver fur and a tiny rabbit with long ears, in a bamboo forest"
+    - "A 3D animation of a tall wolf with silver fur and a tiny rabbit with long ears, inside a castle courtyard"
+    - "A 3D animation of a tall wolf with silver fur and a tiny rabbit with long ears, in snowy mountains"
+    - "A 3D animation of a tall wolf with silver fur and a tiny rabbit with long ears, inside a cozy wooden cabin"
+
+- index: 9
+  subjects:
+    - "A spotted piglet with a round face"
+    - "A sleek tiger with orange and black stripes"
+  subject_tokens: ["pig", "tiger"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a peaceful garden"
+    - "in a desert at sunset"
+    - "in a futuristic marketplace"
+    - "inside a library"
+    - "near a waterfall"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a spotted piglet with a round face and a sleek tiger with orange and black stripes, in a peaceful garden"
+    - "A digital illustration of a spotted piglet with a round face and a sleek tiger with orange and black stripes, in a desert at sunset"
+    - "A digital illustration of a spotted piglet with a round face and a sleek tiger with orange and black stripes, in a futuristic marketplace"
+    - "A digital illustration of a spotted piglet with a round face and a sleek tiger with orange and black stripes, inside a library"
+    - "A digital illustration of a spotted piglet with a round face and a sleek tiger with orange and black stripes, near a waterfall"
+
+- index: 10
+  subjects:
+    - "A majestic lion with a golden mane"
+    - "A happy deer with gentle eyes"
+  subject_tokens: ["lion", "deer"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "in a village courtyard"
+    - "in a snowy mountain town"
+    - "on a wide sandy beach"
+    - "in a futuristic neon-lit plaza"
+    - "inside a science exhibition hall"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a majestic lion with a golden mane and a happy deer with gentle eyes, in a village courtyard"
+    - "A hyper-realistic digital painting of a majestic lion with a golden mane and a happy deer with gentle eyes, in a snowy mountain town"
+    - "A hyper-realistic digital painting of a majestic lion with a golden mane and a happy deer with gentle eyes, on a wide sandy beach"
+    - "A hyper-realistic digital painting of a majestic lion with a golden mane and a happy deer with gentle eyes, in a futuristic neon-lit plaza"
+    - "A hyper-realistic digital painting of a majestic lion with a golden mane and a happy deer with gentle eyes, inside a science exhibition hall"
+
+- index: 11
+  subjects:
+    - "A brown horse with a silky mane"
+    - "A pink piglet with tiny hooves"
+  subject_tokens: ["horse", "pig"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a forest clearing"
+    - "inside a cozy cottage"
+    - "in a bustling town square"
+    - "on a cliff overlooking the ocean"
+    - "beside a shimmering river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a brown horse with a silky mane and a pink piglet with tiny hooves, in a forest clearing"
+    - "A storybook illustration of a brown horse with a silky mane and a pink piglet with tiny hooves, inside a cozy cottage"
+    - "A storybook illustration of a brown horse with a silky mane and a pink piglet with tiny hooves, in a bustling town square"
+    - "A storybook illustration of a brown horse with a silky mane and a pink piglet with tiny hooves, on a cliff overlooking the ocean"
+    - "A storybook illustration of a brown horse with a silky mane and a pink piglet with tiny hooves, beside a shimmering river"
+
+- index: 12
+  subjects:
+    - "A playful penguin with shiny feathers"
+    - "A soft hedgehog with tiny paws"
+  subject_tokens: ["penguin", "hedgehog"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A 3D animation of"
+  settings:
+    - "inside a laboratory"
+    - "in snowy mountains"
+    - "in a futuristic city square"
+    - "in a bamboo forest"
+    - "inside a castle courtyard"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A 3D animation of a playful penguin with shiny feathers and a soft hedgehog with tiny paws, inside a laboratory"
+    - "A 3D animation of a playful penguin with shiny feathers and a soft hedgehog with tiny paws, in snowy mountains"
+    - "A 3D animation of a playful penguin with shiny feathers and a soft hedgehog with tiny paws, in a futuristic city square"
+    - "A 3D animation of a playful penguin with shiny feathers and a soft hedgehog with tiny paws, in a bamboo forest"
+    - "A 3D animation of a playful penguin with shiny feathers and a soft hedgehog with tiny paws, inside a castle courtyard"
+
+- index: 13
+  subjects:
+    - "A cheerful squirrel with a fluffy striped tail"
+    - "A tall wolf with deep blue eyes"
+  subject_tokens: ["squirrel", "wolf"]
+  description_levels: ["detailed", "detailed"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a quiet bamboo grove"
+    - "inside a medieval castle"
+    - "on a sandy coastline"
+    - "in an underwater glass dome"
+    - "in a neon-lit future city"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a cheerful squirrel with a fluffy striped tail and a tall wolf with deep blue eyes, in a quiet bamboo grove"
+    - "A digital illustration of a cheerful squirrel with a fluffy striped tail and a tall wolf with deep blue eyes, inside a medieval castle"
+    - "A digital illustration of a cheerful squirrel with a fluffy striped tail and a tall wolf with deep blue eyes, on a sandy coastline"
+    - "A digital illustration of a cheerful squirrel with a fluffy striped tail and a tall wolf with deep blue eyes, in an underwater glass dome"
+    - "A digital illustration of a cheerful squirrel with a fluffy striped tail and a tall wolf with deep blue eyes, in a neon-lit future city"
+
+- index: 14
+  subjects:
+    - "A graceful deer with slender legs"
+    - "A fuzzy sheep with curved horns"
+  subject_tokens: ["deer", "sheep"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a cozy reading room"
+    - "in a snowy village"
+    - "in a bustling bazaar"
+    - "beside a sparkling waterfall"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a graceful deer with slender legs and a fuzzy sheep with curved horns, in a peaceful meadow"
+    - "A watercolor illustration of a graceful deer with slender legs and a fuzzy sheep with curved horns, inside a cozy reading room"
+    - "A watercolor illustration of a graceful deer with slender legs and a fuzzy sheep with curved horns, in a snowy village"
+    - "A watercolor illustration of a graceful deer with slender legs and a fuzzy sheep with curved horns, in a bustling bazaar"
+    - "A watercolor illustration of a graceful deer with slender legs and a fuzzy sheep with curved horns, beside a sparkling waterfall"
+
+- index: 15
+  subjects:
+    - "A sleek tiger with bold stripes"
+    - "A tiny rabbit with soft fur"
+  subject_tokens: ["tiger", "rabbit"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "inside a laboratory"
+    - "in a bamboo forest"
+    - "in a busy futuristic plaza"
+    - "beside a shimmering lake"
+    - "on a snowy cliffside"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a sleek tiger with bold stripes and a tiny rabbit with soft fur, inside a laboratory"
+    - "A hyper-realistic digital painting of a sleek tiger with bold stripes and a tiny rabbit with soft fur, in a bamboo forest"
+    - "A hyper-realistic digital painting of a sleek tiger with bold stripes and a tiny rabbit with soft fur, in a busy futuristic plaza"
+    - "A hyper-realistic digital painting of a sleek tiger with bold stripes and a tiny rabbit with soft fur, beside a shimmering lake"
+    - "A hyper-realistic digital painting of a sleek tiger with bold stripes and a tiny rabbit with soft fur, on a snowy cliffside"
+
+- index: 16
+  subjects:
+    - "A bright yellow duckling with tiny wings"
+    - "A spotted piglet with short legs"
+  subject_tokens: ["duck", "pig"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a forest clearing"
+    - "on a beach near the water"
+    - "inside a colorful village house"
+    - "in snowy mountains"
+    - "near a glowing futuristic tower"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a bright yellow duckling with tiny wings and a spotted piglet with short legs, in a forest clearing"
+    - "A storybook illustration of a bright yellow duckling with tiny wings and a spotted piglet with short legs, on a beach near the water"
+    - "A storybook illustration of a bright yellow duckling with tiny wings and a spotted piglet with short legs, inside a colorful village house"
+    - "A storybook illustration of a bright yellow duckling with tiny wings and a spotted piglet with short legs, in snowy mountains"
+    - "A storybook illustration of a bright yellow duckling with tiny wings and a spotted piglet with short legs, near a glowing futuristic tower"
+
+- index: 17
+  subjects:
+    - "A tiny hedgehog with soft brown spikes"
+    - "A fluffy white owl with bright golden eyes"
+  subject_tokens: ["hedgehog", "owl"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A 3D animation of"
+  settings:
+    - "in a futuristic neon-lit district"
+    - "inside a wooden cabin"
+    - "in a flower-filled garden"
+    - "on a snowy mountain ridge"
+    - "beside a serene lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A 3D animation of a tiny hedgehog with soft brown spikes and a fluffy white owl with bright golden eyes, in a futuristic neon-lit district"
+    - "A 3D animation of a tiny hedgehog with soft brown spikes and a fluffy white owl with bright golden eyes, inside a wooden cabin"
+    - "A 3D animation of a tiny hedgehog with soft brown spikes and a fluffy white owl with bright golden eyes, in a flower-filled garden"
+    - "A 3D animation of a tiny hedgehog with soft brown spikes and a fluffy white owl with bright golden eyes, on a snowy mountain ridge"
+    - "A 3D animation of a tiny hedgehog with soft brown spikes and a fluffy white owl with bright golden eyes, beside a serene lake"
+
+- index: 18
+  subjects:
+    - "A round panda cub with black ears"
+    - "A narrow-faced fox with orange fur"
+  subject_tokens: ["panda", "fox"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "inside a medieval castle hall"
+    - "in a bamboo forest"
+    - "near a large waterfall"
+    - "on a rooftop overlooking the ocean"
+    - "in a futuristic city street"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a round panda cub with black ears and a narrow-faced fox with orange fur, inside a medieval castle hall"
+    - "A hyper-realistic digital painting of a round panda cub with black ears and a narrow-faced fox with orange fur, in a bamboo forest"
+    - "A hyper-realistic digital painting of a round panda cub with black ears and a narrow-faced fox with orange fur, near a large waterfall"
+    - "A hyper-realistic digital painting of a round panda cub with black ears and a narrow-faced fox with orange fur, on a rooftop overlooking the ocean"
+    - "A hyper-realistic digital painting of a round panda cub with black ears and a narrow-faced fox with orange fur, in a futuristic city street"
+
+- index: 19
+  subjects:
+    - "A gentle brown horse with dark eyes"
+    - "A cheerful penguin with a round belly"
+  subject_tokens: ["horse", "penguin"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a grassy meadow"
+    - "inside a bright classroom"
+    - "on a snowy mountainside"
+    - "in a peaceful lakeside park"
+    - "in a neon-lit cyber city"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a gentle brown horse with dark eyes and a cheerful penguin with a round belly, in a grassy meadow"
+    - "A digital illustration of a gentle brown horse with dark eyes and a cheerful penguin with a round belly, inside a bright classroom"
+    - "A digital illustration of a gentle brown horse with dark eyes and a cheerful penguin with a round belly, on a snowy mountainside"
+    - "A digital illustration of a gentle brown horse with dark eyes and a cheerful penguin with a round belly, in a peaceful lakeside park"
+    - "A digital illustration of a gentle brown horse with dark eyes and a cheerful penguin with a round belly, in a neon-lit cyber city"
+
+- index: 20
+  subjects:
+    - "A curious rabbit with tall pointed ears"
+    - "A sleepy koala with soft grey fur"
+  subject_tokens: ["rabbit", "koala"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a warm desert oasis"
+    - "inside a wooden study room"
+    - "in a snowy mountain village"
+    - "by a forest waterfall"
+    - "in a futuristic glass walkway"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a curious rabbit with tall pointed ears and a sleepy koala with soft grey fur, in a warm desert oasis"
+    - "A watercolor illustration of a curious rabbit with tall pointed ears and a sleepy koala with soft grey fur, inside a wooden study room"
+    - "A watercolor illustration of a curious rabbit with tall pointed ears and a sleepy koala with soft grey fur, in a snowy mountain village"
+    - "A watercolor illustration of a curious rabbit with tall pointed ears and a sleepy koala with soft grey fur, by a forest waterfall"
+    - "A watercolor illustration of a curious rabbit with tall pointed ears and a sleepy koala with soft grey fur, in a futuristic glass walkway"
+
+# ===========================================================
+# MULTI-SUBJECT STORYBOARD DATASET (ITEMS 21–40 of 100)
+# ===========================================================
+
+- index: 21
+  subjects:
+    - "A sleek black wolf with glowing green eyes"
+    - "A bright yellow duckling with a tiny beak"
+  subject_tokens: ["wolf", "duck"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "in a futuristic neon-lit street"
+    - "inside a wooden cabin"
+    - "in snowy mountains"
+    - "in a bamboo forest"
+    - "beside a quiet lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a sleek black wolf with glowing green eyes and a bright yellow duckling with a tiny beak, in a futuristic neon-lit street"
+    - "A hyper-realistic digital painting of a sleek black wolf with glowing green eyes and a bright yellow duckling with a tiny beak, inside a wooden cabin"
+    - "A hyper-realistic digital painting of a sleek black wolf with glowing green eyes and a bright yellow duckling with a tiny beak, in snowy mountains"
+    - "A hyper-realistic digital painting of a sleek black wolf with glowing green eyes and a bright yellow duckling with a tiny beak, in a bamboo forest"
+    - "A hyper-realistic digital painting of a sleek black wolf with glowing green eyes and a bright yellow duckling with a tiny beak, beside a quiet lake"
+
+- index: 22
+  subjects:
+    - "A fluffy panda cub with black ears"
+    - "A playful monkey with a curly tail"
+  subject_tokens: ["panda", "monkey"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a cozy library"
+    - "in a peaceful garden"
+    - "inside a castle hall"
+    - "near a sparkling waterfall"
+    - "on a snowy hill"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a fluffy panda cub with black ears and a playful monkey with a curly tail, in a cozy library"
+    - "A storybook illustration of a fluffy panda cub with black ears and a playful monkey with a curly tail, in a peaceful garden"
+    - "A storybook illustration of a fluffy panda cub with black ears and a playful monkey with a curly tail, inside a castle hall"
+    - "A storybook illustration of a fluffy panda cub with black ears and a playful monkey with a curly tail, near a sparkling waterfall"
+    - "A storybook illustration of a fluffy panda cub with black ears and a playful monkey with a curly tail, on a snowy hill"
+
+- index: 23
+  subjects:
+    - "A gentle brown deer with thin legs"
+    - "A tiny hedgehog with round eyes"
+  subject_tokens: ["deer", "hedgehog"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a shady forest"
+    - "inside a quiet classroom"
+    - "in a snowy village"
+    - "in a futuristic neon district"
+    - "by a calm riverside"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a gentle brown deer with thin legs and a tiny hedgehog with round eyes, in a shady forest"
+    - "A watercolor illustration of a gentle brown deer with thin legs and a tiny hedgehog with round eyes, inside a quiet classroom"
+    - "A watercolor illustration of a gentle brown deer with thin legs and a tiny hedgehog with round eyes, in a snowy village"
+    - "A watercolor illustration of a gentle brown deer with thin legs and a tiny hedgehog with round eyes, in a futuristic neon district"
+    - "A watercolor illustration of a gentle brown deer with thin legs and a tiny hedgehog with round eyes, by a calm riverside"
+
+- index: 24
+  subjects:
+    - "A small penguin with shiny black feathers"
+    - "A tall horse with a dark mane"
+  subject_tokens: ["penguin", "horse"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "on a sunny beach"
+    - "in snowy mountains"
+    - "inside a bamboo hut"
+    - "in a futuristic city plaza"
+    - "beside a serene waterfall"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a small penguin with shiny black feathers and a tall horse with a dark mane, on a sunny beach"
+    - "A digital illustration of a small penguin with shiny black feathers and a tall horse with a dark mane, in snowy mountains"
+    - "A digital illustration of a small penguin with shiny black feathers and a tall horse with a dark mane, inside a bamboo hut"
+    - "A digital illustration of a small penguin with shiny black feathers and a tall horse with a dark mane, in a futuristic city plaza"
+    - "A digital illustration of a small penguin with shiny black feathers and a tall horse with a dark mane, beside a serene waterfall"
+
+- index: 25
+  subjects:
+    - "A bright red fox with a bushy tail"
+    - "A soft sheep with curly wool"
+  subject_tokens: ["fox", "sheep"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A 3D animation of"
+  settings:
+    - "in a snow-covered forest"
+    - "inside a castle courtyard"
+    - "in a futuristic neon-lit street"
+    - "by a peaceful lakeside"
+    - "in a desert oasis"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A 3D animation of a bright red fox with a bushy tail and a soft sheep with curly wool, in a snow-covered forest"
+    - "A 3D animation of a bright red fox with a bushy tail and a soft sheep with curly wool, inside a castle courtyard"
+    - "A 3D animation of a bright red fox with a bushy tail and a soft sheep with curly wool, in a futuristic neon-lit street"
+    - "A 3D animation of a bright red fox with a bushy tail and a soft sheep with curly wool, by a peaceful lakeside"
+    - "A 3D animation of a bright red fox with a bushy tail and a soft sheep with curly wool, in a desert oasis"
+
+- index: 26
+  subjects:
+    - "A cheerful piglet with round cheeks"
+    - "A sleepy owl with wide golden eyes"
+  subject_tokens: ["pig", "owl"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a cozy cottage"
+    - "on a sandy beach"
+    - "inside a futuristic museum"
+    - "in a quiet bamboo forest"
+    - "in snowy mountains"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a cheerful piglet with round cheeks and a sleepy owl with wide golden eyes, in a cozy cottage"
+    - "A storybook illustration of a cheerful piglet with round cheeks and a sleepy owl with wide golden eyes, on a sandy beach"
+    - "A storybook illustration of a cheerful piglet with round cheeks and a sleepy owl with wide golden eyes, inside a futuristic museum"
+    - "A storybook illustration of a cheerful piglet with round cheeks and a sleepy owl with wide golden eyes, in a quiet bamboo forest"
+    - "A storybook illustration of a cheerful piglet with round cheeks and a sleepy owl with wide golden eyes, in snowy mountains"
+
+- index: 27
+  subjects:
+    - "A fluffy koala with soft grey fur"
+    - "A curious rabbit with long ears"
+  subject_tokens: ["koala", "rabbit"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "inside a laboratory"
+    - "in a sunny meadow"
+    - "in a futuristic neon-lit plaza"
+    - "beside a glowing lake"
+    - "in a snowy mountain village"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a fluffy koala with soft grey fur and a curious rabbit with long ears, inside a laboratory"
+    - "A hyper-realistic digital painting of a fluffy koala with soft grey fur and a curious rabbit with long ears, in a sunny meadow"
+    - "A hyper-realistic digital painting of a fluffy koala with soft grey fur and a curious rabbit with long ears, in a futuristic neon-lit plaza"
+    - "A hyper-realistic digital painting of a fluffy koala with soft grey fur and a curious rabbit with long ears, beside a glowing lake"
+    - "A hyper-realistic digital painting of a fluffy koala with soft grey fur and a curious rabbit with long ears, in a snowy mountain village"
+
+- index: 28
+  subjects:
+    - "A tiny penguin chick with white belly"
+    - "A towering lion with a golden mane"
+  subject_tokens: ["penguin", "lion"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "inside a castle hall"
+    - "in a rocky desert"
+    - "on a snowy cliff"
+    - "in a futuristic neon-lit district"
+    - "in a peaceful lakeside park"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a tiny penguin chick with white belly and a towering lion with a golden mane, inside a castle hall"
+    - "A digital illustration of a tiny penguin chick with white belly and a towering lion with a golden mane, in a rocky desert"
+    - "A digital illustration of a tiny penguin chick with white belly and a towering lion with a golden mane, on a snowy cliff"
+    - "A digital illustration of a tiny penguin chick with white belly and a towering lion with a golden mane, in a futuristic neon-lit district"
+    - "A digital illustration of a tiny penguin chick with white belly and a towering lion with a golden mane, in a peaceful lakeside park"
+
+- index: 29
+  subjects:
+    - "A small hedgehog with soft brown spikes"
+    - "A tall horse with glossy black fur"
+  subject_tokens: ["hedgehog", "horse"]
+  description_levels: ["detailed", "detailed"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a bamboo grove"
+    - "on a snowy mountain path"
+    - "inside a cozy tavern"
+    - "in a futuristic floating city"
+    - "beside a calm lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a small hedgehog with soft brown spikes and a tall horse with glossy black fur, in a bamboo grove"
+    - "A watercolor illustration of a small hedgehog with soft brown spikes and a tall horse with glossy black fur, on a snowy mountain path"
+    - "A watercolor illustration of a small hedgehog with soft brown spikes and a tall horse with glossy black fur, inside a cozy tavern"
+    - "A watercolor illustration of a small hedgehog with soft brown spikes and a tall horse with glossy black fur, in a futuristic floating city"
+    - "A watercolor illustration of a small hedgehog with soft brown spikes and a tall horse with glossy black fur, beside a calm lake"
+
+- index: 30
+  subjects:
+    - "A sleek tiger with glowing blue eyes"
+    - "A fluffy sheep with white wool"
+  subject_tokens: ["tiger", "sheep"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "inside a medieval castle"
+    - "in a snowy glade"
+    - "on a sandy coastline"
+    - "in a futuristic neon-lit plaza"
+    - "beside a crystal-clear river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a sleek tiger with glowing blue eyes and a fluffy sheep with white wool, inside a medieval castle"
+    - "A storybook illustration of a sleek tiger with glowing blue eyes and a fluffy sheep with white wool, in a snowy glade"
+    - "A storybook illustration of a sleek tiger with glowing blue eyes and a fluffy sheep with white wool, on a sandy coastline"
+    - "A storybook illustration of a sleek tiger with glowing blue eyes and a fluffy sheep with white wool, in a futuristic neon-lit plaza"
+    - "A storybook illustration of a sleek tiger with glowing blue eyes and a fluffy sheep with white wool, beside a crystal-clear river"
+
+- index: 31
+  subjects:
+    - "A tiny squirrel with a fluffy tail"
+    - "A sleepy koala with grey fur"
+  subject_tokens: ["squirrel", "koala"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a quiet bamboo grove"
+    - "inside a warm cottage"
+    - "by a snowy mountain lake"
+    - "in a futuristic neon-lit hallway"
+    - "in a peaceful garden"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a tiny squirrel with a fluffy tail and a sleepy koala with grey fur, in a quiet bamboo grove"
+    - "A digital illustration of a tiny squirrel with a fluffy tail and a sleepy koala with grey fur, inside a warm cottage"
+    - "A digital illustration of a tiny squirrel with a fluffy tail and a sleepy koala with grey fur, by a snowy mountain lake"
+    - "A digital illustration of a tiny squirrel with a fluffy tail and a sleepy koala with grey fur, in a futuristic neon-lit hallway"
+    - "A digital illustration of a tiny squirrel with a fluffy tail and a sleepy koala with grey fur, in a peaceful garden"
+
+- index: 32
+  subjects:
+    - "A sleek fox with orange fur"
+    - "A fluffy panda with round cheeks"
+  subject_tokens: ["fox", "panda"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "on a snowy mountainside"
+    - "inside a cozy cabin"
+    - "in a futuristic floating city"
+    - "beside a shimmering lake"
+    - "in a forest clearing"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a sleek fox with orange fur and a fluffy panda with round cheeks, on a snowy mountainside"
+    - "A hyper-realistic digital painting of a sleek fox with orange fur and a fluffy panda with round cheeks, inside a cozy cabin"
+    - "A hyper-realistic digital painting of a sleek fox with orange fur and a fluffy panda with round cheeks, in a futuristic floating city"
+    - "A hyper-realistic digital painting of a sleek fox with orange fur and a fluffy panda with round cheeks, beside a shimmering lake"
+    - "A hyper-realistic digital painting of a sleek fox with orange fur and a fluffy panda with round cheeks, in a forest clearing"
+
+- index: 33
+  subjects:
+    - "A tall deer with thin graceful legs"
+    - "A cheerful piglet with round cheeks"
+  subject_tokens: ["deer", "pig"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A 3D animation of"
+  settings:
+    - "in a peaceful meadow"
+    - "on a snowy hill"
+    - "inside a glowing forest temple"
+    - "in a futuristic neon-lit alley"
+    - "beside a calm river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A 3D animation of a tall deer with thin graceful legs and a cheerful piglet with round cheeks, in a peaceful meadow"
+    - "A 3D animation of a tall deer with thin graceful legs and a cheerful piglet with round cheeks, on a snowy hill"
+    - "A 3D animation of a tall deer with thin graceful legs and a cheerful piglet with round cheeks, inside a glowing forest temple"
+    - "A 3D animation of a tall deer with thin graceful legs and a cheerful piglet with round cheeks, in a futuristic neon-lit alley"
+    - "A 3D animation of a tall deer with thin graceful legs and a cheerful piglet with round cheeks, beside a calm river"
+
+- index: 34
+  subjects:
+    - "A bright yellow duck with round black eyes"
+    - "A tiny squirrel with a fluffy tail"
+  subject_tokens: ["duck", "squirrel"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a quiet meadow"
+    - "inside a cozy cottage"
+    - "in a snowy mountain town"
+    - "in a cyberpunk neon plaza"
+    - "beside a peaceful lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a bright yellow duck with round black eyes and a tiny squirrel with a fluffy tail, in a quiet meadow"
+    - "A watercolor illustration of a bright yellow duck with round black eyes and a tiny squirrel with a fluffy tail, inside a cozy cottage"
+    - "A watercolor illustration of a bright yellow duck with round black eyes and a tiny squirrel with a fluffy tail, in a snowy mountain town"
+    - "A watercolor illustration of a bright yellow duck with round black eyes and a tiny squirrel with a fluffy tail, in a cyberpunk neon plaza"
+    - "A watercolor illustration of a bright yellow duck with round black eyes and a tiny squirrel with a fluffy tail, beside a peaceful lake"
+
+- index: 35
+  subjects:
+    - "A fluffy sheep with soft wool"
+    - "A tall wolf with glowing yellow eyes"
+  subject_tokens: ["sheep", "wolf"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a dense foggy forest"
+    - "inside a warm cottage"
+    - "on a snowy mountain peak"
+    - "in a glowing futuristic temple"
+    - "beside a shimmering river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a fluffy sheep with soft wool and a tall wolf with glowing yellow eyes, in a dense foggy forest"
+    - "A digital illustration of a fluffy sheep with soft wool and a tall wolf with glowing yellow eyes, inside a warm cottage"
+    - "A digital illustration of a fluffy sheep with soft wool and a tall wolf with glowing yellow eyes, on a snowy mountain peak"
+    - "A digital illustration of a fluffy sheep with soft wool and a tall wolf with glowing yellow eyes, in a glowing futuristic temple"
+    - "A digital illustration of a fluffy sheep with soft wool and a tall wolf with glowing yellow eyes, beside a shimmering river"
+
+- index: 36
+  subjects:
+    - "A curious rabbit with tall ears"
+    - "A small penguin with shiny feathers"
+  subject_tokens: ["rabbit", "penguin"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "in a bamboo grove"
+    - "inside a castle hall"
+    - "on a snowy hill"
+    - "in a futuristic neon-lit plaza"
+    - "beside a quiet river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a curious rabbit with tall ears and a small penguin with shiny feathers, in a bamboo grove"
+    - "A hyper-realistic digital painting of a curious rabbit with tall ears and a small penguin with shiny feathers, inside a castle hall"
+    - "A hyper-realistic digital painting of a curious rabbit with tall ears and a small penguin with shiny feathers, on a snowy hill"
+    - "A hyper-realistic digital painting of a curious rabbit with tall ears and a small penguin with shiny feathers, in a futuristic neon-lit plaza"
+    - "A hyper-realistic digital painting of a curious rabbit with tall ears and a small penguin with shiny feathers, beside a quiet river"
+
+- index: 37
+  subjects:
+    - "A tall horse with glossy brown fur"
+    - "A fluffy panda with round cheeks"
+  subject_tokens: ["horse", "panda"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a peaceful village"
+    - "inside a grand hall"
+    - "on a snowy cliffside"
+    - "in a futuristic neon-lit alley"
+    - "beside a bubbling river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a tall horse with glossy brown fur and a fluffy panda with round cheeks, in a peaceful village"
+    - "A storybook illustration of a tall horse with glossy brown fur and a fluffy panda with round cheeks, inside a grand hall"
+    - "A storybook illustration of a tall horse with glossy brown fur and a fluffy panda with round cheeks, on a snowy cliffside"
+    - "A storybook illustration of a tall horse with glossy brown fur and a fluffy panda with round cheeks, in a futuristic neon-lit alley"
+    - "A storybook illustration of a tall horse with glossy brown fur and a fluffy panda with round cheeks, beside a bubbling river"
+
+- index: 38
+  subjects:
+    - "A tall wolf with deep amber eyes"
+    - "A tiny hedgehog with soft spikes"
+  subject_tokens: ["wolf", "hedgehog"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a snowy forest"
+    - "inside a castle courtyard"
+    - "in a futuristic floating market"
+    - "by a peaceful stream"
+    - "in a desert oasis"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a tall wolf with deep amber eyes and a tiny hedgehog with soft spikes, in a snowy forest"
+    - "A watercolor illustration of a tall wolf with deep amber eyes and a tiny hedgehog with soft spikes, inside a castle courtyard"
+    - "A watercolor illustration of a tall wolf with deep amber eyes and a tiny hedgehog with soft spikes, in a futuristic floating market"
+    - "A watercolor illustration of a tall wolf with deep amber eyes and a tiny hedgehog with soft spikes, by a peaceful stream"
+    - "A watercolor illustration of a tall wolf with deep amber eyes and a tiny hedgehog with soft spikes, in a desert oasis"
+
+- index: 39
+  subjects:
+    - "A fluffy sheep with curved horns"
+    - "A cheerful rabbit with tall ears"
+  subject_tokens: ["sheep", "rabbit"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a grassy meadow"
+    - "inside a village bakery"
+    - "on a snowy hilltop"
+    - "in a futuristic neon city"
+    - "beside a quiet river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a fluffy sheep with curved horns and a cheerful rabbit with tall ears, in a grassy meadow"
+    - "A digital illustration of a fluffy sheep with curved horns and a cheerful rabbit with tall ears, inside a village bakery"
+    - "A digital illustration of a fluffy sheep with curved horns and a cheerful rabbit with tall ears, on a snowy hilltop"
+    - "A digital illustration of a fluffy sheep with curved horns and a cheerful rabbit with tall ears, in a futuristic neon city"
+    - "A digital illustration of a fluffy sheep with curved horns and a cheerful rabbit with tall ears, beside a quiet river"
+
+- index: 40
+  subjects:
+    - "A tiny mouse with big round ears"
+    - "A large brown bear with thick fur"
+  subject_tokens: ["mouse", "bear"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "inside a cozy treehouse"
+    - "on a snowy mountain peak"
+    - "in a futuristic neon-lit street"
+    - "in a peaceful lakeside park"
+    - "inside a wooden cabin"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a tiny mouse with big round ears and a large brown bear with thick fur, inside a cozy treehouse"
+    - "A storybook illustration of a tiny mouse with big round ears and a large brown bear with thick fur, on a snowy mountain peak"
+    - "A storybook illustration of a tiny mouse with big round ears and a large brown bear with thick fur, in a futuristic neon-lit street"
+    - "A storybook illustration of a tiny mouse with big round ears and a large brown bear with thick fur, in a peaceful lakeside park"
+    - "A storybook illustration of a tiny mouse with big round ears and a large brown bear with thick fur, inside a wooden cabin"
+
+# ===========================================================
+# MULTI-SUBJECT STORYBOARD DATASET (ITEMS 41–60 of 100)
+# ===========================================================
+
+- index: 41
+  subjects:
+    - "A fluffy panda cub with soft round ears"
+    - "A tall wolf with piercing yellow eyes"
+  subject_tokens: ["panda", "wolf"]
+  description_levels: ["detailed", "detailed"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "in a bamboo forest"
+    - "inside a wooden cabin"
+    - "in a futuristic neon-lit district"
+    - "on a snowy mountaintop"
+    - "beside a calm waterfall"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a fluffy panda cub with soft round ears and a tall wolf with piercing yellow eyes, in a bamboo forest"
+    - "A hyper-realistic digital painting of a fluffy panda cub with soft round ears and a tall wolf with piercing yellow eyes, inside a wooden cabin"
+    - "A hyper-realistic digital painting of a fluffy panda cub with soft round ears and a tall wolf with piercing yellow eyes, in a futuristic neon-lit district"
+    - "A hyper-realistic digital painting of a fluffy panda cub with soft round ears and a tall wolf with piercing yellow eyes, on a snowy mountaintop"
+    - "A hyper-realistic digital painting of a fluffy panda cub with soft round ears and a tall wolf with piercing yellow eyes, beside a calm waterfall"
+
+- index: 42
+  subjects:
+    - "A fluffy sheep with curly white wool"
+    - "A gentle horse with a flowing mane"
+  subject_tokens: ["sheep", "horse"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a castle library"
+    - "beside a shimmering river"
+    - "in snowy mountains"
+    - "in a futuristic neon plaza"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a fluffy sheep with curly white wool and a gentle horse with a flowing mane, in a peaceful meadow"
+    - "A watercolor illustration of a fluffy sheep with curly white wool and a gentle horse with a flowing mane, inside a castle library"
+    - "A watercolor illustration of a fluffy sheep with curly white wool and a gentle horse with a flowing mane, beside a shimmering river"
+    - "A watercolor illustration of a fluffy sheep with curly white wool and a gentle horse with a flowing mane, in snowy mountains"
+    - "A watercolor illustration of a fluffy sheep with curly white wool and a gentle horse with a flowing mane, in a futuristic neon plaza"
+
+- index: 43
+  subjects:
+    - "A tiny hedgehog with soft brown spikes"
+    - "A bright yellow duckling with round black eyes"
+  subject_tokens: ["hedgehog", "duck"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "inside a cozy cottage"
+    - "in a snowy village"
+    - "in a futuristic neon-lit alley"
+    - "beside a peaceful river"
+    - "in a bamboo forest"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a tiny hedgehog with soft brown spikes and a bright yellow duckling with round black eyes, inside a cozy cottage"
+    - "A storybook illustration of a tiny hedgehog with soft brown spikes and a bright yellow duckling with round black eyes, in a snowy village"
+    - "A storybook illustration of a tiny hedgehog with soft brown spikes and a bright yellow duckling with round black eyes, in a futuristic neon-lit alley"
+    - "A storybook illustration of a tiny hedgehog with soft brown spikes and a bright yellow duckling with round black eyes, beside a peaceful river"
+    - "A storybook illustration of a tiny hedgehog with soft brown spikes and a bright yellow duckling with round black eyes, in a bamboo forest"
+
+- index: 44
+  subjects:
+    - "A round penguin chick with a white belly"
+    - "A mischievous monkey with bright eyes"
+  subject_tokens: ["penguin", "monkey"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a futuristic neon street"
+    - "inside a wooden cabin"
+    - "in snowy mountains"
+    - "in a peaceful meadow"
+    - "near a glowing waterfall"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a round penguin chick with a white belly and a mischievous monkey with bright eyes, in a futuristic neon street"
+    - "A digital illustration of a round penguin chick with a white belly and a mischievous monkey with bright eyes, inside a wooden cabin"
+    - "A digital illustration of a round penguin chick with a white belly and a mischievous monkey with bright eyes, in snowy mountains"
+    - "A digital illustration of a round penguin chick with a white belly and a mischievous monkey with bright eyes, in a peaceful meadow"
+    - "A digital illustration of a round penguin chick with a white belly and a mischievous monkey with bright eyes, near a glowing waterfall"
+
+- index: 45
+  subjects:
+    - "A bright orange fox with a fluffy tail"
+    - "A gentle deer with soft brown eyes"
+  subject_tokens: ["fox", "deer"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a lush garden"
+    - "inside a classroom"
+    - "in a snowy village"
+    - "in a futuristic neon-lit plaza"
+    - "beside a peaceful lakeside"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a bright orange fox with a fluffy tail and a gentle deer with soft brown eyes, in a lush garden"
+    - "A watercolor illustration of a bright orange fox with a fluffy tail and a gentle deer with soft brown eyes, inside a classroom"
+    - "A watercolor illustration of a bright orange fox with a fluffy tail and a gentle deer with soft brown eyes, in a snowy village"
+    - "A watercolor illustration of a bright orange fox with a fluffy tail and a gentle deer with soft brown eyes, in a futuristic neon-lit plaza"
+    - "A watercolor illustration of a bright orange fox with a fluffy tail and a gentle deer with soft brown eyes, beside a peaceful lakeside"
+
+- index: 46
+  subjects:
+    - "A tiny mouse with big ears"
+    - "A fluffy panda with round cheeks"
+  subject_tokens: ["mouse", "panda"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A 3D animation of"
+  settings:
+    - "inside a treehouse"
+    - "in a snowy mountain town"
+    - "in a futuristic neon city"
+    - "beside a calm river"
+    - "in a peaceful meadow"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A 3D animation of a tiny mouse with big ears and a fluffy panda with round cheeks, inside a treehouse"
+    - "A 3D animation of a tiny mouse with big ears and a fluffy panda with round cheeks, in a snowy mountain town"
+    - "A 3D animation of a tiny mouse with big ears and a fluffy panda with round cheeks, in a futuristic neon city"
+    - "A 3D animation of a tiny mouse with big ears and a fluffy panda with round cheeks, beside a calm river"
+    - "A 3D animation of a tiny mouse with big ears and a fluffy panda with round cheeks, in a peaceful meadow"
+
+- index: 47
+  subjects:
+    - "A tall wolf with silver fur"
+    - "A gentle sheep with soft white wool"
+  subject_tokens: ["wolf", "sheep"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "in a bamboo forest"
+    - "inside a stone temple"
+    - "on a snowy ridge"
+    - "in a futuristic neon-lit district"
+    - "beside a shimmering waterfall"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a tall wolf with silver fur and a gentle sheep with soft white wool, in a bamboo forest"
+    - "A hyper-realistic digital painting of a tall wolf with silver fur and a gentle sheep with soft white wool, inside a stone temple"
+    - "A hyper-realistic digital painting of a tall wolf with silver fur and a gentle sheep with soft white wool, on a snowy ridge"
+    - "A hyper-realistic digital painting of a tall wolf with silver fur and a gentle sheep with soft white wool, in a futuristic neon-lit district"
+    - "A hyper-realistic digital painting of a tall wolf with silver fur and a gentle sheep with soft white wool, beside a shimmering waterfall"
+
+- index: 48
+  subjects:
+    - "A cheerful piglet with a round belly"
+    - "A bright yellow duckling with tiny wings"
+  subject_tokens: ["pig", "duck"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a cozy cottage"
+    - "on a snowy hillside"
+    - "in a futuristic neon-lit street"
+    - "beside a calm river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a cheerful piglet with a round belly and a bright yellow duckling with tiny wings, in a peaceful meadow"
+    - "A storybook illustration of a cheerful piglet with a round belly and a bright yellow duckling with tiny wings, inside a cozy cottage"
+    - "A storybook illustration of a cheerful piglet with a round belly and a bright yellow duckling with tiny wings, on a snowy hillside"
+    - "A storybook illustration of a cheerful piglet with a round belly and a bright yellow duckling with tiny wings, in a futuristic neon-lit street"
+    - "A storybook illustration of a cheerful piglet with a round belly and a bright yellow duckling with tiny wings, beside a calm river"
+
+- index: 49
+  subjects:
+    - "A fluffy koala with soft grey fur"
+    - "A mischievous monkey with curly tail"
+  subject_tokens: ["koala", "monkey"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a snowy forest"
+    - "inside a futuristic museum"
+    - "in a bamboo meadow"
+    - "in a neon-lit plaza"
+    - "beside a calm lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a fluffy koala with soft grey fur and a mischievous monkey with curly tail, in a snowy forest"
+    - "A digital illustration of a fluffy koala with soft grey fur and a mischievous monkey with curly tail, inside a futuristic museum"
+    - "A digital illustration of a fluffy koala with soft grey fur and a mischievous monkey with curly tail, in a bamboo meadow"
+    - "A digital illustration of a fluffy koala with soft grey fur and a mischievous monkey with curly tail, in a neon-lit plaza"
+    - "A digital illustration of a fluffy koala with soft grey fur and a mischievous monkey with curly tail, beside a calm lake"
+
+- index: 50
+  subjects:
+    - "A tiny rabbit with long ears"
+    - "A large brown bear with thick fur"
+  subject_tokens: ["rabbit", "bear"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a wooden inn"
+    - "on a snowy ridge"
+    - "in a futuristic neon-lit alley"
+    - "beside a flowing river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a tiny rabbit with long ears and a large brown bear with thick fur, in a peaceful meadow"
+    - "A watercolor illustration of a tiny rabbit with long ears and a large brown bear with thick fur, inside a wooden inn"
+    - "A watercolor illustration of a tiny rabbit with long ears and a large brown bear with thick fur, on a snowy ridge"
+    - "A watercolor illustration of a tiny rabbit with long ears and a large brown bear with thick fur, in a futuristic neon-lit alley"
+    - "A watercolor illustration of a tiny rabbit with long ears and a large brown bear with thick fur, beside a flowing river"
+
+- index: 51
+  subjects:
+    - "A small penguin with shiny feathers"
+    - "A tall deer with elegant legs"
+  subject_tokens: ["penguin", "deer"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "inside a quiet library"
+    - "in snowy mountains"
+    - "in a futuristic neon-lit plaza"
+    - "in a bamboo forest"
+    - "beside a glowing river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a small penguin with shiny feathers and a tall deer with elegant legs, inside a quiet library"
+    - "A digital illustration of a small penguin with shiny feathers and a tall deer with elegant legs, in snowy mountains"
+    - "A digital illustration of a small penguin with shiny feathers and a tall deer with elegant legs, in a futuristic neon-lit plaza"
+    - "A digital illustration of a small penguin with shiny feathers and a tall deer with elegant legs, in a bamboo forest"
+    - "A digital illustration of a small penguin with shiny feathers and a tall deer with elegant legs, beside a glowing river"
+
+- index: 52
+  subjects:
+    - "A fluffy panda cub with round ears"
+    - "A tiny mouse with soft grey fur"
+  subject_tokens: ["panda", "mouse"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A 3D animation of"
+  settings:
+    - "in a peaceful garden"
+    - "inside a treehouse"
+    - "in a snowy mountain village"
+    - "in a futuristic neon-lit district"
+    - "beside a calm lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A 3D animation of a fluffy panda cub with round ears and a tiny mouse with soft grey fur, in a peaceful garden"
+    - "A 3D animation of a fluffy panda cub with round ears and a tiny mouse with soft grey fur, inside a treehouse"
+    - "A 3D animation of a fluffy panda cub with round ears and a tiny mouse with soft grey fur, in a snowy mountain village"
+    - "A 3D animation of a fluffy panda cub with round ears and a tiny mouse with soft grey fur, in a futuristic neon-lit district"
+    - "A 3D animation of a fluffy panda cub with round ears and a tiny mouse with soft grey fur, beside a calm lake"
+
+- index: 53
+  subjects:
+    - "A cheerful squirrel with striped tail"
+    - "A sleepy koala with grey fur"
+  subject_tokens: ["squirrel", "koala"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a forest clearing"
+    - "inside a cozy cottage"
+    - "on a snowy cliff"
+    - "in a futuristic neon plaza"
+    - "beside a peaceful lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a cheerful squirrel with striped tail and a sleepy koala with grey fur, in a forest clearing"
+    - "A storybook illustration of a cheerful squirrel with striped tail and a sleepy koala with grey fur, inside a cozy cottage"
+    - "A storybook illustration of a cheerful squirrel with striped tail and a sleepy koala with grey fur, on a snowy cliff"
+    - "A storybook illustration of a cheerful squirrel with striped tail and a sleepy koala with grey fur, in a futuristic neon plaza"
+    - "A storybook illustration of a cheerful squirrel with striped tail and a sleepy koala with grey fur, beside a peaceful lake"
+
+- index: 54
+  subjects:
+    - "A spiky hedgehog with tiny paws"
+    - "A glowing-eyed wolf with silver fur"
+  subject_tokens: ["hedgehog", "wolf"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "inside a medieval tavern"
+    - "in a bamboo forest"
+    - "on a snowy ridge"
+    - "in a futuristic neon district"
+    - "beside a shimmering river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a spiky hedgehog with tiny paws and a glowing-eyed wolf with silver fur, inside a medieval tavern"
+    - "A hyper-realistic digital painting of a spiky hedgehog with tiny paws and a glowing-eyed wolf with silver fur, in a bamboo forest"
+    - "A hyper-realistic digital painting of a spiky hedgehog with tiny paws and a glowing-eyed wolf with silver fur, on a snowy ridge"
+    - "A hyper-realistic digital painting of a spiky hedgehog with tiny paws and a glowing-eyed wolf with silver fur, in a futuristic neon district"
+    - "A hyper-realistic digital painting of a spiky hedgehog with tiny paws and a glowing-eyed wolf with silver fur, beside a shimmering river"
+
+- index: 55
+  subjects:
+    - "A bright yellow duck with round black eyes"
+    - "A fluffy sheep with curled wool"
+  subject_tokens: ["duck", "sheep"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a peaceful garden"
+    - "inside a bakery"
+    - "on a snowy hill"
+    - "in a futuristic neon district"
+    - "beside a quiet river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a bright yellow duck with round black eyes and a fluffy sheep with curled wool, in a peaceful garden"
+    - "A watercolor illustration of a bright yellow duck with round black eyes and a fluffy sheep with curled wool, inside a bakery"
+    - "A watercolor illustration of a bright yellow duck with round black eyes and a fluffy sheep with curled wool, on a snowy hill"
+    - "A watercolor illustration of a bright yellow duck with round black eyes and a fluffy sheep with curled wool, in a futuristic neon district"
+    - "A watercolor illustration of a bright yellow duck with round black eyes and a fluffy sheep with curled wool, beside a quiet river"
+
+- index: 56
+  subjects:
+    - "A small rabbit with short ears"
+    - "A tall horse with sleek black fur"
+  subject_tokens: ["rabbit", "horse"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a classroom"
+    - "on a snowy mountaintop"
+    - "in a futuristic neon street"
+    - "beside a calm lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a small rabbit with short ears and a tall horse with sleek black fur, in a peaceful meadow"
+    - "A digital illustration of a small rabbit with short ears and a tall horse with sleek black fur, inside a classroom"
+    - "A digital illustration of a small rabbit with short ears and a tall horse with sleek black fur, on a snowy mountaintop"
+    - "A digital illustration of a small rabbit with short ears and a tall horse with sleek black fur, in a futuristic neon street"
+    - "A digital illustration of a small rabbit with short ears and a tall horse with sleek black fur, beside a calm lake"
+
+- index: 57
+  subjects:
+    - "A large brown bear with thick fur"
+    - "A tiny penguin with a round belly"
+  subject_tokens: ["bear", "penguin"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a bamboo forest"
+    - "inside a warm cottage"
+    - "on a snowy hill"
+    - "in a futuristic neon-lit plaza"
+    - "beside a serene lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a large brown bear with thick fur and a tiny penguin with a round belly, in a bamboo forest"
+    - "A storybook illustration of a large brown bear with thick fur and a tiny penguin with a round belly, inside a warm cottage"
+    - "A storybook illustration of a large brown bear with thick fur and a tiny penguin with a round belly, on a snowy hill"
+    - "A storybook illustration of a large brown bear with thick fur and a tiny penguin with a round belly, in a futuristic neon-lit plaza"
+    - "A storybook illustration of a large brown bear with thick fur and a tiny penguin with a round belly, beside a serene lake"
+
+- index: 58
+  subjects:
+    - "A spotted piglet with small hooves"
+    - "A bright orange fox with pointed ears"
+  subject_tokens: ["pig", "fox"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "inside a medieval castle"
+    - "in a peaceful meadow"
+    - "in a snowy mountain town"
+    - "in a futuristic neon-lit street"
+    - "beside a rocky waterfall"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a spotted piglet with small hooves and a bright orange fox with pointed ears, inside a medieval castle"
+    - "A hyper-realistic digital painting of a spotted piglet with small hooves and a bright orange fox with pointed ears, in a peaceful meadow"
+    - "A hyper-realistic digital painting of a spotted piglet with small hooves and a bright orange fox with pointed ears, in a snowy mountain town"
+    - "A hyper-realistic digital painting of a spotted piglet with small hooves and a bright orange fox with pointed ears, in a futuristic neon-lit street"
+    - "A hyper-realistic digital painting of a spotted piglet with small hooves and a bright orange fox with pointed ears, beside a rocky waterfall"
+
+- index: 59
+  subjects:
+    - "A fluffy sheep with curled horns"
+    - "A tall deer with slender legs"
+  subject_tokens: ["sheep", "deer"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a cabin"
+    - "on a snowy ridge"
+    - "in a futuristic neon district"
+    - "beside a flowing river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a fluffy sheep with curled horns and a tall deer with slender legs, in a peaceful meadow"
+    - "A watercolor illustration of a fluffy sheep with curled horns and a tall deer with slender legs, inside a cabin"
+    - "A watercolor illustration of a fluffy sheep with curled horns and a tall deer with slender legs, on a snowy ridge"
+    - "A watercolor illustration of a fluffy sheep with curled horns and a tall deer with slender legs, in a futuristic neon district"
+    - "A watercolor illustration of a fluffy sheep with curled horns and a tall deer with slender legs, beside a flowing river"
+
+- index: 60
+  subjects:
+    - "A bright red fox with glowing amber eyes"
+    - "A playful monkey with a curly tail"
+  subject_tokens: ["fox", "monkey"]
+  description_levels: ["detailed", "detailed"]
+  superclass: "animals"
+  style: "A 3D animation of"
+  settings:
+    - "in a bamboo forest"
+    - "inside a wooden hut"
+    - "on a snowy hill"
+    - "in a futuristic neon plaza"
+    - "beside a peaceful lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A 3D animation of a bright red fox with glowing amber eyes and a playful monkey with a curly tail, in a bamboo forest"
+    - "A 3D animation of a bright red fox with glowing amber eyes and a playful monkey with a curly tail, inside a wooden hut"
+    - "A 3D animation of a bright red fox with glowing amber eyes and a playful monkey with a curly tail, on a snowy hill"
+    - "A 3D animation of a bright red fox with glowing amber eyes and a playful monkey with a curly tail, in a futuristic neon plaza"
+    - "A 3D animation of a bright red fox with glowing amber eyes and a playful monkey with a curly tail, beside a peaceful lake"
+
+# ===========================================================
+# MULTI-SUBJECT STORYBOARD DATASET (ITEMS 61–80 of 100)
+# ===========================================================
+
+- index: 61
+  subjects:
+    - "A fluffy sheep with white wool"
+    - "A tiny mouse with round ears"
+  subject_tokens: ["sheep", "mouse"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a cozy cottage"
+    - "in a snowy village"
+    - "in a futuristic neon-lit plaza"
+    - "beside a quiet stream"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a fluffy sheep with white wool and a tiny mouse with round ears, in a peaceful meadow"
+    - "A digital illustration of a fluffy sheep with white wool and a tiny mouse with round ears, inside a cozy cottage"
+    - "A digital illustration of a fluffy sheep with white wool and a tiny mouse with round ears, in a snowy village"
+    - "A digital illustration of a fluffy sheep with white wool and a tiny mouse with round ears, in a futuristic neon-lit plaza"
+    - "A digital illustration of a fluffy sheep with white wool and a tiny mouse with round ears, beside a quiet stream"
+
+- index: 62
+  subjects:
+    - "A tall deer with thin antlers"
+    - "A cheerful penguin with bright eyes"
+  subject_tokens: ["deer", "penguin"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a snowy glade"
+    - "inside a tea house"
+    - "in a futuristic neon-lit street"
+    - "in a peaceful garden"
+    - "beside a shining river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a tall deer with thin antlers and a cheerful penguin with bright eyes, in a snowy glade"
+    - "A watercolor illustration of a tall deer with thin antlers and a cheerful penguin with bright eyes, inside a tea house"
+    - "A watercolor illustration of a tall deer with thin antlers and a cheerful penguin with bright eyes, in a futuristic neon-lit street"
+    - "A watercolor illustration of a tall deer with thin antlers and a cheerful penguin with bright eyes, in a peaceful garden"
+    - "A watercolor illustration of a tall deer with thin antlers and a cheerful penguin with bright eyes, beside a shining river"
+
+- index: 63
+  subjects:
+    - "A fluffy koala with soft grey fur"
+    - "A sleek tiger with bright orange stripes"
+  subject_tokens: ["koala", "tiger"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "in a bamboo forest"
+    - "inside a library"
+    - "on a snowy mountain path"
+    - "in a futuristic neon-lit alley"
+    - "beside a calm lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a fluffy koala with soft grey fur and a sleek tiger with bright orange stripes, in a bamboo forest"
+    - "A hyper-realistic digital painting of a fluffy koala with soft grey fur and a sleek tiger with bright orange stripes, inside a library"
+    - "A hyper-realistic digital painting of a fluffy koala with soft grey fur and a sleek tiger with bright orange stripes, on a snowy mountain path"
+    - "A hyper-realistic digital painting of a fluffy koala with soft grey fur and a sleek tiger with bright orange stripes, in a futuristic neon-lit alley"
+    - "A hyper-realistic digital painting of a fluffy koala with soft grey fur and a sleek tiger with bright orange stripes, beside a calm lake"
+
+- index: 64
+  subjects:
+    - "A round panda cub with fuzzy ears"
+    - "A bright yellow duckling with tiny wings"
+  subject_tokens: ["panda", "duck"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A 3D animation of"
+  settings:
+    - "in a sunny meadow"
+    - "inside a wooden cabin"
+    - "in a snowy mountain town"
+    - "in a futuristic neon plaza"
+    - "beside a peaceful lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A 3D animation of a round panda cub with fuzzy ears and a bright yellow duckling with tiny wings, in a sunny meadow"
+    - "A 3D animation of a round panda cub with fuzzy ears and a bright yellow duckling with tiny wings, inside a wooden cabin"
+    - "A 3D animation of a round panda cub with fuzzy ears and a bright yellow duckling with tiny wings, in a snowy mountain town"
+    - "A 3D animation of a round panda cub with fuzzy ears and a bright yellow duckling with tiny wings, in a futuristic neon plaza"
+    - "A 3D animation of a round panda cub with fuzzy ears and a bright yellow duckling with tiny wings, beside a peaceful lake"
+
+- index: 65
+  subjects:
+    - "A tiny hedgehog with soft spikes"
+    - "A graceful horse with smooth fur"
+  subject_tokens: ["hedgehog", "horse"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a forest clearing"
+    - "inside a warm cottage"
+    - "on a snowy cliff"
+    - "beside a riverbank"
+    - "in a futuristic neon-lit garden"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a tiny hedgehog with soft spikes and a graceful horse with smooth fur, in a forest clearing"
+    - "A storybook illustration of a tiny hedgehog with soft spikes and a graceful horse with smooth fur, inside a warm cottage"
+    - "A storybook illustration of a tiny hedgehog with soft spikes and a graceful horse with smooth fur, on a snowy cliff"
+    - "A storybook illustration of a tiny hedgehog with soft spikes and a graceful horse with smooth fur, beside a riverbank"
+    - "A storybook illustration of a tiny hedgehog with soft spikes and a graceful horse with smooth fur, in a futuristic neon-lit garden"
+
+- index: 66
+  subjects:
+    - "A bright red fox with sharp ears"
+    - "A fluffy sheep with white wool"
+  subject_tokens: ["fox", "sheep"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a lush meadow"
+    - "inside a castle room"
+    - "in a snowy forest"
+    - "in a futuristic neon-lit passageway"
+    - "beside a shimmering waterfall"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a bright red fox with sharp ears and a fluffy sheep with white wool, in a lush meadow"
+    - "A digital illustration of a bright red fox with sharp ears and a fluffy sheep with white wool, inside a castle room"
+    - "A digital illustration of a bright red fox with sharp ears and a fluffy sheep with white wool, in a snowy forest"
+    - "A digital illustration of a bright red fox with sharp ears and a fluffy sheep with white wool, in a futuristic neon-lit passageway"
+    - "A digital illustration of a bright red fox with sharp ears and a fluffy sheep with white wool, beside a shimmering waterfall"
+
+- index: 67
+  subjects:
+    - "A fluffy koala with soft grey fur"
+    - "A tall deer with golden eyes"
+  subject_tokens: ["koala", "deer"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a peaceful garden"
+    - "inside a cozy villa"
+    - "on a snowy field"
+    - "in a futuristic neon-lit plaza"
+    - "beside a small lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a fluffy koala with soft grey fur and a tall deer with golden eyes, in a peaceful garden"
+    - "A watercolor illustration of a fluffy koala with soft grey fur and a tall deer with golden eyes, inside a cozy villa"
+    - "A watercolor illustration of a fluffy koala with soft grey fur and a tall deer with golden eyes, on a snowy field"
+    - "A watercolor illustration of a fluffy koala with soft grey fur and a tall deer with golden eyes, in a futuristic neon-lit plaza"
+    - "A watercolor illustration of a fluffy koala with soft grey fur and a tall deer with golden eyes, beside a small lake"
+
+- index: 68
+  subjects:
+    - "A small penguin chick with fuzzy feathers"
+    - "A mischievous monkey with a curly tail"
+  subject_tokens: ["penguin", "monkey"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A 3D animation of"
+  settings:
+    - "in a snowy mountain village"
+    - "inside a wooden inn"
+    - "in a lush garden"
+    - "in a futuristic neon-lit street"
+    - "beside a bright waterfall"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A 3D animation of a small penguin chick with fuzzy feathers and a mischievous monkey with a curly tail, in a snowy mountain village"
+    - "A 3D animation of a small penguin chick with fuzzy feathers and a mischievous monkey with a curly tail, inside a wooden inn"
+    - "A 3D animation of a small penguin chick with fuzzy feathers and a mischievous monkey with a curly tail, in a lush garden"
+    - "A 3D animation of a small penguin chick with fuzzy feathers and a mischievous monkey with a curly tail, in a futuristic neon-lit street"
+    - "A 3D animation of a small penguin chick with fuzzy feathers and a mischievous monkey with a curly tail, beside a bright waterfall"
+
+- index: 69
+  subjects:
+    - "A fluffy sheep with curved horns"
+    - "A huge bear with thick brown fur"
+  subject_tokens: ["sheep", "bear"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a cabin"
+    - "on a snowy cliff"
+    - "in a futuristic neon-lit plaza"
+    - "beside a serene river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a fluffy sheep with curved horns and a huge bear with thick brown fur, in a peaceful meadow"
+    - "A digital illustration of a fluffy sheep with curved horns and a huge bear with thick brown fur, inside a cabin"
+    - "A digital illustration of a fluffy sheep with curved horns and a huge bear with thick brown fur, on a snowy cliff"
+    - "A digital illustration of a fluffy sheep with curved horns and a huge bear with thick brown fur, in a futuristic neon-lit plaza"
+    - "A digital illustration of a fluffy sheep with curved horns and a huge bear with thick brown fur, beside a serene river"
+
+- index: 70
+  subjects:
+    - "A graceful horse with a long mane"
+    - "A bright yellow duckling with tiny wings"
+  subject_tokens: ["horse", "duck"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a lush garden"
+    - "inside a cozy cottage"
+    - "on a snowy ridge"
+    - "in a futuristic neon-lit alley"
+    - "beside a shining pond"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a graceful horse with a long mane and a bright yellow duckling with tiny wings, in a lush garden"
+    - "A storybook illustration of a graceful horse with a long mane and a bright yellow duckling with tiny wings, inside a cozy cottage"
+    - "A storybook illustration of a graceful horse with a long mane and a bright yellow duckling with tiny wings, on a snowy ridge"
+    - "A storybook illustration of a graceful horse with a long mane and a bright yellow duckling with tiny wings, in a futuristic neon-lit alley"
+    - "A storybook illustration of a graceful horse with a long mane and a bright yellow duckling with tiny wings, beside a shining pond"
+
+- index: 71
+  subjects:
+    - "A sleek tiger with bright eyes"
+    - "A fluffy koala with soft grey fur"
+  subject_tokens: ["tiger", "koala"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a dense bamboo forest"
+    - "inside a village library"
+    - "on a snowy cliff"
+    - "in a cyberpunk neon-lit market"
+    - "beside a shimmering river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a sleek tiger with bright eyes and a fluffy koala with soft grey fur, in a dense bamboo forest"
+    - "A watercolor illustration of a sleek tiger with bright eyes and a fluffy koala with soft grey fur, inside a village library"
+    - "A watercolor illustration of a sleek tiger with bright eyes and a fluffy koala with soft grey fur, on a snowy cliff"
+    - "A watercolor illustration of a sleek tiger with bright eyes and a fluffy koala with soft grey fur, in a cyberpunk neon-lit market"
+    - "A watercolor illustration of a sleek tiger with bright eyes and a fluffy koala with soft grey fur, beside a shimmering river"
+
+- index: 72
+  subjects:
+    - "A tiny rabbit with round eyes"
+    - "A mischievous monkey with a curly tail"
+  subject_tokens: ["rabbit", "monkey"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A 3D animation of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a cozy cottage"
+    - "on a snowy hillside"
+    - "in a futuristic neon alley"
+    - "beside a flowing river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A 3D animation of a tiny rabbit with round eyes and a mischievous monkey with a curly tail, in a peaceful meadow"
+    - "A 3D animation of a tiny rabbit with round eyes and a mischievous monkey with a curly tail, inside a cozy cottage"
+    - "A 3D animation of a tiny rabbit with round eyes and a mischievous monkey with a curly tail, on a snowy hillside"
+    - "A 3D animation of a tiny rabbit with round eyes and a mischievous monkey with a curly tail, in a futuristic neon alley"
+    - "A 3D animation of a tiny rabbit with round eyes and a mischievous monkey with a curly tail, beside a flowing river"
+
+- index: 73
+  subjects:
+    - "A fluffy panda with round cheeks"
+    - "A tall wolf with glowing amber eyes"
+  subject_tokens: ["panda", "wolf"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "in a bamboo grove"
+    - "inside a warm cabin"
+    - "on a snowy ridge"
+    - "in a futuristic neon district"
+    - "beside a calm river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a fluffy panda with round cheeks and a tall wolf with glowing amber eyes, in a bamboo grove"
+    - "A hyper-realistic digital painting of a fluffy panda with round cheeks and a tall wolf with glowing amber eyes, inside a warm cabin"
+    - "A hyper-realistic digital painting of a fluffy panda with round cheeks and a tall wolf with glowing amber eyes, on a snowy ridge"
+    - "A hyper-realistic digital painting of a fluffy panda with round cheeks and a tall wolf with glowing amber eyes, in a futuristic neon district"
+    - "A hyper-realistic digital painting of a fluffy panda with round cheeks and a tall wolf with glowing amber eyes, beside a calm river"
+
+- index: 74
+  subjects:
+    - "A tiny mouse with short whiskers"
+    - "A tall deer with slender legs"
+  subject_tokens: ["mouse", "deer"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a cozy hut"
+    - "on a snowy ridge"
+    - "in a futuristic neon street"
+    - "beside a soft-flowing creek"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a tiny mouse with short whiskers and a tall deer with slender legs, in a peaceful meadow"
+    - "A storybook illustration of a tiny mouse with short whiskers and a tall deer with slender legs, inside a cozy hut"
+    - "A storybook illustration of a tiny mouse with short whiskers and a tall deer with slender legs, on a snowy ridge"
+    - "A storybook illustration of a tiny mouse with short whiskers and a tall deer with slender legs, in a futuristic neon street"
+    - "A storybook illustration of a tiny mouse with short whiskers and a tall deer with slender legs, beside a soft-flowing creek"
+
+- index: 75
+  subjects:
+    - "A spiky hedgehog with tiny paws"
+    - "A bright red fox with sharp eyes"
+  subject_tokens: ["hedgehog", "fox"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a quiet meadow"
+    - "inside a small cottage"
+    - "on a snowy mountain"
+    - "in a futuristic neon-lit market"
+    - "beside a bright lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a spiky hedgehog with tiny paws and a bright red fox with sharp eyes, in a quiet meadow"
+    - "A watercolor illustration of a spiky hedgehog with tiny paws and a bright red fox with sharp eyes, inside a small cottage"
+    - "A watercolor illustration of a spiky hedgehog with tiny paws and a bright red fox with sharp eyes, on a snowy mountain"
+    - "A watercolor illustration of a spiky hedgehog with tiny paws and a bright red fox with sharp eyes, in a futuristic neon-lit market"
+    - "A watercolor illustration of a spiky hedgehog with tiny paws and a bright red fox with sharp eyes, beside a bright lake"
+
+- index: 76
+  subjects:
+    - "A gentle horse with smooth fur"
+    - "A cheerful piglet with round cheeks"
+  subject_tokens: ["horse", "pig"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a farmhouse"
+    - "on a snowy cliff"
+    - "in a futuristic neon-lit plaza"
+    - "beside a calm river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a gentle horse with smooth fur and a cheerful piglet with round cheeks, in a peaceful meadow"
+    - "A digital illustration of a gentle horse with smooth fur and a cheerful piglet with round cheeks, inside a farmhouse"
+    - "A digital illustration of a gentle horse with smooth fur and a cheerful piglet with round cheeks, on a snowy cliff"
+    - "A digital illustration of a gentle horse with smooth fur and a cheerful piglet with round cheeks, in a futuristic neon-lit plaza"
+    - "A digital illustration of a gentle horse with smooth fur and a cheerful piglet with round cheeks, beside a calm river"
+
+- index: 77
+  subjects:
+    - "A fluffy sheep with white wool"
+    - "A sleek tiger with sharp stripes"
+  subject_tokens: ["sheep", "tiger"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a forest clearing"
+    - "inside a small cottage"
+    - "on a snowy hilltop"
+    - "in a futuristic neon-lit street"
+    - "beside a flowing river"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A storybook illustration of a fluffy sheep with white wool and a sleek tiger with sharp stripes, in a forest clearing"
+    - "A storybook illustration of a fluffy sheep with white wool and a sleek tiger with sharp stripes, inside a small cottage"
+    - "A storybook illustration of a fluffy sheep with white wool and a sleek tiger with sharp stripes, on a snowy hilltop"
+    - "A storybook illustration of a fluffy sheep with white wool and a sleek tiger with sharp stripes, in a futuristic neon-lit street"
+    - "A storybook illustration of a fluffy sheep with white wool and a sleek tiger with sharp stripes, beside a flowing river"
+
+- index: 78
+  subjects:
+    - "A tiny mouse with bright eyes"
+    - "A large brown bear with thick fur"
+  subject_tokens: ["mouse", "bear"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "in a lush garden"
+    - "inside a cozy cabin"
+    - "on a snowy cliff"
+    - "in a futuristic neon-lit plaza"
+    - "beside a peaceful lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A hyper-realistic digital painting of a tiny mouse with bright eyes and a large brown bear with thick fur, in a lush garden"
+    - "A hyper-realistic digital painting of a tiny mouse with bright eyes and a large brown bear with thick fur, inside a cozy cabin"
+    - "A hyper-realistic digital painting of a tiny mouse with bright eyes and a large brown bear with thick fur, on a snowy cliff"
+    - "A hyper-realistic digital painting of a tiny mouse with bright eyes and a large brown bear with thick fur, in a futuristic neon-lit plaza"
+    - "A hyper-realistic digital painting of a tiny mouse with bright eyes and a large brown bear with thick fur, beside a peaceful lake"
+
+- index: 79
+  subjects:
+    - "A cheerful penguin with shiny feathers"
+    - "A bright red fox with glowing eyes"
+  subject_tokens: ["penguin", "fox"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a snowy forest"
+    - "inside a wooden villa"
+    - "in a futuristic neon-lit market"
+    - "beside a calm lake"
+    - "in a peaceful meadow"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A watercolor illustration of a cheerful penguin with shiny feathers and a bright red fox with glowing eyes, in a snowy forest"
+    - "A watercolor illustration of a cheerful penguin with shiny feathers and a bright red fox with glowing eyes, inside a wooden villa"
+    - "A watercolor illustration of a cheerful penguin with shiny feathers and a bright red fox with glowing eyes, in a futuristic neon-lit market"
+    - "A watercolor illustration of a cheerful penguin with shiny feathers and a bright red fox with glowing eyes, beside a calm lake"
+    - "A watercolor illustration of a cheerful penguin with shiny feathers and a bright red fox with glowing eyes, in a peaceful meadow"
+
+- index: 80
+  subjects:
+    - "A tiny hedgehog with soft fuzzy spikes"
+    - "A tall horse with smooth brown fur"
+  subject_tokens: ["hedgehog", "horse"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a shady forest"
+    - "inside a stone cottage"
+    - "on a snowy ridge"
+    - "in a futuristic neon-lit street"
+    - "beside a quiet lake"
+  settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
+  prompts:
+    - "A digital illustration of a tiny hedgehog with soft fuzzy spikes and a tall horse with smooth brown fur, in a shady forest"
+    - "A digital illustration of a tiny hedgehog with soft fuzzy spikes and a tall horse with smooth brown fur, inside a stone cottage"
+    - "A digital illustration of a tiny hedgehog with soft fuzzy spikes and a tall horse with smooth brown fur, on a snowy ridge"
+    - "A digital illustration of a tiny hedgehog with soft fuzzy spikes and a tall horse with smooth brown fur, in a futuristic neon-lit street"
+    - "A digital illustration of a tiny hedgehog with soft fuzzy spikes and a tall horse with smooth brown fur, beside a quiet lake"
+
+# ===========================================================
+# MULTI-SUBJECT STORYBOARD DATASET (ITEMS 81–100 of 100)
+# ===========================================================
+
+- index: 81
+  subjects:
+    - "A bright yellow duckling with tiny wings"
+    - "A mischievous monkey with glowing eyes"
+  subject_tokens: ["duck", "monkey"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a cozy cottage"
+    - "on a snowy hill"
+    - "in a futuristic neon-lit alley"
+    - "beside a calm river"
+  prompts:
+    - "A storybook illustration of a bright yellow duckling with tiny wings and a mischievous monkey with glowing eyes, in a peaceful meadow"
+    - "A storybook illustration of a bright yellow duckling with tiny wings and a mischievous monkey with glowing eyes, inside a cozy cottage"
+    - "A storybook illustration of a bright yellow duckling with tiny wings and a mischievous monkey with glowing eyes, on a snowy hill"
+    - "A storybook illustration of a bright yellow duckling with tiny wings and a mischievous monkey with glowing eyes, in a futuristic neon-lit alley"
+    - "A storybook illustration of a bright yellow duckling with tiny wings and a mischievous monkey with glowing eyes, beside a calm river"
+
+- index: 82
+  subjects:
+    - "A graceful deer with soft brown fur"
+    - "A fluffy panda with round cheeks"
+  subject_tokens: ["deer", "panda"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a snowy glade"
+    - "inside a library"
+    - "in a futuristic neon-lit plaza"
+    - "in a dense bamboo grove"
+    - "beside a shimmering lake"
+  prompts:
+    - "A watercolor illustration of a graceful deer with soft brown fur and a fluffy panda with round cheeks, in a snowy glade"
+    - "A watercolor illustration of a graceful deer with soft brown fur and a fluffy panda with round cheeks, inside a library"
+    - "A watercolor illustration of a graceful deer with soft brown fur and a fluffy panda with round cheeks, in a futuristic neon-lit plaza"
+    - "A watercolor illustration of a graceful deer with soft brown fur and a fluffy panda with round cheeks, in a dense bamboo grove"
+    - "A watercolor illustration of a graceful deer with soft brown fur and a fluffy panda with round cheeks, beside a shimmering lake"
+
+- index: 83
+  subjects:
+    - "A tiny mouse with round ears"
+    - "A sleek tiger with sharp stripes"
+  subject_tokens: ["mouse", "tiger"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a medieval castle"
+    - "on a snowy cliff"
+    - "in a futuristic neon-lit alley"
+    - "beside a flowing river"
+  prompts:
+    - "A hyper-realistic digital painting of a tiny mouse with round ears and a sleek tiger with sharp stripes, in a peaceful meadow"
+    - "A hyper-realistic digital painting of a tiny mouse with round ears and a sleek tiger with sharp stripes, inside a medieval castle"
+    - "A hyper-realistic digital painting of a tiny mouse with round ears and a sleek tiger with sharp stripes, on a snowy cliff"
+    - "A hyper-realistic digital painting of a tiny mouse with round ears and a sleek tiger with sharp stripes, in a futuristic neon-lit alley"
+    - "A hyper-realistic digital painting of a tiny mouse with round ears and a sleek tiger with sharp stripes, beside a flowing river"
+
+- index: 84
+  subjects:
+    - "A fluffy koala with soft grey fur"
+    - "A playful piglet with tiny hooves"
+  subject_tokens: ["koala", "pig"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a sunny meadow"
+    - "inside a cabin"
+    - "on a snowy ridge"
+    - "in a futuristic neon street"
+    - "beside a calm lake"
+  prompts:
+    - "A digital illustration of a fluffy koala with soft grey fur and a playful piglet with tiny hooves, in a sunny meadow"
+    - "A digital illustration of a fluffy koala with soft grey fur and a playful piglet with tiny hooves, inside a cabin"
+    - "A digital illustration of a fluffy koala with soft grey fur and a playful piglet with tiny hooves, on a snowy ridge"
+    - "A digital illustration of a fluffy koala with soft grey fur and a playful piglet with tiny hooves, in a futuristic neon street"
+    - "A digital illustration of a fluffy koala with soft grey fur and a playful piglet with tiny hooves, beside a calm lake"
+
+- index: 85
+  subjects:
+    - "A fluffy sheep with curly wool"
+    - "A bright red fox with sharp bright eyes"
+  subject_tokens: ["sheep", "fox"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a quiet meadow"
+    - "inside a warm cottage"
+    - "on a snowy hill"
+    - "in a futuristic neon-lit plaza"
+    - "beside a shimmering lake"
+  prompts:
+    - "A watercolor illustration of a fluffy sheep with curly wool and a bright red fox with sharp bright eyes, in a quiet meadow"
+    - "A watercolor illustration of a fluffy sheep with curly wool and a bright red fox with sharp bright eyes, inside a warm cottage"
+    - "A watercolor illustration of a fluffy sheep with curly wool and a bright red fox with sharp bright eyes, on a snowy hill"
+    - "A watercolor illustration of a fluffy sheep with curly wool and a bright red fox with sharp bright eyes, in a futuristic neon-lit plaza"
+    - "A watercolor illustration of a fluffy sheep with curly wool and a bright red fox with sharp bright eyes, beside a shimmering lake"
+
+- index: 86
+  subjects:
+    - "A curious rabbit with tall ears"
+    - "A tiny penguin with shiny feathers"
+  subject_tokens: ["rabbit", "penguin"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a peaceful garden"
+    - "inside a cozy classroom"
+    - "on a snowy mountain"
+    - "in a futuristic neon-lit market"
+    - "beside a flowing stream"
+  prompts:
+    - "A storybook illustration of a curious rabbit with tall ears and a tiny penguin with shiny feathers, in a peaceful garden"
+    - "A storybook illustration of a curious rabbit with tall ears and a tiny penguin with shiny feathers, inside a cozy classroom"
+    - "A storybook illustration of a curious rabbit with tall ears and a tiny penguin with shiny feathers, on a snowy mountain"
+    - "A storybook illustration of a curious rabbit with tall ears and a tiny penguin with shiny feathers, in a futuristic neon-lit market"
+    - "A storybook illustration of a curious rabbit with tall ears and a tiny penguin with shiny feathers, beside a flowing stream"
+
+- index: 87
+  subjects:
+    - "A graceful horse with smooth fur"
+    - "A fluffy panda cub with round ears"
+  subject_tokens: ["horse", "panda"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a lush garden"
+    - "inside a cabin"
+    - "on a snowy cliff"
+    - "in a futuristic neon-lit alley"
+    - "beside a calm river"
+  prompts:
+    - "A digital illustration of a graceful horse with smooth fur and a fluffy panda cub with round ears, in a lush garden"
+    - "A digital illustration of a graceful horse with smooth fur and a fluffy panda cub with round ears, inside a cabin"
+    - "A digital illustration of a graceful horse with smooth fur and a fluffy panda cub with round ears, on a snowy cliff"
+    - "A digital illustration of a graceful horse with smooth fur and a fluffy panda cub with round ears, in a futuristic neon-lit alley"
+    - "A digital illustration of a graceful horse with smooth fur and a fluffy panda cub with round ears, beside a calm river"
+
+- index: 88
+  subjects:
+    - "A tall wolf with sharp amber eyes"
+    - "A tiny hedgehog with brown spikes"
+  subject_tokens: ["wolf", "hedgehog"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "in a snowy forest"
+    - "inside a stone cabin"
+    - "on a snowy ridge"
+    - "in a futuristic neon-lit street"
+    - "beside a quiet lake"
+  prompts:
+    - "A hyper-realistic digital painting of a tall wolf with sharp amber eyes and a tiny hedgehog with brown spikes, in a snowy forest"
+    - "A hyper-realistic digital painting of a tall wolf with sharp amber eyes and a tiny hedgehog with brown spikes, inside a stone cabin"
+    - "A hyper-realistic digital painting of a tall wolf with sharp amber eyes and a tiny hedgehog with brown spikes, on a snowy ridge"
+    - "A hyper-realistic digital painting of a tall wolf with sharp amber eyes and a tiny hedgehog with brown spikes, in a futuristic neon-lit street"
+    - "A hyper-realistic digital painting of a tall wolf with sharp amber eyes and a tiny hedgehog with brown spikes, beside a quiet lake"
+
+- index: 89
+  subjects:
+    - "A fluffy sheep with soft white wool"
+    - "A cheerful piglet with pink cheeks"
+  subject_tokens: ["sheep", "pig"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a cozy cottage"
+    - "in a snowy village"
+    - "in a futuristic neon-lit plaza"
+    - "beside a shimmering river"
+  prompts:
+    - "A watercolor illustration of a fluffy sheep with soft white wool and a cheerful piglet with pink cheeks, in a peaceful meadow"
+    - "A watercolor illustration of a fluffy sheep with soft white wool and a cheerful piglet with pink cheeks, inside a cozy cottage"
+    - "A watercolor illustration of a fluffy sheep with soft white wool and a cheerful piglet with pink cheeks, in a snowy village"
+    - "A watercolor illustration of a fluffy sheep with soft white wool and a cheerful piglet with pink cheeks, in a futuristic neon-lit plaza"
+    - "A watercolor illustration of a fluffy sheep with soft white wool and a cheerful piglet with pink cheeks, beside a shimmering river"
+
+- index: 90
+  subjects:
+    - "A bright red fox with glowing eyes"
+    - "A tiny mouse with round ears"
+  subject_tokens: ["fox", "mouse"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a snowy forest"
+    - "inside a warm cottage"
+    - "on a snowy mountaintop"
+    - "in a futuristic neon-lit market"
+    - "beside a calm stream"
+  prompts:
+    - "A digital illustration of a bright red fox with glowing eyes and a tiny mouse with round ears, in a snowy forest"
+    - "A digital illustration of a bright red fox with glowing eyes and a tiny mouse with round ears, inside a warm cottage"
+    - "A digital illustration of a bright red fox with glowing eyes and a tiny mouse with round ears, on a snowy mountaintop"
+    - "A digital illustration of a bright red fox with glowing eyes and a tiny mouse with round ears, in a futuristic neon-lit market"
+    - "A digital illustration of a bright red fox with glowing eyes and a tiny mouse with round ears, beside a calm stream"
+
+- index: 91
+  subjects:
+    - "A gentle deer with soft golden fur"
+    - "A mischievous monkey with bright eyes"
+  subject_tokens: ["deer", "monkey"]
+  description_levels: ["detailed", "detailed"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a wooden cottage"
+    - "on a snowy ridge"
+    - "in a futuristic neon market"
+    - "beside a flowing river"
+  prompts:
+    - "A storybook illustration of a gentle deer with soft golden fur and a mischievous monkey with bright eyes, in a peaceful meadow"
+    - "A storybook illustration of a gentle deer with soft golden fur and a mischievous monkey with bright eyes, inside a wooden cottage"
+    - "A storybook illustration of a gentle deer with soft golden fur and a mischievous monkey with bright eyes, on a snowy ridge"
+    - "A storybook illustration of a gentle deer with soft golden fur and a mischievous monkey with bright eyes, in a futuristic neon market"
+    - "A storybook illustration of a gentle deer with soft golden fur and a mischievous monkey with bright eyes, beside a flowing river"
+
+- index: 92
+  subjects:
+    - "A fluffy koala with round ears"
+    - "A tall horse with sleek black fur"
+  subject_tokens: ["koala", "horse"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a forest clearing"
+    - "inside a warm cottage"
+    - "on a snowy cliff"
+    - "in a futuristic neon-lit plaza"
+    - "beside a calm river"
+  prompts:
+    - "A watercolor illustration of a fluffy koala with round ears and a tall horse with sleek black fur, in a forest clearing"
+    - "A watercolor illustration of a fluffy koala with round ears and a tall horse with sleek black fur, inside a warm cottage"
+    - "A watercolor illustration of a fluffy koala with round ears and a tall horse with sleek black fur, on a snowy cliff"
+    - "A watercolor illustration of a fluffy koala with round ears and a tall horse with sleek black fur, in a futuristic neon-lit plaza"
+    - "A watercolor illustration of a fluffy koala with round ears and a tall horse with sleek black fur, beside a calm river"
+
+- index: 93
+  subjects:
+    - "A tiny penguin chick with bright eyes"
+    - "A fluffy sheep with curly horns"
+  subject_tokens: ["penguin", "sheep"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a snowy meadow"
+    - "inside a wooden cabin"
+    - "on a snowy hill"
+    - "in a futuristic neon-lit plaza"
+    - "beside a gentle stream"
+  prompts:
+    - "A digital illustration of a tiny penguin chick with bright eyes and a fluffy sheep with curly horns, in a snowy meadow"
+    - "A digital illustration of a tiny penguin chick with bright eyes and a fluffy sheep with curly horns, inside a wooden cabin"
+    - "A digital illustration of a tiny penguin chick with bright eyes and a fluffy sheep with curly horns, on a snowy hill"
+    - "A digital illustration of a tiny penguin chick with bright eyes and a fluffy sheep with curly horns, in a futuristic neon-lit plaza"
+    - "A digital illustration of a tiny penguin chick with bright eyes and a fluffy sheep with curly horns, beside a gentle stream"
+
+- index: 94
+  subjects:
+    - "A tiny mouse with soft fur"
+    - "A cheerful squirrel with a fluffy tail"
+  subject_tokens: ["mouse", "squirrel"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a peaceful garden"
+    - "inside a cozy cottage"
+    - "on a snowy cliff"
+    - "in a futuristic neon-lit alley"
+    - "beside a calm lake"
+  prompts:
+    - "A storybook illustration of a tiny mouse with soft fur and a cheerful squirrel with a fluffy tail, in a peaceful garden"
+    - "A storybook illustration of a tiny mouse with soft fur and a cheerful squirrel with a fluffy tail, inside a cozy cottage"
+    - "A storybook illustration of a tiny mouse with soft fur and a cheerful squirrel with a fluffy tail, on a snowy cliff"
+    - "A storybook illustration of a tiny mouse with soft fur and a cheerful squirrel with a fluffy tail, in a futuristic neon-lit alley"
+    - "A storybook illustration of a tiny mouse with soft fur and a cheerful squirrel with a fluffy tail, beside a calm lake"
+
+- index: 95
+  subjects:
+    - "A fluffy panda cub with round ears"
+    - "A bright red fox with sharp ears"
+  subject_tokens: ["panda", "fox"]
+  description_levels: ["generic", "detailed"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "in a bamboo forest"
+    - "inside a cozy villa"
+    - "on a snowy cliff"
+    - "in a futuristic neon-lit street"
+    - "beside a shimmering river"
+  prompts:
+    - "A hyper-realistic digital painting of a fluffy panda cub with round ears and a bright red fox with sharp ears, in a bamboo forest"
+    - "A hyper-realistic digital painting of a fluffy panda cub with round ears and a bright red fox with sharp ears, inside a cozy villa"
+    - "A hyper-realistic digital painting of a fluffy panda cub with round ears and a bright red fox with sharp ears, on a snowy cliff"
+    - "A hyper-realistic digital painting of a fluffy panda cub with round ears and a bright red fox with sharp ears, in a futuristic neon-lit street"
+    - "A hyper-realistic digital painting of a fluffy panda cub with round ears and a bright red fox with sharp ears, beside a shimmering river"
+
+- index: 96
+  subjects:
+    - "A fluffy sheep with white wool"
+    - "A gentle horse with a flowing mane"
+  subject_tokens: ["sheep", "horse"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a peaceful meadow"
+    - "inside a warm bakery"
+    - "on a snowy cliffside"
+    - "in a futuristic neon-lit plaza"
+    - "beside a calm river"
+  prompts:
+    - "A watercolor illustration of a fluffy sheep with white wool and a gentle horse with a flowing mane, in a peaceful meadow"
+    - "A watercolor illustration of a fluffy sheep with white wool and a gentle horse with a flowing mane, inside a warm bakery"
+    - "A watercolor illustration of a fluffy sheep with white wool and a gentle horse with a flowing mane, on a snowy cliffside"
+    - "A watercolor illustration of a fluffy sheep with white wool and a gentle horse with a flowing mane, in a futuristic neon-lit plaza"
+    - "A watercolor illustration of a fluffy sheep with white wool and a gentle horse with a flowing mane, beside a calm river"
+
+- index: 97
+  subjects:
+    - "A tiny hedgehog with small paws"
+    - "A cheerful penguin with shiny feathers"
+  subject_tokens: ["hedgehog", "penguin"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A storybook illustration of"
+  settings:
+    - "in a snowy field"
+    - "inside a wooden cabin"
+    - "on a frosty hill"
+    - "in a futuristic neon-lit district"
+    - "beside a quiet stream"
+  prompts:
+    - "A storybook illustration of a tiny hedgehog with small paws and a cheerful penguin with shiny feathers, in a snowy field"
+    - "A storybook illustration of a tiny hedgehog with small paws and a cheerful penguin with shiny feathers, inside a wooden cabin"
+    - "A storybook illustration of a tiny hedgehog with small paws and a cheerful penguin with shiny feathers, on a frosty hill"
+    - "A storybook illustration of a tiny hedgehog with small paws and a cheerful penguin with shiny feathers, in a futuristic neon-lit district"
+    - "A storybook illustration of a tiny hedgehog with small paws and a cheerful penguin with shiny feathers, beside a quiet stream"
+
+- index: 98
+  subjects:
+    - "A bright red fox with sharp eyes"
+    - "A tall deer with slender golden legs"
+  subject_tokens: ["fox", "deer"]
+  description_levels: ["detailed", "detailed"]
+  superclass: "animals"
+  style: "A hyper-realistic digital painting of"
+  settings:
+    - "in a peaceful garden"
+    - "inside a warm lodge"
+    - "on a snowy mountaintop"
+    - "in a futuristic neon-lit plaza"
+    - "beside a bright lake"
+  prompts:
+    - "A hyper-realistic digital painting of a bright red fox with sharp eyes and a tall deer with slender golden legs, in a peaceful garden"
+    - "A hyper-realistic digital painting of a bright red fox with sharp eyes and a tall deer with slender golden legs, inside a warm lodge"
+    - "A hyper-realistic digital painting of a bright red fox with sharp eyes and a tall deer with slender golden legs, on a snowy mountaintop"
+    - "A hyper-realistic digital painting of a bright red fox with sharp eyes and a tall deer with slender golden legs, in a futuristic neon-lit plaza"
+    - "A hyper-realistic digital painting of a bright red fox with sharp eyes and a tall deer with slender golden legs, beside a bright lake"
+
+- index: 99
+  subjects:
+    - "A tiny mouse with bright round eyes"
+    - "A fluffy koala with soft grey fur"
+  subject_tokens: ["mouse", "koala"]
+  description_levels: ["generic", "generic"]
+  superclass: "animals"
+  style: "A digital illustration of"
+  settings:
+    - "in a peaceful garden"
+    - "inside a cozy cottage"
+    - "on a snowy ridge"
+    - "in a futuristic neon-lit street"
+    - "beside a flowing river"
+  prompts:
+    - "A digital illustration of a tiny mouse with bright round eyes and a fluffy koala with soft grey fur, in a peaceful garden"
+    - "A digital illustration of a tiny mouse with bright round eyes and a fluffy koala with soft grey fur, inside a cozy cottage"
+    - "A digital illustration of a tiny mouse with bright round eyes and a fluffy koala with soft grey fur, on a snowy ridge"
+    - "A digital illustration of a tiny mouse with bright round eyes and a fluffy koala with soft grey fur, in a futuristic neon-lit street"
+    - "A digital illustration of a tiny mouse with bright round eyes and a fluffy koala with soft grey fur, beside a flowing river"
+
+- index: 100
+  subjects:
+    - "A large brown bear with thick fur"
+    - "A bright yellow duck with tiny wings"
+  subject_tokens: ["bear", "duck"]
+  description_levels: ["detailed", "generic"]
+  superclass: "animals"
+  style: "A watercolor illustration of"
+  settings:
+    - "in a snowy forest"
+    - "inside a cabin"
+    - "on a snowy mountain path"
+    - "in a futuristic neon-lit plaza"
+    - "beside a shimmering river"
+  prompts:
+    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duck with tiny wings, in a snowy forest"
+    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duck with tiny wings, inside a cabin"
+    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duck with tiny wings, on a snowy mountain path"
+    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duck with tiny wings, in a futuristic neon-lit plaza"
+    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duck with tiny wings, beside a shimmering river"
