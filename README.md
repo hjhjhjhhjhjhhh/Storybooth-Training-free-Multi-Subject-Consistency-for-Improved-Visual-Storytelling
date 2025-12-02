@@ -30,9 +30,9 @@ login(token="hf_XXX")
 
 ## TODO
 - [x] Intra-image self-attention bounding
-- [] Inter-image self-attention bounding
-- [] Cross-frame token merging
-- [] Early negative token unmerging
+- [ ] Inter-image self-attention bounding
+- [ ] Cross-frame token merging
+- [ ] Early negative token unmerging
 
 
 
