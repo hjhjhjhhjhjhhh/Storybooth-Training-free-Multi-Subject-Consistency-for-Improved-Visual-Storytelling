@@ -27,7 +27,18 @@ login(token="hf_XXX")
 ```
 
 ## How to run
-
+### 0. Add your huggingface token
+- In `generate_text_and_layout.py` and `output_image.py`, you need to add your huggingface token.
+- **Do not push your token to GitHub!**
+### 1. Create scene_prompts
+```bash
+python generate_text_and_layout.py
+```
+### 2. Generate the images
+```bash
+python output_image.py
+```
+- Right now, the default setting only generates the image for index = 1. Later on, I might change it so that each index has its own folder containing the LLM output JSON file and its images.
 ## TODO
 - [x] Intra-image self-attention bounding
 - [ ] Inter-image self-attention bounding

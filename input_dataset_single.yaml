@@ -1,0 +1,1034 @@
+---
+index: 2
+general_prompt: '[Woman] A woman'
+prompts_array:
+- '[Woman] baking cookies'
+- '[Woman] feeding seagulls'
+- '[Woman] wearing a chef''s hat and apron'
+- '[Woman] dressed in a vintage 1950s outfit'
+- '[Woman] on a city street in the 1950s'
+style: A photo of
+---
+index: 3
+general_prompt: '[Gentleman] An elderly gentleman with distinguished gray hair, a
+  neatly trimmed mustache, and gentle blue eyes'
+prompts_array:
+- '[Gentleman] reading a newspaper'
+- '[Gentleman] at a vintage car show'
+- '[Gentleman] in a vineyard'
+- '[Gentleman] swinging a golf club'
+- '[Gentleman] listening to music'
+style: A 3D animation of
+---
+index: 4
+general_prompt: '[Woman] An elderly woman'
+prompts_array:
+- '[Woman] baking cookies'
+- '[Woman] at a seaside pier'
+- '[Woman] smelling a rose'
+- '[Woman] reading a novel'
+- '[Woman] shopping at a market'
+style: A pixel art depiction of
+---
+index: 6
+general_prompt: '[Woman] An elderly woman'
+prompts_array:
+- '[Woman] baking cookies'
+- '[Woman] feeding seagulls'
+- '[Woman] in a rose garden'
+- '[Woman] reading a novel'
+- '[Woman] shopping at a market'
+style: neonpunk style of
+---
+index: 8
+general_prompt: '[Woman] A woman with a slender figure, straight red hair, and freckles
+  across the nose'
+prompts_array:
+- '[Woman] wearing a gardening apron'
+- '[Woman] at a seaside pier'
+- '[Woman] in a rose garden'
+- '[Woman] in a cozy library'
+- '[Woman] on a city street in the 1950s'
+style: A pixar style illustration of
+---
+index: 9
+general_prompt: '[Woman] A woman with a slender figure, straight red hair, and freckles
+  across the nose'
+prompts_array:
+- '[Woman] baking cookies'
+- '[Woman] at a seaside pier'
+- '[Woman] in a rose garden'
+- '[Woman] dressed in a vintage 1950s outfit'
+- '[Woman] wearing a knitted shawl'
+style: A hyper-realistic digital painting of
+---
+index: 10
+general_prompt: '[Man] A middle-aged man'
+prompts_array:
+- '[Man] wearing a business suit'
+- '[Man] at a traditional Japanese garden'
+- '[Man] in a mountain cabin'
+- '[Man] walking a dog'
+- '[Man] wearing a tuxedo'
+style: A hyper-realistic digital painting of
+---
+index: 12
+general_prompt: '[Boy] A teenage boy with short, spiky black hair, a slight build,
+  and dark brown eyes'
+prompts_array:
+- '[Boy] in a school classroom'
+- '[Boy] performing a skateboard trick'
+- '[Boy] wearing a superhero costume'
+- '[Boy] in a futuristic cityscape'
+- '[Boy] wearing an explorer''s hat'
+style: A 3D animation of
+---
+index: 13
+general_prompt: '[Girl] A young girl'
+prompts_array:
+- '[Girl] wearing a ballet dress'
+- '[Girl] in a flower garden'
+- '[Girl] building a sandcastle'
+- '[Girl] in a medieval castle courtyard'
+- '[Girl] wearing a birthday party hat'
+style: A photo of
+---
+index: 14
+general_prompt: '[Woman] A woman with a slender figure, straight red hair, and freckles
+  across the nose'
+prompts_array:
+- '[Woman] baking cookies'
+- '[Woman] at a seaside pier'
+- '[Woman] in a rose garden'
+- '[Woman] dressed in a vintage 1950s outfit'
+- '[Woman] shopping at a market'
+style: A black and white sketch of
+---
+index: 16
+general_prompt: '[Gentleman] An elderly gentleman with distinguished gray hair, a
+  neatly trimmed mustache, and gentle blue eyes'
+prompts_array:
+- '[Gentleman] in a classic study'
+- '[Gentleman] at a vintage car show'
+- '[Gentleman] wearing a vineyard owner''s attire'
+- '[Gentleman] on a golf course'
+- '[Gentleman] on a mountain'
+style: A pixel art depiction of
+---
+index: 17
+general_prompt: '[Girl] A 16 years old girl'
+prompts_array:
+- '[Girl] on a playground'
+- '[Girl] dressed in a Halloween costume'
+- '[Girl] at a beach during sunset'
+- '[Girl] reading a fairy tale book'
+- '[Girl] in a city park with autumn leaves'
+style: A hyper-realistic digital painting of
+---
+index: 18
+general_prompt: '[Girl] a 16 years old girl with wavy chestnut hair, a slender frame,
+  and soft brown eyes'
+prompts_array:
+- '[Girl] on a playground'
+- '[Girl] in a flower garden'
+- '[Girl] building a sandcastle'
+- '[Girl] reading a fairy tale book'
+- '[Girl] in a city park with autumn leaves'
+style: A hyper-realistic digital painting of
+---
+index: 19
+general_prompt: '[Toddler] A toddler'
+prompts_array:
+- '[Toddler] wearing pajamas'
+- '[Toddler] at a zoo'
+- '[Toddler] wearing a swimsuit'
+- '[Toddler] dressed in a superhero cape'
+- '[Toddler] wearing a birthday crown'
+style: A pixar style illustration of
+---
+index: 20
+general_prompt: '[Girl] a 16 years old girl with wavy chestnut hair, a slender frame,
+  and soft brown eyes'
+prompts_array:
+- '[Girl] wearing a ballet dress'
+- '[Girl] jumping in a puddle'
+- '[Girl] wearing a raincoat and boots'
+- '[Girl] in a medieval castle courtyard'
+- '[Girl] blowing bubbles'
+style: A vintage-style poster of
+---
+index: 22
+general_prompt: '[Toddler] A toddler'
+prompts_array:
+- '[Toddler] wearing pajamas'
+- '[Toddler] at a zoo'
+- '[Toddler] splashing in a puddle'
+- '[Toddler] dressed in a superhero cape'
+- '[Toddler] sliding down a slide'
+style: A black and white sketch of
+---
+index: 24
+general_prompt: '[Boy] A teenage boy with short, spiky black hair, a slight build,
+  and dark brown eyes'
+prompts_array:
+- '[Boy] green knitted hat'
+- '[Boy] at an urban skatepark'
+- '[Boy] in a dense forest'
+- '[Boy] dressed as an astronaut'
+- '[Boy] digging with a trowel'
+style: A hyper-realistic digital painting of
+---
+index: 25
+general_prompt: '[Woman] A woman with a slender figure, straight red hair, and freckles
+  across the nose'
+prompts_array:
+- '[Woman] wearing a gardening apron'
+- '[Woman] feeding seagulls'
+- '[Woman] wearing a chef''s hat and apron'
+- '[Woman] dressed in a vintage 1950s outfit'
+- '[Woman] on a city street in the 1950s'
+style: A pixar style illustration of
+---
+index: 26
+general_prompt: '[Boy] A teenage boy'
+prompts_array:
+- '[Boy] in a school classroom'
+- '[Boy] at an urban skatepark'
+- '[Boy] in a dense forest'
+- '[Boy] in a futuristic cityscape'
+- '[Boy] wearing an explorer''s hat'
+style: A photo of
+---
+index: 27
+general_prompt: '[Child] A male child with a round face, short ginger hair, and curious,
+  wide eyes'
+prompts_array:
+- '[Child] in a toy store'
+- '[Child] exploring an exhibit'
+- '[Child] in a backyard'
+- '[Child] dressed in a prince costume'
+- '[Child] in a treehouse'
+style: A watercolor illustration of
+---
+index: 28
+general_prompt: '[Woman] An athletic woman'
+prompts_array:
+- '[Woman] lifting weights'
+- '[Woman] at a sports stadium'
+- '[Woman] wearing a tracksuit'
+- '[Woman] dressed in a ballet outfit'
+- '[Woman] wearing hiking attire'
+style: A photo of
+---
+index: 29
+general_prompt: '[Girl] A young girl with long, curly blonde hair and bright blue
+  eyes'
+prompts_array:
+- '[Girl] wearing a ballet dress'
+- '[Girl] jumping in a puddle'
+- '[Girl] wearing a raincoat and boots'
+- '[Girl] in a medieval castle courtyard'
+- '[Girl] blowing bubbles'
+style: A minimalist graphic design of
+---
+index: 30
+general_prompt: '[Child] A male child'
+prompts_array:
+- '[Child] in a toy store'
+- '[Child] exploring an exhibit'
+- '[Child] wearing a raincoat'
+- '[Child] dressed in a prince costume'
+- '[Child] wearing a cowboy hat'
+style: ''
+---
+index: 32
+general_prompt: '[Person] An athletic person with toned muscles, short cropped hair,
+  and an intense gaze'
+prompts_array:
+- '[Person] in a gym'
+- '[Person] at a sports stadium'
+- '[Person] running a race'
+- '[Person] in a dance studio'
+- '[Person] wearing hiking attire'
+style: neonpunk style of
+---
+index: 33
+general_prompt: '[Boy] A teenage boy'
+prompts_array:
+- '[Boy] writing on a chalkboard'
+- '[Boy] at an urban skatepark'
+- '[Boy] climbing a tree'
+- '[Boy] dressed as an astronaut'
+- '[Boy] wearing an explorer''s hat'
+style: A hyper-realistic digital painting of
+---
+index: 34
+general_prompt: '[Woman] An elderly woman'
+prompts_array:
+- '[Woman] baking cookies'
+- '[Woman] at a seaside pier'
+- '[Woman] wearing a chef''s hat and apron'
+- '[Woman] in a cozy library'
+- '[Woman] shopping at a market'
+style: A photo of
+---
+index: 35
+general_prompt: '[Gentleman] An elderly gentleman'
+prompts_array:
+- '[Gentleman] wearing a smoking jacket'
+- '[Gentleman] at a vintage car show'
+- '[Gentleman] wearing a vineyard owner''s attire'
+- '[Gentleman] on a golf course'
+- '[Gentleman] at a classical music concert'
+style: A hyper-realistic digital painting of
+---
+index: 36
+general_prompt: '[Girl] A young girl with long, curly blonde hair and bright blue
+  eyes'
+prompts_array:
+- '[Girl] wearing a ballet dress'
+- '[Girl] in a flower garden'
+- '[Girl] building a sandcastle'
+- '[Girl] in a medieval castle courtyard'
+- '[Girl] wearing a birthday party hat'
+style: neonpunk style of
+---
+index: 38
+general_prompt: '[Woman] A woman with a slender figure, straight red hair, and freckles
+  across the nose'
+prompts_array:
+- '[Woman] in a vintage kitchen'
+- '[Woman] dressed in a formal evening gown'
+- '[Woman] in a rose garden'
+- '[Woman] reading a novel'
+- '[Woman] shopping at a market'
+style: A photo of
+---
+index: 39
+general_prompt: '[Child] A male child with a round face, short ginger hair, and curious,
+  wide eyes'
+prompts_array:
+- '[Child] wearing a Halloween costume'
+- '[Child] exploring an exhibit'
+- '[Child] wearing a raincoat'
+- '[Child] dressed in a prince costume'
+- '[Child] wearing a cowboy hat'
+style: neonpunk style of
+---
+index: 42
+general_prompt: '[Woman] A woman with a slender figure, straight red hair, and freckles
+  across the nose'
+prompts_array:
+- '[Woman] baking a cake'
+- '[Woman] dressed in a formal evening gown'
+- '[Woman] wearing a chef''s hat and apron'
+- '[Woman] holding a box'
+- '[Woman] in a snowy forest'
+style: A watercolor illustration of
+---
+index: 43
+general_prompt: '[Girl] a 16 years old girl with wavy chestnut hair, a slender frame,
+  and soft brown eyes'
+prompts_array:
+- '[Girl] wearing a ballet dress'
+- '[Girl] in a flower garden'
+- '[Girl] building a sandcastle'
+- '[Girl] in a medieval castle courtyard'
+- '[Girl] wearing a birthday party hat'
+style: A pixel art depiction of
+---
+index: 44
+general_prompt: '[Person] An athletic person with toned muscles, short cropped hair,
+  and an intense gaze'
+prompts_array:
+- '[Person] in a gym'
+- '[Person] dressed in a team uniform'
+- '[Person] on a running track'
+- '[Person] performing a dance routine'
+- '[Person] wearing hiking attire'
+style: A vintage-style poster of
+---
+index: 46
+general_prompt: '[Hedgehog] A happy hedgehog'
+prompts_array:
+- '[Hedgehog] eating a big piece of cheese'
+- '[Hedgehog] in a garden'
+- '[Hedgehog] being held by a caretaker'
+- '[Hedgehog] dressed in a festive outfit'
+- '[Hedgehog] in an autumn forest'
+style: A photo of
+---
+index: 47
+general_prompt: '[Dog] A dog'
+prompts_array:
+- '[Dog] chasing a frisbee'
+- '[Dog] dressed in a raincoat'
+- '[Dog] in a city alley'
+- '[Dog] jumping over a puddle'
+- '[Dog] at a veterinarian''s office'
+style: A hyper-realistic digital painting of
+---
+index: 48
+general_prompt: '[Parrot] A Scarlet parrot with vibrant red, yellow, and blue feathers'
+prompts_array:
+- '[Parrot] in a tropical rainforest'
+- '[Parrot] singing a song'
+- '[Parrot] on the water'
+- '[Parrot] sitting on a rock'
+- '[Parrot] in a rain storm'
+style: A watercolor illustration of
+---
+index: 50
+general_prompt: '[Hedgehog] A happy hedgehog'
+prompts_array:
+- '[Hedgehog] in a ship'
+- '[Hedgehog] exploring among flowers'
+- '[Hedgehog] at an animal rescue center'
+- '[Hedgehog] in a meadow'
+- '[Hedgehog] wearing a flower crown'
+style: origami style of
+---
+index: 51
+general_prompt: '[Dog] A dog'
+prompts_array:
+- '[Dog] chasing a frisbee'
+- '[Dog] on a beach'
+- '[Dog] sleeping on a porch'
+- '[Dog] dressed in a superhero cape'
+- '[Dog] sitting by a fireplace'
+style: A photo of
+---
+index: 53
+general_prompt: '[Dog] A black and white dog with yellow collar'
+prompts_array:
+- '[Dog] wearing a bandana'
+- '[Dog] on a beach'
+- '[Dog] in a city alley'
+- '[Dog] in a snowy backyard'
+- '[Dog] at a veterinarian''s office'
+style: A 3D animation of
+---
+index: 54
+general_prompt: '[Fox] A red fox with a vibrant red coat, white belly, and bushy tail'
+prompts_array:
+- '[Fox] wearing a scarf'
+- '[Fox] dressed in a warm coat'
+- '[Fox] wearing a playful bow'
+- '[Fox] resting in a den'
+- '[Fox] near a campsite'
+style: A hyper-realistic digital painting of
+---
+index: 55
+general_prompt: '[Cat] A cat'
+prompts_array:
+- '[Cat] on a sunny windowsill'
+- '[Cat] dressed in a Halloween costume'
+- '[Cat] hunting a mouse'
+- '[Cat] dressed in a Santa hat'
+- '[Cat] sitting on a shelf'
+style: A pixar style illustration of
+---
+index: 58
+general_prompt: '[Hedgehog] A pink hedgehog with a cute smile'
+prompts_array:
+- '[Hedgehog] curled up asleep'
+- '[Hedgehog] dressed in a miniature jacket'
+- '[Hedgehog] wearing a small hat'
+- '[Hedgehog] in a meadow'
+- '[Hedgehog] wearing a flower crown'
+style: ''
+---
+index: 59
+general_prompt: '[Puppy] A cute Labrador puppy with a glossy, chocolate brown coat'
+prompts_array:
+- '[Puppy] in a pet store'
+- '[Puppy] eating his food'
+- '[Puppy] wearing a training harness'
+- '[Puppy] dressed in a bandana'
+- '[Puppy] at a lake'
+style: A 3D animation of
+---
+index: 60
+general_prompt: '[Horse] A horse'
+prompts_array:
+- '[Horse] galloping'
+- '[Horse] on a race track'
+- '[Horse] in a grassy field'
+- '[Horse] climbing a hill'
+- '[Horse] at a show jumping course'
+style: neonpunk style of
+---
+index: 61
+general_prompt: '[Cat] A Persian cat with long, fluffy grey fur and large, amber eyes'
+prompts_array:
+- '[Cat] playing with a yarn ball'
+- '[Cat] dressed in a Halloween costume'
+- '[Cat] in a busy alley'
+- '[Cat] on a tree branch'
+- '[Cat] under the moon light'
+style: A minimalist graphic design of
+---
+index: 63
+general_prompt: '[Dog] A black and white dog with yellow collar'
+prompts_array:
+- '[Dog] wearing a bandana'
+- '[Dog] biting a bone'
+- '[Dog] wearing a birthday hat'
+- '[Dog] in a snowy backyard'
+- '[Dog] sitting by a fireplace'
+style: A 3D animation of
+---
+index: 64
+general_prompt: '[Cat] A cat'
+prompts_array:
+- '[Cat] playing with a yarn ball'
+- '[Cat] in a cozy living room'
+- '[Cat] wearing a fluffy collar'
+- '[Cat] on a tree branch'
+- '[Cat] showing his teeth'
+style: A pixel art depiction of
+---
+index: 66
+general_prompt: '[Kitten] A cute kitten with sleek, cream-colored fur and striking
+  blue eyes'
+prompts_array:
+- '[Kitten] in a garden'
+- '[Kitten] dressed in a cute sweater'
+- '[Kitten] wearing a collar with a bell'
+- '[Kitten] dressed in a superhero cape'
+- '[Kitten] running through a field'
+style: A watercolor illustration of
+---
+index: 67
+general_prompt: '[Puppy] A puppy'
+prompts_array:
+- '[Puppy] wearing a small sweater'
+- '[Puppy] dressed in a raincoat'
+- '[Puppy] at a dairy farm'
+- '[Puppy] on a car ride'
+- '[Puppy] wearing a life vest'
+style: ''
+---
+index: 70
+general_prompt: '[Horse] A horse'
+prompts_array:
+- '[Horse] galloping'
+- '[Horse] on a race track'
+- '[Horse] in a grassy field'
+- '[Horse] dressed in a saddle and hiking gear'
+- '[Horse] wearing a show jumping outfit'
+style: ''
+---
+index: 71
+general_prompt: '[Dog] A dog'
+prompts_array:
+- '[Dog] wearing a bandana'
+- '[Dog] on a beach'
+- '[Dog] wearing a birthday hat'
+- '[Dog] dressed in a superhero cape'
+- '[Dog] wearing a festive Christmas sweater'
+style: A vintage-style poster of
+---
+index: 72
+general_prompt: '[Puppy] A puppy'
+prompts_array:
+- '[Puppy] in a pet store'
+- '[Puppy] in a grassy yard'
+- '[Puppy] wearing a training harness'
+- '[Puppy] dressed in a bandana'
+- '[Puppy] wearing a life vest'
+style: ''
+---
+index: 73
+general_prompt: '[Puppy] A puppy'
+prompts_array:
+- '[Puppy] wearing a small sweater'
+- '[Puppy] digging a hole'
+- '[Puppy] wearing a training harness'
+- '[Puppy] sticking head out of the car window'
+- '[Puppy] swimming'
+style: A watercolor illustration of
+---
+index: 74
+general_prompt: '[Horse] A horse'
+prompts_array:
+- '[Horse] in a stable'
+- '[Horse] jumping over a hurdle'
+- '[Horse] wearing a decorative headpiece'
+- '[Horse] climbing a hill'
+- '[Horse] performing in a dressage event'
+style: A hyper-realistic digital painting of
+---
+index: 76
+general_prompt: '[Cat] A cat'
+prompts_array:
+- '[Cat] playing with a yarn ball'
+- '[Cat] sleeping in a box'
+- '[Cat] wearing a fluffy collar'
+- '[Cat] climbing a tree'
+- '[Cat] sitting on a shelf'
+style: A hyper-realistic digital painting of
+---
+index: 78
+general_prompt: '[Cat] A cat'
+prompts_array:
+- '[Cat] wearing a bow tie'
+- '[Cat] dressed in a Halloween costume'
+- '[Cat] in a busy alley'
+- '[Cat] on a sled'
+- '[Cat] wearing a small bell'
+style: A hyper-realistic digital painting of
+---
+index: 79
+general_prompt: '[Kitten] A cute kitten with sleek, cream-colored fur and striking
+  blue eyes'
+prompts_array:
+- '[Kitten] wearing a tiny hat'
+- '[Kitten] on a couch'
+- '[Kitten] in a hospital'
+- '[Kitten] playing with a feather toy'
+- '[Kitten] on a rooftop'
+style: ''
+---
+index: 80
+general_prompt: '[Fox] A fox'
+prompts_array:
+- '[Fox] in a forest clearing'
+- '[Fox] playing in the snow'
+- '[Fox] at the edge of a village'
+- '[Fox] resting in a den'
+- '[Fox] exploring a campground'
+style: neonpunk style of
+---
+index: 81
+general_prompt: '[Fox] A red fox with a vibrant red coat, white belly, and bushy tail'
+prompts_array:
+- '[Fox] wearing a scarf'
+- '[Fox] playing in the snow'
+- '[Fox] at the edge of a village'
+- '[Fox] in a meadow'
+- '[Fox] wearing a tracker collar'
+style: A pixar style illustration of
+---
+index: 82
+general_prompt: '[Hedgehog] A happy hedgehog'
+prompts_array:
+- '[Hedgehog] in a cozy nest'
+- '[Hedgehog] dressed in a miniature jacket'
+- '[Hedgehog] wearing a small collar'
+- '[Hedgehog] dressed in a festive outfit'
+- '[Hedgehog] wearing a flower crown'
+style: A 3D animation of
+---
+index: 83
+general_prompt: '[Horse] A horse'
+prompts_array:
+- '[Horse] galloping'
+- '[Horse] dressed in racing tack'
+- '[Horse] grazing in a field'
+- '[Horse] climbing a hill'
+- '[Horse] performing in a dressage event'
+style: A black and white sketch of
+---
+index: 84
+general_prompt: '[Hedgehog] A happy hedgehog'
+prompts_array:
+- '[Hedgehog] wearing a tiny cap'
+- '[Hedgehog] exploring among flowers'
+- '[Hedgehog] wearing a small collar'
+- '[Hedgehog] in a meadow'
+- '[Hedgehog] in an autumn forest'
+style: neonpunk style of
+---
+index: 87
+general_prompt: '[Parrot] A parrot'
+prompts_array:
+- '[Parrot] in a tropical rainforest'
+- '[Parrot] dressed in a colorful necklace'
+- '[Parrot] interacting with a mirror'
+- '[Parrot] sitting on a pirate''s shoulder'
+- '[Parrot] in a jungle'
+style: neonpunk style of
+---
+index: 88
+general_prompt: '[Kitten] A cute kitten'
+prompts_array:
+- '[Kitten] chasing butterflies'
+- '[Kitten] curling up asleep'
+- '[Kitten] wearing a collar with a bell'
+- '[Kitten] playing with a feather toy'
+- '[Kitten] on a rooftop'
+style: A photo of
+---
+index: 89
+general_prompt: '[Parrot] A parrot'
+prompts_array:
+- '[Parrot] flying between trees'
+- '[Parrot] dressed in a colorful necklace'
+- '[Parrot] wearing a small bell'
+- '[Parrot] dressed with a feather accessory'
+- '[Parrot] wearing a miniature vest'
+style: A 3D animation of
+---
+index: 90
+general_prompt: '[Horse] A Palomino horse with a golden coat and a flowing, white
+  mane and tail'
+prompts_array:
+- '[Horse] in a stable'
+- '[Horse] jumping over a hurdle'
+- '[Horse] in a snowy field'
+- '[Horse] in a mountain trail'
+- '[Horse] in a busy street'
+style: A hyper-realistic digital painting of
+---
+index: 91
+general_prompt: '[Fairy] A fairy'
+prompts_array:
+- '[Fairy] wearing gossamer wings'
+- '[Fairy] frolicking in the air'
+- '[Fairy] wearing a crown of twigs'
+- '[Fairy] near a shimmering brook'
+- '[Fairy] dancing in moonlight'
+style: A watercolor illustration of
+---
+index: 92
+general_prompt: '[Dragon] A dragon'
+prompts_array:
+- '[Dragon] atop an ancient castle'
+- '[Dragon] breathing a plume of fire'
+- '[Dragon] coiling around its hoard'
+- '[Dragon] guarding a treasure trove'
+- '[Dragon] resting in a cavern'
+style: origami style of
+---
+index: 93
+general_prompt: '[Elf] An elf with long, silver hair, eyes like polished amethyst,
+  and ears that curve elegantly upwards'
+prompts_array:
+- '[Elf] in an elven city of trees'
+- '[Elf] cleaning a sword'
+- '[Elf] reading an ancient text'
+- '[Elf] flying in the air'
+- '[Elf] in a library of scrolls'
+style: A photo of
+---
+index: 94
+general_prompt: '[Unicorn] A mystical unicorn with a midnight blue coat and a crystal
+  horn emitting glow'
+prompts_array:
+- '[Unicorn] in a blooming meadow'
+- '[Unicorn] dressed in a glow of moonlight'
+- '[Unicorn] wearing a silver bridle'
+- '[Unicorn] dressed in a blanket of mist'
+- '[Unicorn] meeting a group of children'
+style: ''
+---
+index: 95
+general_prompt: '[Leprechaun] A leprechaun'
+prompts_array:
+- '[Leprechaun] in a clover field'
+- '[Leprechaun] dressed in a suit of gold'
+- '[Leprechaun] inside a hollow oak tree'
+- '[Leprechaun] sharing a pint'
+- '[Leprechaun] performing a jig'
+style: A 3D animation of
+---
+index: 96
+general_prompt: '[Robot] A cute round robot shaped like a ball'
+prompts_array:
+- '[Robot] standing'
+- '[Robot] inside a robot factory'
+- '[Robot] at a spaceport'
+- '[Robot] dressed in a holographic suit'
+- '[Robot] at a science exhibition'
+style: A minimalist graphic design of
+---
+index: 97
+general_prompt: '[Unicorn] A unicorn'
+prompts_array:
+- '[Unicorn] prancing near the water'
+- '[Unicorn] beside a crystal lake'
+- '[Unicorn] wearing a silver bridle'
+- '[Unicorn] under a canopy of stars'
+- '[Unicorn] wearing a harness of sunbeams'
+style: A black and white sketch of
+---
+index: 98
+general_prompt: '[Fairy] A fairy'
+prompts_array:
+- '[Fairy] in a mystical glen'
+- '[Fairy] dressed in a petal gown'
+- '[Fairy] inside a hollowed-out tree'
+- '[Fairy] collecting morning dew'
+- '[Fairy] under a full moon'
+style: ''
+---
+index: 99
+general_prompt: '[Dragon] A dragon'
+prompts_array:
+- '[Dragon] atop an ancient castle'
+- '[Dragon] within a fiery chasm'
+- '[Dragon] coiling around its hoard'
+- '[Dragon] dressed in an aura of smoke'
+- '[Dragon] wearing a mantle of embers'
+style: A pixar style illustration of
+---
+index: 100
+general_prompt: '[Goblin] A goblin with patchy, leathery skin and oversized ears,
+  carrying a tiny, glowing lantern'
+prompts_array:
+- '[Goblin] wearing a cloak'
+- '[Goblin] haggling over goods'
+- '[Goblin] wearing a belt of tools'
+- '[Goblin] dressed in a guard''s uniform'
+- '[Goblin] in a dungeon''s depths'
+style: A 3D animation of
+---
+index: 101
+general_prompt: '[Fairy] A fairy'
+prompts_array:
+- '[Fairy] in a mystical glen'
+- '[Fairy] atop a dew-covered flower'
+- '[Fairy] inside a hollowed-out tree'
+- '[Fairy] collecting morning dew'
+- '[Fairy] under a full moon'
+style: A hyper-realistic digital painting of
+---
+index: 102
+general_prompt: '[Leprechaun] A leprechaun with a mischievous grin, emerald-green
+  coat, and a hat adorned with a four-leaf clover'
+prompts_array:
+- '[Leprechaun] counting gold coins'
+- '[Leprechaun] at the end of a rainbow'
+- '[Leprechaun] setting a trap'
+- '[Leprechaun] in an underground workshop'
+- '[Leprechaun] performing a jig'
+style: A hyper-realistic digital painting of
+---
+index: 103
+general_prompt: '[Werewolf] A werewolf'
+prompts_array:
+- '[Werewolf] wearing a torn shirt'
+- '[Werewolf] dressed in a hunter''s vest'
+- '[Werewolf] wearing a mystical amulet'
+- '[Werewolf] dressed in chains of captivity'
+- '[Werewolf] in a ruined castle'
+style: ''
+---
+index: 105
+general_prompt: '[Elf] An elf'
+prompts_array:
+- '[Elf] in an elven city of trees'
+- '[Elf] conducting a ritual'
+- '[Elf] reading an ancient text'
+- '[Elf] on a moonlit hillside'
+- '[Elf] wearing a sash of wisdom'
+style: ''
+---
+index: 106
+general_prompt: '[Fairy] A fairy'
+prompts_array:
+- '[Fairy] dressed in a cloak of spider silk'
+- '[Fairy] tending to forest creatures'
+- '[Fairy] in a mystical glen'
+- '[Fairy] frolicking in the air'
+- '[Fairy] wearing a garland of fireflies'
+style: A hyper-realistic digital painting of
+---
+index: 110
+general_prompt: '[Unicorn] A unicorn'
+prompts_array:
+- '[Unicorn] wearing a wreath of wildflowers'
+- '[Unicorn] nuzzling a fawn'
+- '[Unicorn] wearing a silver bridle'
+- '[Unicorn] dressed in a blanket of mist'
+- '[Unicorn] meeting a group of children'
+style: A photo of
+---
+index: 112
+general_prompt: '[Werewolf] A fearsome werewolf with dense, dark fur and glowing,
+  amber eyes in mid-transformation'
+prompts_array:
+- '[Werewolf] in a dense, moonlit forest'
+- '[Werewolf] with buildings in the background'
+- '[Werewolf] battling a rival'
+- '[Werewolf] drinking for a pond'
+- '[Werewolf] in a ruined castle'
+style: A photo of
+---
+index: 114
+general_prompt: '[Fairy] A tiny fairy with delicate wings made of leaves and hair
+  resembling fine strands of grass'
+prompts_array:
+- '[Fairy] wearing gossamer wings'
+- '[Fairy] atop a dew-covered flower'
+- '[Fairy] tending to forest creatures'
+- '[Fairy] collecting morning dew'
+- '[Fairy] under a full moon'
+style: ''
+---
+index: 115
+general_prompt: '[Elf] An elf'
+prompts_array:
+- '[Elf] shooting a bow'
+- '[Elf] at an ancient stone circle'
+- '[Elf] reading an ancient text'
+- '[Elf] riding a majestic stag'
+- '[Elf] crafting a magical artifact'
+style: ''
+---
+index: 116
+general_prompt: '[Leprechaun] A leprechaun'
+prompts_array:
+- '[Leprechaun] in a clover field'
+- '[Leprechaun] mending a shoe'
+- '[Leprechaun] inside a hollow oak tree'
+- '[Leprechaun] sharing a pint'
+- '[Leprechaun] at a village fair'
+style: ''
+---
+index: 118
+general_prompt: '[Goblin] A goblin'
+prompts_array:
+- '[Goblin] wearing a cap'
+- '[Goblin] at a bustling night market'
+- '[Goblin] inside a cave of wonders'
+- '[Goblin] scaring passersby'
+- '[Goblin] in a dungeon''s depths'
+style: neonpunk style of
+---
+index: 119
+general_prompt: '[Dragon] A colossal dragon with scales that shimmer like rubies'
+prompts_array:
+- '[Dragon] soaring through the clouds'
+- '[Dragon] dressed in molten lava scales'
+- '[Dragon] guarding his treasure'
+- '[Dragon] with smoke all around'
+- '[Dragon] resting in a cavern'
+style: neonpunk style of
+---
+index: 121
+general_prompt: '[Dog] A sticker of a cute corgi dog'
+prompts_array:
+- '[Dog] on a student''s laptop'
+- '[Dog] amidst an action-packed skate session'
+- '[Dog] adding character to urban signage'
+- '[Dog] at a live music gig'
+- '[Dog] at an international airport'
+style: A photo of
+---
+index: 122
+general_prompt: '[Vase] A ceramic vase with an intricate floral pattern and a glossy,
+  sky-blue glaze'
+prompts_array:
+- '[Vase] holding a rare bouquet of flowers'
+- '[Vase] displaying exotic orchids'
+- '[Vase] adding charm to a homely setting'
+- '[Vase] complementing a corporate decor'
+- '[Vase] containing delicate cherry blossoms'
+style: A vintage-style poster of
+---
+index: 123
+general_prompt: '[Sofa] A plush velvet sofa in a rich emerald green color with elegant,
+  curved armrests'
+prompts_array:
+- '[Sofa] occupied by a sleeping cat'
+- '[Sofa] in a Victorian-style parlor'
+- '[Sofa] in an outdoor patio'
+- '[Sofa] in a bustling coffee shop'
+- '[Sofa] with a fleece blanket'
+style: A hyper-realistic digital painting of
+---
+index: 124
+general_prompt: '[Dog] A sticker of a cute corgi dog'
+prompts_array:
+- '[Dog] on a student''s laptop'
+- '[Dog] on a skateboard in a park'
+- '[Dog] adding character to urban signage'
+- '[Dog] decorated with band logos'
+- '[Dog] on a traveler''s suitcase'
+style: A hyper-realistic digital painting of
+---
+index: 125
+general_prompt: '[Dog] A sticker of a dog'
+prompts_array:
+- '[Dog] on a student''s laptop'
+- '[Dog] on a skateboard in a park'
+- '[Dog] adding character to urban signage'
+- '[Dog] at a live music gig'
+- '[Dog] surrounded by travel labels'
+style: A pixel art depiction of
+---
+index: 127
+general_prompt: '[Chair] A classic wingback chair with deep blue upholstery and buttoned
+  back detailing'
+prompts_array:
+- '[Chair] in a corporate boardroom'
+- '[Chair] providing comfort in a rustic setting'
+- '[Chair] in a busy beauty salon'
+- '[Chair] on a beachfront balcony'
+- '[Chair] with a velvet seat cover'
+style: ''
+---
+index: 128
+general_prompt: '[Lamp] A modern desk lamp with a metallic finish and an adjustable,
+  minimalist design'
+prompts_array:
+- '[Lamp] with a classic green shade'
+- '[Lamp] lighting up a late-night study session'
+- '[Lamp] casting a warm glow in an elegant setting'
+- '[Lamp] on a table'
+- '[Lamp] on the outside'
+style: A 3D animation of
+---
+index: 131
+general_prompt: '[Clock] An antique wall clock with roman numerals and a delicately
+  carved wooden frame'
+prompts_array:
+- '[Clock] marking the rush hour'
+- '[Clock] overseeing a luxury environment'
+- '[Clock] with a rustic wooden finish'
+- '[Clock] on an orange wall'
+- '[Clock] telling the time'
+style: A photo of
+---
+index: 132
+general_prompt: '[Mug] A red coffee mug shaped like a ball'
+prompts_array:
+- '[Mug] being filled with steaming coffee'
+- '[Mug] sitting beside a laptop and notebooks'
+- '[Mug] on an office desk filled with papers'
+- '[Mug] on a potter''s wheel being shaped'
+- '[Mug] on a balcony overlooking a cityscape'
+style: A hyper-realistic digital painting of
+---
+index: 133
+general_prompt: '[Chair] A chair'
+prompts_array:
+- '[Chair] hosting a meeting'
+- '[Chair] in a quaint countryside inn'
+- '[Chair] with a trendy hairdresser''s cover'
+- '[Chair] facing the ocean sunset'
+- '[Chair] with a velvet seat cover'
+style: A photo of
+---
+index: 135
+general_prompt: '[Clock] A clock'
+prompts_array:
+- '[Clock] in a bustling train station'
+- '[Clock] in a grand hotel lobby'
+- '[Clock] on a small town''s main street'
+- '[Clock] timing a school exam'
+- '[Clock] in an antique shop'
+style: A 3D animation of
+---
+index: 140
+general_prompt: '[Camera] A vintage film camera with a leather strap and polished
+  silver details'
+prompts_array:
+- '[Camera] with a telephoto lens'
+- '[Camera] snapping street style'
+- '[Camera] awaiting a wildlife shot'
+- '[Camera] with a high-fashion case'
+- '[Camera] in a family home'
+style: A pixar style illustration of
