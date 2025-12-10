@@ -1,16 +1,16 @@
 import os
 import json
 import torch
-from huggingface_hub import login
+from huggingface_hub import login, snapshot_download
 from diffusers.schedulers import DPMSolverMultistepScheduler
-from RegionalDiffusion_xl import RegionalDiffusionXLPipeline
-from mllm_llama3 import local_llm
+from StoryBooth import RegionalDiffusionXLPipeline
+from mllms.mllm import local_llm
 import yaml
 import json
 from pathlib import Path
 
 # ====== initial ======
-JSON_PATH = "scene_prompts_output.json"
+JSON_PATH = "datasets/scene_prompts_output.json"
 LLM_OUTPUT_PATH = "llm_outputs.json"
 
 llm_model_path = "meta-llama/Meta-Llama-3.1-8B-Instruct"
@@ -35,6 +35,52 @@ def unload_gpu():
     torch.cuda.ipc_collect()
 
 
+def patch_rope_scaling(model_id: str):
+    """
+    Auto-fix rope_scaling for Transformers<=4.36
+    Convert Llama-3/Llama-3.1 rope_scaling to:
+        {"type":"dynamic", "factor":X}
+    """
+    print(f"\n🔍 Locating model: {model_id}")
+
+    # Download or locate local snapshot
+    model_path = snapshot_download(model_id)
+    config_path = Path(model_path) / "config.json"
+
+    print(f"📄 config.json path: {config_path}")
+
+    if not config_path.exists():
+        raise FileNotFoundError("config.json not found!")
+
+    # Load config.json
+    with open(config_path, "r", encoding="utf-8") as f:
+        cfg = json.load(f)
+
+    # Check if rope_scaling exists
+    rope = cfg.get("rope_scaling", None)
+    if rope is None:
+        print("✔ No rope_scaling found. Nothing to patch.")
+        return
+
+    print("\n🧩 Before patch (original rope_scaling):")
+    print(json.dumps(rope, indent=4))
+
+    factor = rope.get("factor", 1.0)
+
+    cfg["rope_scaling"] = {
+        "type": "dynamic",  # required
+        "factor": factor    # preserve factor
+    }
+
+    # Save back
+    with open(config_path, "w", encoding="utf-8") as f:
+        json.dump(cfg, f, indent=4, ensure_ascii=False)
+
+    print("\nAfter patch (transfomers-4.36 compatible rope_scaling):")
+    print(json.dumps(cfg["rope_scaling"], indent=4))
+
+    print("\nPatch complete! You can now load the model normally.\n")
+
 # ============================================================
 # 逐個 prompt 丟給 LLM → 存到 JSON 
 # ============================================================
@@ -58,10 +104,20 @@ for i, scene_prompt in enumerate(scene_list):
             print(f"  → Attempt {attempt + 1}/{max_retry}")
             para_dict = local_llm(scene_prompt, model_path=llm_model_path)
             break  
-        except Exception as e:
-            print(f"    LLM error: {e}")
+
+        except ValueError as e:
+            print(f"    LLM ValueError: {e}")
+            print("    → Applying rope scaling patch...")
+            patch_rope_scaling("meta-llama/Meta-Llama-3.1-8B-Instruct")
+
             attempt += 1
-            unload_gpu() 
+            unload_gpu()
+            print("    [VRAM cleared before retry]")
+
+        except Exception as e:
+            print(f"    LLM other error: {e}")
+            attempt += 1
+            unload_gpu()
             print("    [VRAM cleared before retry]")
 
     if para_dict is None:

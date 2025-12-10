@@ -35,10 +35,10 @@ login(token="hf_XXX")
 python generate_text_and_layout.py
 ```
 ### 1-1. Use llama3
-- Change `import mllm` to import `mllm_llama3`.
+- Change `import mllms.mllm` to import `mllms.mllm_llama3`.
 - Set the model to `meta-llama/Meta-Llama-3.1-8B-Instruct`.
 - Remember to apply for access first at: https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct/discussions/15
-- Run `fix.py`
+
 - If you encounter the error `cannot import name 'cached_download' from 'huggingface_hub'`, go to the reported location, delete all occurrences of `cached_download`, and replace them with `hf_hub_download`.
 ### 2. Generate the images
 ```bash

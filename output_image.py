@@ -3,8 +3,8 @@ import json
 import torch
 from huggingface_hub import login
 from diffusers.schedulers import DPMSolverMultistepScheduler
-from RegionalDiffusion_xl import RegionalDiffusionXLPipeline
-from mllm import local_llm
+from StoryBooth import RegionalDiffusionXLPipeline
+from mllms.mllm import local_llm
 
 JSON_PATH = "scene_prompts_output.json"
 LLM_OUTPUT_PATH = "llm_outputs.json"
