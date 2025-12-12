@@ -1,22 +1,25 @@
 import os
+import gc
 import json
 import torch
 from huggingface_hub import login
 from diffusers.schedulers import DPMSolverMultistepScheduler
 from RegionalDiffusion_xl import RegionalDiffusionXLPipeline
+# from RegionalDiffusion_base import RegionalDiffusionPipeline
 from mllm import local_llm
+from tokens import HUGGINGFACE_TOKEN
 
 JSON_PATH = "scene_prompts_output.json"
 LLM_OUTPUT_PATH = "llm_outputs.json"
 
-llm_model_path = "meta-llama/Llama-2-13b-chat-hf"
+# sd_model_path = "stable-diffusion-v1-5/stable-diffusion-v1-5" # For VRAM only 12G 
 sd_model_path = "stabilityai/stable-diffusion-xl-base-1.0"
 
 index_key = "1"
 output_dir = f"output/{index_key}"
 os.makedirs(output_dir, exist_ok=True)
 
-login(token="")#放huggingface token, 不要push token到github上
+login(token=HUGGINGFACE_TOKEN)#放huggingface token, 不要push token到github上
 # ============================================================
 # Read LLM JSON → Regional Diffusion XL → generate image
 # ============================================================
@@ -24,11 +27,44 @@ login(token="")#放huggingface token, 不要push token到github上
 def unload_gpu():
     torch.cuda.empty_cache()
     torch.cuda.ipc_collect()
+    gc.collect() 
 
 print("\n========== PHASE 2: Generating Images ==========\n")
 
 with open(LLM_OUTPUT_PATH, "r", encoding="utf-8") as f:
     llm_outputs = json.load(f)
+
+ # load pipeline
+pipe = RegionalDiffusionXLPipeline.from_pretrained(
+    sd_model_path,
+    torch_dtype=torch.float16,
+    use_safetensors=True,
+    variant="fp16",
+)
+pipe.to("cuda:1")
+
+pipe.scheduler = DPMSolverMultistepScheduler.from_config(
+    pipe.scheduler.config,
+    use_karras_sigmas=True
+)
+
+pipe.enable_xformers_memory_efficient_attention() #xformer
+
+# For VRAM only 12G 
+# pipe = RegionalDiffusionPipeline.from_pretrained(
+#     sd_model_path,
+#     torch_dtype=torch.float16,
+#     use_safetensors=True,
+#     variant="fp16",
+# )
+# pipe.to("cuda")
+
+# pipe.scheduler = DPMSolverMultistepScheduler.from_config(
+#     pipe.scheduler.config,
+#     use_karras_sigmas=True
+# )
+
+# pipe.enable_xformers_memory_efficient_attention() #xformer
 
 
 for key, item in llm_outputs.items():
@@ -40,22 +76,6 @@ for key, item in llm_outputs.items():
     print(f"\n---- PIPE Step {key} ----")
     print("Regional Prompt:", regional_prompt)
     print("Split Ratio:", split_ratio)
-
-    # load pipeline
-    pipe = RegionalDiffusionXLPipeline.from_pretrained(
-        sd_model_path,
-        torch_dtype=torch.float16,
-        use_safetensors=True,
-        variant="fp16",
-    )
-    pipe.to("cuda:1")
-
-    pipe.scheduler = DPMSolverMultistepScheduler.from_config(
-        pipe.scheduler.config,
-        use_karras_sigmas=True
-    )
-
-    pipe.enable_xformers_memory_efficient_attention() #xformer
 
     img = pipe(
         prompt=regional_prompt,
@@ -75,7 +95,7 @@ for key, item in llm_outputs.items():
     img.save(save_path)
     print(f"Saved → {save_path}")
 
-    del pipe
+    del img
     unload_gpu()
 
 print("\nALL DONE.")
