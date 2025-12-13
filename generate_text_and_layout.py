@@ -1,13 +1,13 @@
 import os
+import gc
 import json
 import torch
 from huggingface_hub import login, snapshot_download
-from diffusers.schedulers import DPMSolverMultistepScheduler
-from StoryBooth import RegionalDiffusionXLPipeline
-from mllms.mllm import local_llm
+from mllms.mllm_llama3 import local_llm, load_local_llm
 import yaml
 import json
 from pathlib import Path
+from tokens import HUGGINGFACE_TOKEN
 
 # ====== initial ======
 JSON_PATH = "datasets/scene_prompts_output.json"
@@ -21,7 +21,7 @@ index_key = "1" #only run the first index
 output_dir = f"output/{index_key}"
 os.makedirs(output_dir, exist_ok=True)
 
-login(token="") #放huggingface token, 不要push token到github上
+login(token=HUGGINGFACE_TOKEN) #放huggingface token, 不要push token到github上
 
 # ====== loading prompt ======
 with open(JSON_PATH, "r", encoding="utf-8") as f:
@@ -33,7 +33,7 @@ scene_list = scenes[index_key]
 def unload_gpu():
     torch.cuda.empty_cache()
     torch.cuda.ipc_collect()
-
+    gc.collect() 
 
 def patch_rope_scaling(model_id: str):
     """
@@ -84,7 +84,7 @@ def patch_rope_scaling(model_id: str):
 # ============================================================
 # 逐個 prompt 丟給 LLM → 存到 JSON 
 # ============================================================
-
+tokenizer, model = load_local_llm(llm_model_path)
 llm_outputs = {}
 
 print("\n========== PHASE 1: Running LLM ==========\n")
@@ -102,7 +102,7 @@ for i, scene_prompt in enumerate(scene_list):
     while attempt < max_retry:
         try:
             print(f"  → Attempt {attempt + 1}/{max_retry}")
-            para_dict = local_llm(scene_prompt, model_path=llm_model_path)
+            para_dict = local_llm(scene_prompt, tokenizer, model)
             break  
 
         except ValueError as e:
@@ -129,7 +129,7 @@ for i, scene_prompt in enumerate(scene_list):
         "split_ratio": para_dict["Final split ratio"],
         "base_prompt": scene_prompt,
     }
-
+    del para_dict
     unload_gpu()
     print("[LLM Cleared VRAM]")
 
