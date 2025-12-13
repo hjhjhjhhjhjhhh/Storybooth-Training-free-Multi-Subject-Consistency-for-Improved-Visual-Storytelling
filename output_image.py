@@ -5,7 +5,7 @@ import torch
 from huggingface_hub import login
 from diffusers.schedulers import DPMSolverMultistepScheduler
 from StoryBooth import RegionalDiffusionXLPipeline
-# from RegionalDiffusion_base import RegionalDiffusionPipeline
+# from StoryBooth_base import RegionalDiffusionPipeline
 from tokens import HUGGINGFACE_TOKEN
 
 JSON_PATH = "scene_prompts_output.json"
