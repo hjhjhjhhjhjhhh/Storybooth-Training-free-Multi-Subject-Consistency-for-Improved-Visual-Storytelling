@@ -935,7 +935,7 @@ class RegionalDiffusionXLPipeline(
         clip_skip: Optional[int] = None,
         callback_on_step_end: Optional[Callable[[int, int, Dict], None]] = None,
         callback_on_step_end_tensor_inputs: List[str] = ["latents"],
-
+        inter_neighbor_window = None,
         **kwargs,
     ):
         r"""
@@ -1125,6 +1125,8 @@ class RegionalDiffusionXLPipeline(
         self.beta_d = beta_d
         self.self_attn_t_max = 1000
         self.self_attn_t_min = 200
+        self.inter_neighbor_window = inter_neighbor_window
+        self.enable_attn_relax   = kwargs.pop("enable_attn_relax", False) # 先關掉隨機鬆綁
         self.base_prompt = base_prompt_list[0] if (isinstance(base_prompt, str) and batch_size_eff == 1) else base_prompt_list
         self.split_ratio = split_ratio_list[0] if (isinstance(split_ratio, str) and batch_size_eff == 1) else split_ratio_list
 
@@ -1311,7 +1313,7 @@ class RegionalDiffusionXLPipeline(
                 batch_size * num_images_per_prompt,
                 self.do_classifier_free_guidance,
             )
-
+            
         # 8. Denoising loop
         num_warmup_steps = max(len(timesteps) - num_inference_steps * self.scheduler.order, 0)
 
@@ -1330,7 +1332,8 @@ class RegionalDiffusionXLPipeline(
             )
             num_inference_steps = len(list(filter(lambda ts: ts >= discrete_timestep_cutoff, timesteps)))
             timesteps = timesteps[:num_inference_steps]
-
+        self._cfg_cat_groups = None
+        self._cfg_group_size = None
         # 9. Optionally get Guidance Scale Embedding
         timestep_cond = None
         if self.unet.config.time_cond_proj_dim is not None:
