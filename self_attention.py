@@ -1,41 +1,93 @@
-# self_attention.py
+# self_attention_batch.py
+# Batched bounded self-attention for StoryBooth-style regional self-attention.
+#
+# This file is adapted from the user's self_attention.py. It keeps backward
+# compatibility with single-image layout, and adds support for per-sample layouts:
+#   self_obj.split_ratio can be:
+#     - single layout: List[drow]
+#     - batched layout: List[List[drow]]  (one layout per sample)
+#
+# It also supports classifier-free guidance batches where hidden_states batch
+# is 2x the prompt batch size by repeating layouts.
 
 import math
 import torch
-import xformers
+import xformers  # noqa: F401  (kept for parity; we use torch matmul here)
 from cross_attention import split_dims
 
-def _build_region_masks_from_split_ratio(self_obj, latent_h, latent_w, device):
+
+def _is_row_obj(x):
+    """Heuristic: a 'row' object has .start/.end and .cols."""
+    return hasattr(x, "start") and hasattr(x, "end") and hasattr(x, "cols")
+
+
+def _normalize_layouts_for_batch(self_obj, bsz):
     """
-    Build per-region token masks from self.split_ratio (RPG layout).
-    Each region mask is a flattened bool tensor of length N = latent_h * latent_w.
-    We assume self.split_ratio is the same structure used in cross_attention.py:
-      - A list of rows, each 'drow' has .start, .end, .cols
-      - Each 'dcell' in drow.cols has .start, .end, etc. :contentReference[oaicite:4]{index=4}
+    Returns a list of layouts with length == bsz.
+    Each layout is List[drow].
     """
     if not hasattr(self_obj, "split_ratio") or self_obj.split_ratio is None:
+        return [None] * bsz
+
+    sr = self_obj.split_ratio
+
+    # Single layout: List[drow]
+    if isinstance(sr, (list, tuple)) and (len(sr) == 0 or _is_row_obj(sr[0])):
+        return [sr] * bsz
+
+    # Batched layouts: List[List[drow]]
+    if isinstance(sr, (list, tuple)) and len(sr) > 0 and isinstance(sr[0], (list, tuple)):
+        layouts = list(sr)
+        n = len(layouts)
+        if n == 0:
+            return [None] * bsz
+
+        # Common cases:
+        # - n == bsz: already aligned
+        # - bsz == 2*n (CFG): duplicate for cond/uncond
+        if n == bsz:
+            return layouts
+        if bsz == 2 * n:
+            return layouts + layouts
+
+        # Best-effort fallback: repeat modulo (avoids crashing in weird schedules)
+        out = []
+        for i in range(bsz):
+            out.append(layouts[i % n])
+        return out
+
+    # Unknown structure -> treat as missing
+    return [None] * bsz
+
+
+def _build_region_masks_from_layout(layout, latent_h, latent_w, device):
+    """
+    Build per-region token masks from a *single* layout (List[drow]).
+    Each region mask is a flattened bool tensor of length N = latent_h * latent_w.
+    """
+    if layout is None:
         return None
 
     region_masks = []
-    for drow in self_obj.split_ratio:
-        row_start = int(latent_h * drow.start)
-        row_end = int(latent_h * drow.end)
+    for drow in layout:
+        row_start = int(latent_h * float(drow.start))
+        row_end = int(latent_h * float(drow.end))
 
         for dcell in drow.cols:
-            col_start = int(latent_w * dcell.start)
-            col_end = int(latent_w * dcell.end)
+            col_start = int(latent_w * float(dcell.start))
+            col_end = int(latent_w * float(dcell.end))
 
             # safeguard against degenerate / rounding issues
-            row_start_clamped = max(0, min(latent_h, row_start))
-            row_end_clamped = max(0, min(latent_h, row_end))
-            col_start_clamped = max(0, min(latent_w, col_start))
-            col_end_clamped = max(0, min(latent_w, col_end))
+            row_start_c = max(0, min(latent_h, row_start))
+            row_end_c = max(0, min(latent_h, row_end))
+            col_start_c = max(0, min(latent_w, col_start))
+            col_end_c = max(0, min(latent_w, col_end))
 
-            if row_end_clamped <= row_start_clamped or col_end_clamped <= col_start_clamped:
+            if row_end_c <= row_start_c or col_end_c <= col_start_c:
                 continue
 
             mask = torch.zeros(latent_h, latent_w, dtype=torch.bool, device=device)
-            mask[row_start_clamped:row_end_clamped, col_start_clamped:col_end_clamped] = True
+            mask[row_start_c:row_end_c, col_start_c:col_end_c] = True
             region_masks.append(mask.view(-1))  # (N,)
 
     if len(region_masks) == 0:
@@ -44,97 +96,10 @@ def _build_region_masks_from_split_ratio(self_obj, latent_h, latent_w, device):
     return region_masks
 
 
-def _compute_bounded_self_attention(
-    self_obj,
-    module,
-    hidden_states,
-):
-    """
-    Implements bounded self-attention with dropout as in StoryBooth:
-      A_l = softmax(Q_l K_l^T / sqrt(d_k) + log(M_l))
-      O_l = A_l V_l,
-    where M_l encodes region-constrained attention + dropout. :contentReference[oaicite:5]{index=5}
-    """
-    bsz, n_tokens, _ = hidden_states.shape
-    height = getattr(self_obj, "h", None)
-    width = getattr(self_obj, "w", None)
-
-    # Fallback: if we don't know spatial size, just do vanilla attention
-    if height is None or width is None:
-        return _vanilla_self_attention(module, hidden_states)
-
-    latent_h, latent_w = split_dims(n_tokens, height, width, self_obj)
-    device = hidden_states.device
-
-    # 1. Compute Q, K, V as in diffusers Attention
-    query = module.to_q(hidden_states)
-    key = module.to_k(hidden_states)
-    value = module.to_v(hidden_states)
-
-    query = module.head_to_batch_dim(query)  # (bsz * heads, N, head_dim)
-    key = module.head_to_batch_dim(key)
-    value = module.head_to_batch_dim(value)
-
-    head_dim = query.shape[-1]
-    scale = head_dim ** -0.5
-
-    # 2. Base attention scores
-    attn_scores = torch.matmul(query, key.transpose(-1, -2)) * scale  # (bsz*heads, N, N)
-
-    # 3. Build region masks (per image), then construct Ml as in Eq. 4 with dropout
-    region_masks = _build_region_masks_from_split_ratio(self_obj, latent_h, latent_w, device)
-    # If no layout info, fall back to vanilla self-attention
-    if region_masks is None:
-        attn_probs = attn_scores.softmax(dim=-1)
-        hidden_states = torch.matmul(attn_probs, value)
-        hidden_states = module.batch_to_head_dim(hidden_states)
-        hidden_states = module.to_out[0](hidden_states)
-        hidden_states = module.to_out[1](hidden_states)
-        return hidden_states
-
-    # Stack region masks: (K, N)
-    region_masks = torch.stack(region_masks, dim=0).float()
-    # Σ_k (m̄_k m̄_k^T) -> (N, N) matrix counting how many regions share token-pairs
-    # We only care about >0 vs ==0. :contentReference[oaicite:6]{index=6}
-    region_outer = torch.einsum("kn,km->nm", region_masks, region_masks)
-    allow_region = region_outer > 0  # True if tokens belong to same subject region
-
-    # dropout matrix Nr and threshold β_d
-    beta_d = getattr(self_obj, "beta_d", 0.5)
-    Nr = torch.rand_like(region_outer)
-    allow_dropout = Nr > beta_d
-
-    allow = allow_region | allow_dropout  # Eq. (4)
-
-    # convert allow mask -> additive bias (0 for allowed, large negative for disallowed)
-    # we don't literally do log(M); we emulate it with a big negative constant.
-    bias_base = torch.zeros_like(region_outer, dtype=query.dtype)
-    bias_base = bias_base.masked_fill(~allow, -1e4)
-
-    # Now we need a bias per (batch, head). The layout is shared across samples, so copy.
-    n_heads = module.heads
-    # attn_scores.shape[0] == bsz * heads
-    bias_per_sample = bias_base.unsqueeze(0).expand(bsz, -1, -1)  # (bsz, N, N)
-    bias = bias_per_sample.repeat_interleave(n_heads, dim=0)      # (bsz*heads, N, N)
-
-    attn_scores = attn_scores + bias
-
-    # 4. Softmax + value projection
-    attn_probs = attn_scores.softmax(dim=-1)
-    hidden_states = torch.matmul(attn_probs, value)  # (bsz*heads, N, head_dim)
-
-    # 5. Merge heads and final linear + dropout
-    hidden_states = module.batch_to_head_dim(hidden_states)  # (bsz, N, dim)
-    hidden_states = module.to_out[0](hidden_states)
-    hidden_states = module.to_out[1](hidden_states)
-    return hidden_states
-
-
 def _vanilla_self_attention(module, hidden_states):
     """
     Plain self-attention with the same math as diffusers' Attention,
-    but without any bounding. Used outside the specified timestep range
-    or when we lack layout info.
+    but without any bounding.
     """
     query = module.to_q(hidden_states)
     key = module.to_k(hidden_states)
@@ -158,35 +123,103 @@ def _vanilla_self_attention(module, hidden_states):
     return hidden_states
 
 
+def _compute_bounded_self_attention(self_obj, module, hidden_states):
+    """
+    Batched bounded self-attention:
+    - For each sample in the batch, build a token-to-token allow mask based on its layout.
+    - Add a large negative bias for disallowed pairs (emulating log(M)).
+    - Keep dropout relaxation (Nr > beta_d) per sample.
+    """
+    bsz, n_tokens, _ = hidden_states.shape
+    height = getattr(self_obj, "h", None)
+    width = getattr(self_obj, "w", None)
+
+    # Fallback: if we don't know spatial size, just do vanilla attention
+    if height is None or width is None:
+        return _vanilla_self_attention(module, hidden_states)
+
+    latent_h, latent_w = split_dims(n_tokens, height, width, self_obj)
+    device = hidden_states.device
+
+    # Q, K, V
+    query = module.to_q(hidden_states)
+    key = module.to_k(hidden_states)
+    value = module.to_v(hidden_states)
+
+    query = module.head_to_batch_dim(query)  # (bsz*heads, N, head_dim)
+    key = module.head_to_batch_dim(key)
+    value = module.head_to_batch_dim(value)
+
+    head_dim = query.shape[-1]
+    scale = head_dim ** -0.5
+
+    attn_scores = torch.matmul(query, key.transpose(-1, -2)) * scale  # (bsz*heads, N, N)
+
+    # Prepare per-sample layouts aligned to the current hidden_states batch
+    layouts = _normalize_layouts_for_batch(self_obj, bsz)
+
+    # Build per-sample bias: (bsz, N, N)
+    beta_d = float(getattr(self_obj, "beta_d", 0.5))
+    bias_per_sample = torch.zeros((bsz, n_tokens, n_tokens), device=device, dtype=query.dtype)
+
+    # NOTE: this loop is O(bsz * N^2). Usually bsz is small (1..8) and N is
+    # latent tokens (e.g., 4096 at 64x64), so consider using this only on selected layers/timesteps.
+    for b in range(bsz):
+        layout = layouts[b]
+        region_masks = _build_region_masks_from_layout(layout, latent_h, latent_w, device)
+        if region_masks is None:
+            # No layout -> no bias (vanilla attention for this sample)
+            continue
+
+        region_masks_f = torch.stack(region_masks, dim=0).float()  # (K, N)
+        region_outer = torch.einsum("kn,km->nm", region_masks_f, region_masks_f)  # (N, N)
+        allow_region = region_outer > 0
+
+        # dropout relaxation (per sample)
+        Nr = torch.rand_like(region_outer)
+        allow_dropout = Nr > beta_d
+
+        allow = allow_region | allow_dropout
+
+        # Additive bias: 0 for allowed, -1e4 for disallowed
+        bias_base = torch.zeros_like(region_outer, dtype=query.dtype, device=device)
+        bias_base = bias_base.masked_fill(~allow, -1e4)
+
+        bias_per_sample[b] = bias_base
+
+    # Expand to (bsz*heads, N, N)
+    n_heads = int(getattr(module, "heads", 1))
+    bias = bias_per_sample.repeat_interleave(n_heads, dim=0)  # (bsz*heads, N, N)
+
+    attn_scores = attn_scores + bias
+
+    attn_probs = attn_scores.softmax(dim=-1)
+    hidden_states = torch.matmul(attn_probs, value)  # (bsz*heads, N, head_dim)
+
+    hidden_states = module.batch_to_head_dim(hidden_states)  # (bsz, N, dim)
+    hidden_states = module.to_out[0](hidden_states)
+    hidden_states = module.to_out[1](hidden_states)
+    return hidden_states
+
+
 def hook_self_forward(self_obj, module):
     """
-    Wraps module.forward for self-attention (attn1) layers.
-    Applies bounded self-attention predominantly on up-blocks and
-    only for timesteps t ∈ [1000, 200] (reverse diffusion range),
-    otherwise falls back to vanilla self-attention.
+    Wrap module.forward for self-attention (attn1).
+    Applies bounded self-attention for timesteps t ∈ [t_min, t_max],
+    otherwise uses vanilla self-attention.
     """
-
-    # You can configure these on the pipeline object if you want different ranges.
-    def forward(
-        hidden_states,
-        encoder_hidden_states=None,
-        attention_mask=None,
-        **kwargs,
-    ):
+    def forward(hidden_states, encoder_hidden_states=None, attention_mask=None, **kwargs):
         t_max = getattr(self_obj, "self_attn_t_max", 1000)
         t_min = getattr(self_obj, "self_attn_t_min", 200)
-        t = self_obj.cur_step
+        t = getattr(self_obj, "cur_step", None)
 
-        # If timestep in [t_min, t_max], apply bounded self-attention; else vanilla.
         use_bounded = False
-        if t is not None:
-            if t_min <= t <= t_max:
-                use_bounded = True
+        if t is not None and (t_min <= t <= t_max):
+            use_bounded = True
 
         if use_bounded:
             return _compute_bounded_self_attention(self_obj, module, hidden_states)
-        else:
-            return _vanilla_self_attention(module, hidden_states)
+        return _vanilla_self_attention(module, hidden_states)
 
     return forward
 
@@ -195,12 +228,11 @@ def hook_forwards_self(self_obj, root_module: torch.nn.Module):
     """
     Attach self-attention (attn1) hooks to up-blocks.
 
-    Usage in your RegionalDiffusionXLPipeline __init__:
-        from self_attention import hook_forwards_self
+    Usage in your pipeline __init__:
+        from self_attention_batch import hook_forwards_self
         hook_forwards_self(self, self.unet)
     """
     for name, module in root_module.named_modules():
-        # Only modify self-attention in up-blocks, and only Attention modules.
         if (
             "up_blocks" in name
             and "attn1" in name

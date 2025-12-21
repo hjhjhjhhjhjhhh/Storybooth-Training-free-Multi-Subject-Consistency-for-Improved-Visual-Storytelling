@@ -263,16 +263,15 @@ class RegionalDiffusionXLPipeline(
             self.watermark = StableDiffusionXLWatermarker()
         else:
             self.watermark = None
-
     def encode_prompt(
         self,
-        prompt: str,
-        prompt_2: Optional[str] = None,
+        prompt: Union[str, List[str]],
+        prompt_2: Optional[Union[str, List[str]]] = None,
         device: Optional[torch.device] = None,
         num_images_per_prompt: int = 1,
         do_classifier_free_guidance: bool = True,
-        negative_prompt: Optional[str] = None,
-        negative_prompt_2: Optional[str] = None,
+        negative_prompt: Optional[Union[str, List[str]]] = None,
+        negative_prompt_2: Optional[Union[str, List[str]]] = None,
         prompt_embeds: Optional[torch.FloatTensor] = None,
         negative_prompt_embeds: Optional[torch.FloatTensor] = None,
         pooled_prompt_embeds: Optional[torch.FloatTensor] = None,
@@ -280,56 +279,20 @@ class RegionalDiffusionXLPipeline(
         lora_scale: Optional[float] = None,
         clip_skip: Optional[int] = None,
     ):
-        r"""
-        Encodes the prompt into text encoder hidden states.
+        r"""Encodes prompt(s) into text encoder hidden states.
 
-        Args:
-            prompt (`str` or `List[str]`, *optional*):
-                prompt to be encoded
-            prompt_2 (`str` or `List[str]`, *optional*):
-                The prompt or prompts to be sent to the `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is
-                used in both text-encoders
-            device: (`torch.device`):
-                torch device
-            num_images_per_prompt (`int`):
-                number of images that should be generated per prompt
-            do_classifier_free_guidance (`bool`):
-                whether to use classifier free guidance or not
-            negative_prompt (`str` or `List[str]`, *optional*):
-                The prompt or prompts not to guide the image generation. If not defined, one has to pass
-                `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is
-                less than `1`).
-            negative_prompt_2 (`str` or `List[str]`, *optional*):
-                The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and
-                `text_encoder_2`. If not defined, `negative_prompt` is used in both text-encoders
-            prompt_embeds (`torch.FloatTensor`, *optional*):
-                Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not
-                provided, text embeddings will be generated from `prompt` input argument.
-            negative_prompt_embeds (`torch.FloatTensor`, *optional*):
-                Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-                weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input
-                argument.
-            pooled_prompt_embeds (`torch.FloatTensor`, *optional*):
-                Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-                If not provided, pooled text embeddings will be generated from `prompt` input argument.
-            negative_pooled_prompt_embeds (`torch.FloatTensor`, *optional*):
-                Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-                weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt`
-                input argument.
-            lora_scale (`float`, *optional*):
-                A lora scale that will be applied to all LoRA layers of the text encoder if LoRA layers are loaded.
-            clip_skip (`int`, *optional*):
-                Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that
-                the output of the pre-final layer will be used for computing the prompt embeddings.
+        This version supports *batched regional prompts*:
+        - `prompt` can be `str` or `List[str]`
+        - Each prompt string may contain `BREAK` which defines regional sub-prompts
+        - Different batch elements may have different numbers of regions; embeddings are padded in the sequence
+        dimension to the maximum region count in the batch.
         """
         device = device or self._execution_device
 
-        # set lora scale so that monkey patched LoRA
-        # function of text encoder can correctly access it
+        # set lora scale so that monkey patched LoRA function of text encoder can correctly access it
         if lora_scale is not None and isinstance(self, StableDiffusionXLLoraLoaderMixin):
             self._lora_scale = lora_scale
 
-            # dynamically adjust the LoRA scale
             if self.text_encoder is not None:
                 if not USE_PEFT_BACKEND:
                     adjust_lora_scale_text_encoder(self.text_encoder, lora_scale)
@@ -342,12 +305,17 @@ class RegionalDiffusionXLPipeline(
                 else:
                     scale_lora_layers(self.text_encoder_2, lora_scale)
 
-        prompt = [prompt] if isinstance(prompt, str) else prompt
-
-        if prompt is not None:
-            batch_size = len(prompt)
+        # normalize to list
+        prompt_list = [prompt] if isinstance(prompt, str) else list(prompt)
+        if prompt_list is not None:
+            batch_size = len(prompt_list)
         else:
             batch_size = prompt_embeds.shape[0]
+
+        if prompt_2 is None:
+            prompt_2_list = prompt_list
+        else:
+            prompt_2_list = [prompt_2] if isinstance(prompt_2, str) else list(prompt_2)
 
         # Define tokenizers and text encoders
         tokenizers = [self.tokenizer, self.tokenizer_2] if self.tokenizer is not None else [self.tokenizer_2]
@@ -355,60 +323,88 @@ class RegionalDiffusionXLPipeline(
             [self.text_encoder, self.text_encoder_2] if self.text_encoder is not None else [self.text_encoder_2]
         )
 
+        # region counts (for padding & negative prompt replication)
+        region_counts = [len(p.split("BREAK")) for p in prompt_list]
+        region_num_max = max(region_counts) if len(region_counts) > 0 else 1
+        
+        print("in pile ")
+        print(f'region counts": {region_counts}, region num max: {region_num_max}')
+
         if prompt_embeds is None:
-            prompt_2 = prompt_2 or prompt
-            prompt_2 = [prompt_2] if isinstance(prompt_2, str) else prompt_2
-
-            # textual inversion: process multi-vector tokens if necessary
             prompt_embeds_list = []
-            prompts = [prompt, prompt_2]
-            for prompt, tokenizer, text_encoder in zip(prompts, tokenizers, text_encoders):
+            pooled_prompt_embeds_out = None  # from the final text encoder (as SDXL expects)
+
+            prompts_pair = [prompt_list, prompt_2_list]
+            for p_list, tokenizer, text_encoder in zip(prompts_pair, tokenizers, text_encoders):
+                # textual inversion: process multi-vector tokens if necessary
                 if isinstance(self, TextualInversionLoaderMixin):
-                    prompt = self.maybe_convert_prompt(prompt, tokenizer)
-                    
-                # split prompt into regional prompts
-                regional_prompt_list = prompt[0].split('BREAK')
-                regional_prompt_embeds = []
-                
-                for sub_prompt in regional_prompt_list:
-                    text_inputs = tokenizer(
-                        sub_prompt,
-                        padding="max_length",
-                        max_length=tokenizer.model_max_length,
-                        truncation=True,
-                        return_tensors="pt",
-                    )
+                    p_list = [self.maybe_convert_prompt(p, tokenizer) for p in p_list]
 
-                    text_input_ids = text_inputs.input_ids
-                    untruncated_ids = tokenizer(sub_prompt, padding="longest", return_tensors="pt").input_ids
+                max_length = tokenizer.model_max_length
 
-                    if untruncated_ids.shape[-1] >= text_input_ids.shape[-1] and not torch.equal(
-                        text_input_ids, untruncated_ids
-                    ):
-                        removed_text = tokenizer.batch_decode(untruncated_ids[:, tokenizer.model_max_length - 1 : -1])
-                        logger.warning(
-                            "The following part of your input was truncated because CLIP can only handle sequences up to"
-                            f" {tokenizer.model_max_length} tokens: {removed_text}"
+                per_sample_hidden = []
+                per_sample_pooled = []
+
+                for pstr in p_list:
+                    regional_prompt_list = pstr.split("BREAK")
+                    regional_hidden = []
+                    regional_pooled = []
+
+                    for sub_prompt in regional_prompt_list:
+                        text_inputs = tokenizer(
+                            sub_prompt,
+                            padding="max_length",
+                            max_length=max_length,
+                            truncation=True,
+                            return_tensors="pt",
                         )
 
-                    prompt_embeds = text_encoder(text_input_ids.to(device), output_hidden_states=True)
+                        text_input_ids = text_inputs.input_ids
+                        untruncated_ids = tokenizer(sub_prompt, padding="longest", return_tensors="pt").input_ids
+                        if untruncated_ids.shape[-1] >= text_input_ids.shape[-1] and not torch.equal(
+                            text_input_ids, untruncated_ids
+                        ):
+                            removed_text = tokenizer.batch_decode(untruncated_ids[:, tokenizer.model_max_length - 1 : -1])
+                            logger.warning(
+                                "The following part of your input was truncated because CLIP can only handle sequences up to"
+                                f" {tokenizer.model_max_length} tokens: {removed_text}"
+                            )
 
-                    # We are only ALWAYS interested in the pooled output of the final text encoder
-                    pooled_prompt_embeds = prompt_embeds[0]
-                    if clip_skip is None:
-                        prompt_embeds = prompt_embeds.hidden_states[-2]
-                    else:
-                        # "2" because SDXL always indexes from the penultimate layer.
-                        prompt_embeds = prompt_embeds.hidden_states[-(clip_skip + 2)]
-                    # print('sub_prompt_embeds:',prompt_embeds.shape)
-                    regional_prompt_embeds.append(prompt_embeds)
-                prompt_embeds = torch.cat(regional_prompt_embeds, dim=1)
-                #print('regional_concatenated_prompt_embeds:',prompt_embeds.shape)
-                prompt_embeds_list.append(prompt_embeds)
+                        enc_out = text_encoder(text_input_ids.to(device), output_hidden_states=True)
 
-            prompt_embeds = torch.concat(prompt_embeds_list, dim=-1)
-            region_num = prompt_embeds.shape[1] // TOKENSCON
-            print(region_num)
+                        pooled = enc_out[0]  # (1, hidden)
+                        if clip_skip is None:
+                            hidden = enc_out.hidden_states[-2]
+                        else:
+                            hidden = enc_out.hidden_states[-(clip_skip + 2)]
+
+                        regional_hidden.append(hidden)        # each (1, max_length, dim)
+                        regional_pooled.append(pooled)        # each (1, dim)
+
+                    # concat regions on seq dim
+                    hidden_cat = torch.cat(regional_hidden, dim=1)  # (1, R_i*L, dim)
+                    pooled_mean = torch.mean(torch.cat(regional_pooled, dim=0), dim=0, keepdim=True)  # (1, dim)
+
+                    per_sample_hidden.append(hidden_cat)
+                    per_sample_pooled.append(pooled_mean)
+
+                # pad seq dim to max regions in batch
+                max_seq = region_num_max * max_length
+                padded_hidden = []
+                for h in per_sample_hidden:
+                    if h.shape[1] < max_seq:
+                        pad = torch.zeros((h.shape[0], max_seq - h.shape[1], h.shape[2]), device=h.device, dtype=h.dtype)
+                        h = torch.cat([h, pad], dim=1)
+                    padded_hidden.append(h)
+                hidden_batched = torch.cat(padded_hidden, dim=0)  # (B, max_seq, dim)
+
+                pooled_batched = torch.cat(per_sample_pooled, dim=0)  # (B, dim)
+
+                prompt_embeds_list.append(hidden_batched)
+                pooled_prompt_embeds_out = pooled_batched  # keep last encoder's pooled
+
+            prompt_embeds = torch.cat(prompt_embeds_list, dim=-1)
+            pooled_prompt_embeds = pooled_prompt_embeds_out
 
         # get unconditional embeddings for classifier free guidance
         zero_out_negative_prompt = negative_prompt is None and self.config.force_zeros_for_empty_prompt
@@ -420,73 +416,87 @@ class RegionalDiffusionXLPipeline(
             negative_prompt_2 = negative_prompt_2 or negative_prompt
 
             # normalize str to list
-            negative_prompt = batch_size * [negative_prompt] if isinstance(negative_prompt, str) else negative_prompt
-            negative_prompt_2 = (
-                batch_size * [negative_prompt_2] if isinstance(negative_prompt_2, str) else negative_prompt_2
-            )
-
-            uncond_tokens: List[str]
-            if prompt is not None and type(prompt) is not type(negative_prompt):
-                raise TypeError(
-                    f"`negative_prompt` should be the same type to `prompt`, but got {type(negative_prompt)} !="
-                    f" {type(prompt)}."
-                )
-            elif batch_size != len(negative_prompt):
-                raise ValueError(
-                    f"`negative_prompt`: {negative_prompt} has batch size {len(negative_prompt)}, but `prompt`:"
-                    f" {prompt} has batch size {batch_size}. Please make sure that passed `negative_prompt` matches"
-                    " the batch size of `prompt`."
-                )
+            if isinstance(negative_prompt, str):
+                negative_prompt_list = batch_size * [negative_prompt]
             else:
-                uncond_tokens = [negative_prompt, negative_prompt_2]
+                negative_prompt_list = list(negative_prompt)
+
+            if isinstance(negative_prompt_2, str):
+                negative_prompt_2_list = batch_size * [negative_prompt_2]
+            else:
+                negative_prompt_2_list = list(negative_prompt_2)
+
+            if prompt_list is not None and type(prompt_list) is not type(negative_prompt_list):
+                raise TypeError(
+                    f"`negative_prompt` should be the same type to `prompt`, but got {type(negative_prompt_list)} != {type(prompt_list)}."
+                )
+            if batch_size != len(negative_prompt_list):
+                raise ValueError(
+                    f"`negative_prompt` has batch size {len(negative_prompt_list)}, but `prompt` has batch size {batch_size}."
+                )
+
+            uncond_tokens = [negative_prompt_list, negative_prompt_2_list]
 
             negative_prompt_embeds_list = []
-            for negative_prompt, tokenizer, text_encoder in zip(uncond_tokens, tokenizers, text_encoders):
+            negative_pooled_out = None
+
+            for neg_list, tokenizer, text_encoder in zip(uncond_tokens, tokenizers, text_encoders):
                 if isinstance(self, TextualInversionLoaderMixin):
-                    negative_prompt = self.maybe_convert_prompt(negative_prompt, tokenizer)
-                regional_negative_prompt_list = []
-                for i in range(region_num):
-                    max_length = TOKENSCON
-                    uncond_input = tokenizer(
-                        negative_prompt,
-                        padding="max_length",
-                        max_length=max_length,
-                        truncation=True,
-                        return_tensors="pt",
-                    )
+                    neg_list = [self.maybe_convert_prompt(p, tokenizer) for p in neg_list]
 
-                    negative_prompt_embeds = text_encoder(
-                        uncond_input.input_ids.to(device),
-                        output_hidden_states=True,
-                    )
-                    # We are only ALWAYS interested in the pooled output of the final text encoder
-                    negative_pooled_prompt_embeds = negative_prompt_embeds[0]
-                    negative_prompt_embeds = negative_prompt_embeds.hidden_states[-2]
-                    
-                    
-                    #print('negative_prompt_embeds:',negative_prompt_embeds.shape)
-                    regional_negative_prompt_list.append(negative_prompt_embeds)
-                negative_prompt_embeds = torch.concat(regional_negative_prompt_list,dim=1)
-                #print('negative_prompt_embeds',negative_prompt_embeds.shape)
+                max_length = tokenizer.model_max_length
+
+                per_sample_hidden = []
+                per_sample_pooled = []
+
+                for neg in neg_list:
+                    regional_hidden = []
+                    regional_pooled = []
+                    # replicate negative prompt for max regions (to match padded prompt embeds)
+                    for _ in range(region_num_max):
+                        uncond_input = tokenizer(
+                            neg,
+                            padding="max_length",
+                            max_length=max_length,
+                            truncation=True,
+                            return_tensors="pt",
+                        )
+                        enc_out = text_encoder(uncond_input.input_ids.to(device), output_hidden_states=True)
+                        pooled = enc_out[0]
+                        hidden = enc_out.hidden_states[-2]
+
+                        regional_hidden.append(hidden)
+                        regional_pooled.append(pooled)
+
+                    hidden_cat = torch.cat(regional_hidden, dim=1)  # (1, region_num_max*L, dim)
+                    pooled_mean = torch.mean(torch.cat(regional_pooled, dim=0), dim=0, keepdim=True)  # (1, dim)
+
+                    per_sample_hidden.append(hidden_cat)
+                    per_sample_pooled.append(pooled_mean)
+
+                negative_prompt_embeds = torch.cat(per_sample_hidden, dim=0)  # (B, max_seq, dim)
+                negative_pooled = torch.cat(per_sample_pooled, dim=0)         # (B, dim)
+
                 negative_prompt_embeds_list.append(negative_prompt_embeds)
-                
+                negative_pooled_out = negative_pooled
 
-            negative_prompt_embeds = torch.concat(negative_prompt_embeds_list, dim=-1)
-            #print('negative_prompt_embeds',negative_prompt_embeds.shape)
+            negative_prompt_embeds = torch.cat(negative_prompt_embeds_list, dim=-1)
+            negative_pooled_prompt_embeds = negative_pooled_out
+
+        # dtype/device
         if self.text_encoder_2 is not None:
             prompt_embeds = prompt_embeds.to(dtype=self.text_encoder_2.dtype, device=device)
         else:
             prompt_embeds = prompt_embeds.to(dtype=self.unet.dtype, device=device)
 
         bs_embed, seq_len, _ = prompt_embeds.shape
-        # duplicate text embeddings for each generation per prompt, using mps friendly method
+
+        # duplicate text embeddings for each generation per prompt
         prompt_embeds = prompt_embeds.repeat(1, num_images_per_prompt, 1)
         prompt_embeds = prompt_embeds.view(bs_embed * num_images_per_prompt, seq_len, -1)
 
         if do_classifier_free_guidance:
-            # duplicate unconditional embeddings for each generation per prompt, using mps friendly method
             seq_len = negative_prompt_embeds.shape[1]
-
             if self.text_encoder_2 is not None:
                 negative_prompt_embeds = negative_prompt_embeds.to(dtype=self.text_encoder_2.dtype, device=device)
             else:
@@ -503,14 +513,13 @@ class RegionalDiffusionXLPipeline(
                 bs_embed * num_images_per_prompt, -1
             )
 
+        # Restore LoRA scale if needed (PEFT)
         if self.text_encoder is not None:
             if isinstance(self, StableDiffusionXLLoraLoaderMixin) and USE_PEFT_BACKEND:
-                # Retrieve the original scale by scaling back the LoRA layers
                 unscale_lora_layers(self.text_encoder, lora_scale)
 
         if self.text_encoder_2 is not None:
             if isinstance(self, StableDiffusionXLLoraLoaderMixin) and USE_PEFT_BACKEND:
-                # Retrieve the original scale by scaling back the LoRA layers
                 unscale_lora_layers(self.text_encoder_2, lora_scale)
 
         return prompt_embeds, negative_prompt_embeds, pooled_prompt_embeds, negative_pooled_prompt_embeds
@@ -792,24 +801,52 @@ class RegionalDiffusionXLPipeline(
             emb = torch.nn.functional.pad(emb, (0, 1))
         assert emb.shape == (w.shape[0], embedding_dim)
         return emb
-    def regional_info(self,prompts):
-        ppl = prompts.split('BREAK')
-        # print('ppl',ppl)
-        targets =[p.split(",")[-1] for p in ppl[:]]
-        # print('targets',targets)
-        pt, ppt = [], []
-        padd = 0
-        for pp in targets:
-            pp=pp.split(" ")
-            pp=[p for p in pp if p != ""]
-            tokensnum = len(pp)
-            pt.append([padd, tokensnum // TOKENS + 1 + padd])
-            ppt.append(tokensnum)
-            padd = tokensnum // TOKENS + 1 + padd
-        self.pt = pt
-        self.ppt = ppt
-        # print('pt:',self.pt)
-        # print('ppt:',self.ppt)
+    def regional_info(self, prompts):
+        """Compute per-region token span plan `self.pt` for regional cross-attention.
+
+        Supports both single prompt (str) and batch prompts (List[str]).
+        For batch mode, sets:
+            self.pt  -> List[List[List[int]]]  (per-sample list of [start,end] spans)
+            self.ppt -> List[List[int]]        (per-sample token counts per region)
+        For single mode, keeps backward-compatible:
+            self.pt  -> List[List[int]]
+            self.ppt -> List[int]
+        """
+        if prompts is None:
+            self.pt, self.ppt = [], []
+            return
+
+        is_single = isinstance(prompts, str)
+        prompt_list = [prompts] if is_single else list(prompts)
+
+        all_pt = []
+        all_ppt = []
+        for pstr in prompt_list:
+            ppl = pstr.split('BREAK')
+            targets = [p.split(",")[-1] for p in ppl[:]]
+            print("targets is ")
+            print(targets)
+
+            pt, ppt = [], []
+            padd = 0
+            for pp in targets:
+                pp = pp.split(" ")
+                pp = [p for p in pp if p != ""]
+                tokensnum = len(pp)
+                pt.append([padd, tokensnum // TOKENS + 1 + padd])
+                ppt.append(tokensnum)
+                padd = tokensnum // TOKENS + 1 + padd
+
+            all_pt.append(pt)
+            all_ppt.append(ppt)
+
+        if is_single:
+            self.pt = all_pt[0]
+            self.ppt = all_ppt[0]
+        else:
+            self.pt = all_pt
+            self.ppt = all_ppt
+
     def torch_fix_seed(self, seed=42):
         # Python random
         random.seed(seed)
@@ -1041,14 +1078,66 @@ class RegionalDiffusionXLPipeline(
             [`~pipelines.stable_diffusion_xl.StableDiffusionXLPipelineOutput`] if `return_dict` is True, otherwise a
             `tuple`. When returning a tuple, the first element is a list with the generated images.
         """
-        self.usebase = True if base_ratio is not None and base_prompt is not None else False
-        self.base_ratio = base_ratio
+        
+
+        # ----------------------------
+        # Batch input normalization
+        # ----------------------------
+        def _as_list(x):
+            if x is None:
+                return None
+            return x if isinstance(x, list) else [x]
+
+        # Normalize prompts to list
+        prompt_list = _as_list(prompt)
+        if prompt_list is None:
+            prompt_list = []
+        batch_size_eff = len(prompt_list) if len(prompt_list) > 0 else (prompt_embeds.shape[0] if prompt_embeds is not None else (batch_size or 1))
+
+        # Normalize split_ratio / base_prompt / base_ratio
+        split_ratio_list = _as_list(split_ratio)
+        if split_ratio_list is None:
+            split_ratio_list = [split_ratio] * batch_size_eff
+        elif len(split_ratio_list) == 1 and batch_size_eff > 1:
+            split_ratio_list = split_ratio_list * batch_size_eff
+        elif len(split_ratio_list) != batch_size_eff:
+            raise ValueError(f"`split_ratio` batch size {len(split_ratio_list)} does not match `prompt` batch size {batch_size_eff}.")
+
+        base_prompt_list = _as_list(base_prompt)
+        if base_prompt_list is not None:
+            if len(base_prompt_list) == 1 and batch_size_eff > 1:
+                base_prompt_list = base_prompt_list * batch_size_eff
+            elif len(base_prompt_list) != batch_size_eff:
+                raise ValueError(f"`base_prompt` batch size {len(base_prompt_list)} does not match `prompt` batch size {batch_size_eff}.")
+
+        base_ratio_list = _as_list(base_ratio)
+        if base_ratio_list is not None:
+            if len(base_ratio_list) == 1 and batch_size_eff > 1:
+                base_ratio_list = base_ratio_list * batch_size_eff
+            elif len(base_ratio_list) != batch_size_eff:
+                raise ValueError(f"`base_ratio` batch size {len(base_ratio_list)} does not match `prompt` batch size {batch_size_eff}.")
+
+        # Determine whether we are using base prompt (global flag)
+        self.usebase = base_prompt_list is not None and base_ratio_list is not None
+
+        # Store config/state
+        self.base_ratio = base_ratio_list[0] if (isinstance(base_ratio, (int, float)) and batch_size_eff == 1) else base_ratio_list
         self.beta_d = beta_d
         self.self_attn_t_max = 1000
         self.self_attn_t_min = 200
-        self.base_prompt = base_prompt
-        self.split_ratio = split_ratio
-        self.prompt = prompt if base_prompt is None else base_prompt+' BREAK '+prompt
+        self.base_prompt = base_prompt_list[0] if (isinstance(base_prompt, str) and batch_size_eff == 1) else base_prompt_list
+        self.split_ratio = split_ratio_list[0] if (isinstance(split_ratio, str) and batch_size_eff == 1) else split_ratio_list
+
+        # Combine base_prompt + prompt per sample (if enabled)
+        if self.usebase:
+            combined = []
+            for bp, p in zip(base_prompt_list, prompt_list):
+                bp = "" if bp is None else bp
+                combined.append(bp + " BREAK " + p)
+            self.prompt = combined
+        else:
+            self.prompt = prompt_list if batch_size_eff > 1 else (prompt_list[0] if len(prompt_list) == 1 else prompt)
+
         self.original_prompt = self.prompt
         self.h = height
         self.w = width
@@ -1057,10 +1146,26 @@ class RegionalDiffusionXLPipeline(
         self.isvanilla = True
         self.count = 0
         self.isxl = True
-        self.batch_size = batch_size
-        self.regional_info(self.prompt) 
-        keyconverter(self,self.split_ratio,self.usebase)
-        matrixdealer(self,self.split_ratio,self.base_ratio) # base prompt latent ratio for each region
+        self.batch_size = batch_size_eff
+
+        # Build per-sample region token spans used by cross-attn masking
+        self.regional_info(self.prompt)
+        print("orig self split ratio is ")
+        print(self.split_ratio)
+        print("orig self base ratio is ")
+        print(self.base_ratio)
+
+        # Convert "BREAK" prompts into (ADDROW/ADDCOL/ADDBASE) anchors and parse split/base ratios.
+        keyconverter(self, self.split_ratio, self.usebase)
+        matrixdealer(self, self.split_ratio, self.base_ratio)  # base prompt latent ratio for each region
+        print("self pt is ")
+        print(self.pt)
+        print("self ppt is ")
+        print(self.ppt)
+        print("self split ratio is ")
+        print(self.split_ratio)
+        print("self base ratio is ")
+        print(self.baseratio)
         if (seed > 0):
             self.torch_fix_seed(seed=seed)
         callback = kwargs.pop("callback", None)

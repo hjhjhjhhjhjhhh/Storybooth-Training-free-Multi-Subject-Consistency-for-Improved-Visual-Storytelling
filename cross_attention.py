@@ -45,13 +45,13 @@ def hook_forwards_cross(self, root_module: torch.nn.Module):
 
 def hook_forward(self, module):
     def forward(hidden_states, encoder_hidden_states=None, attention_mask=None, additional_tokens=None, n_times_crossframe_attn_in_self=0):
-        x= hidden_states
-        context= encoder_hidden_states
-        # print("input : ", hidden_states.size())
-        # print("tokens : ", context.size())
-        # print("module : ", getattr(module, self.name,None))
-        height =self.h 
-        width =self.w
+        x = hidden_states
+        context = encoder_hidden_states
+
+        height = self.h
+        width = self.w
+
+        # Keep the original latent dim inference logic intact.
         x_t = x.size()[1]
         scale = round(math.sqrt(height * width / x_t))
         latent_h = round(height / scale)
@@ -64,113 +64,159 @@ def hook_forward(self, module):
 
         contexts = context.clone()
 
-        def matsepcalc(x,contexts,pn,divide):
+        # -------------------------
+        # Batch helpers
+        # -------------------------
+        def _is_batched_split_ratio(split_ratio_obj):
+            # Single: [Row, Row, ...]
+            # Batched: [[Row, ...], [Row, ...], ...]
+            return isinstance(split_ratio_obj, (list, tuple)) and len(split_ratio_obj) > 0 and isinstance(split_ratio_obj[0], (list, tuple))
+
+        def _is_batched_pt(pt_obj):
+            # Single: [(s,e), (s,e), ...]
+            # Batched: [[(s,e), ...], [(s,e), ...], ...]
+            if not isinstance(pt_obj, (list, tuple)) or len(pt_obj) == 0:
+                return False
+            first = pt_obj[0]
+            if not isinstance(first, (list, tuple)) or len(first) == 0:
+                return False
+            # If first element is itself a span (int,int), this is single.
+            if isinstance(first[0], int):
+                return False
+            # If first element contains spans, it's batched.
+            return isinstance(first[0], (list, tuple)) and len(first[0]) == 2 and isinstance(first[0][0], int)
+
+        def _get_per_sample(obj, b):
+            if isinstance(obj, (list, tuple)) and len(obj) > 0:
+                if b < len(obj):
+                    return obj[b]
+                return obj[-1]
+            return obj
+
+        batched_split = _is_batched_split_ratio(getattr(self, "split_ratio", None))
+        batched_pt = _is_batched_pt(getattr(self, "pt", None))
+
+        def matsepcalc_single(x1, contexts1, pn, divide, split_ratio_rows, tll):
+            """Original matsepcalc logic, but parameterized by split_ratio_rows / tll.
+            x1 and contexts1 may be batch-sized (single mode) or batch=1 (batched mode).
+            """
             h_states = []
-            x_t = x.size()[1]
-            (latent_h,latent_w) = split_dims(x_t, height, width, self)
-            
+            x_t1 = x1.size()[1]
+            (lh, lw) = split_dims(x_t1, height, width, self)
 
-            latent_out = latent_w
-            latent_in = latent_h
+            latent_out = lw
+            latent_in = lh
 
-            tll = self.pt
-            
             i = 0
             outb = None
+
             if self.usebase:
-                context = contexts[:,tll[i][0] * TOKENSCON:tll[i][1] * TOKENSCON,:]
-                cnet_ext = contexts.shape[1] - (contexts.shape[1] // TOKENSCON) * TOKENSCON
+                ctx = contexts1[:, tll[i][0] * TOKENSCON : tll[i][1] * TOKENSCON, :]
+                cnet_ext = contexts1.shape[1] - (contexts1.shape[1] // TOKENSCON) * TOKENSCON
                 if cnet_ext > 0:
-                    context = torch.cat([context,contexts[:,-cnet_ext:,:]],dim = 1)
-                    
+                    ctx = torch.cat([ctx, contexts1[:, -cnet_ext:, :]], dim=1)
+
                 i = i + 1
+                out = main_forward_diffusers(module, x1, ctx, divide, userpp=True, isxl=self.isxl)
 
-                out = main_forward_diffusers(module, x, context, divide,userpp =True,isxl = self.isxl)
-
-                # if self.usebase:
                 outb = out.clone()
-                outb = outb.reshape(outb.size()[0], latent_h, latent_w, outb.size()[2]) 
+                outb = outb.reshape(outb.size()[0], lh, lw, outb.size()[2])
 
             sumout = 0
 
-            for drow in self.split_ratio:
+            for drow in split_ratio_rows:
                 v_states = []
                 sumin = 0
                 for dcell in drow.cols:
-                    # Grabs a set of tokens depending on number of unrelated breaks.
-                    context = contexts[:,tll[i][0] * TOKENSCON:tll[i][1] * TOKENSCON,:]
-                    # Controlnet sends extra conds at the end of context, apply it to all regions.
-                    cnet_ext = contexts.shape[1] - (contexts.shape[1] // TOKENSCON) * TOKENSCON
+                    # Grab token block for this region.
+                    ctx = contexts1[:, tll[i][0] * TOKENSCON : tll[i][1] * TOKENSCON, :]
+
+                    # ControlNet sends extra conds at the end of context, apply it to all regions.
+                    cnet_ext = contexts1.shape[1] - (contexts1.shape[1] // TOKENSCON) * TOKENSCON
                     if cnet_ext > 0:
-                        context = torch.cat([context,contexts[:,-cnet_ext:,:]],dim = 1)
+                        ctx = torch.cat([ctx, contexts1[:, -cnet_ext:, :]], dim=1)
 
                     i = i + 1 + dcell.breaks
-                    # if i >= contexts.size()[1]: 
-                    #     indlast = True
 
-                    out = main_forward_diffusers(module, x, context, divide,userpp = self.pn, isxl = self.isxl)
-                    
-                    out = out.reshape(out.size()[0], latent_h, latent_w, out.size()[2]) # convert to main shape.
-                    # if indlast:
+                    out = main_forward_diffusers(module, x1, ctx, divide, userpp=self.pn, isxl=self.isxl)
+
+                    out = out.reshape(out.size()[0], lh, lw, out.size()[2])  # to [B, H, W, C]
+
                     addout = 0
                     addin = 0
-                    sumin = sumin + int(latent_in*dcell.end) - int(latent_in*dcell.start)
+                    sumin = sumin + int(latent_in * dcell.end) - int(latent_in * dcell.start)
                     if dcell.end >= 0.999:
                         addin = sumin - latent_in
-                        sumout = sumout + int(latent_out*drow.end) - int(latent_out*drow.start)
+                        sumout = sumout + int(latent_out * drow.end) - int(latent_out * drow.start)
                         if drow.end >= 0.999:
                             addout = sumout - latent_out
-                    out = out[:,int(latent_h*drow.start) + addout:int(latent_h*drow.end),
-                                int(latent_w*dcell.start) + addin:int(latent_w*dcell.end),:]
-                    if self.usebase : 
-                        # outb_t = outb[:,:,int(latent_w*drow.start):int(latent_w*drow.end),:].clone()
-                        outb_t = outb[:,int(latent_h*drow.start) + addout:int(latent_h*drow.end),
-                                        int(latent_w*dcell.start) + addin:int(latent_w*dcell.end),:].clone()
+
+                    out = out[
+                        :,
+                        int(lh * drow.start) + addout : int(lh * drow.end),
+                        int(lw * dcell.start) + addin : int(lw * dcell.end),
+                        :,
+                    ]
+
+                    if self.usebase:
+                        outb_t = outb[
+                            :,
+                            int(lh * drow.start) + addout : int(lh * drow.end),
+                            int(lw * dcell.start) + addin : int(lw * dcell.end),
+                            :,
+                        ].clone()
                         out = out * (1 - dcell.base) + outb_t * dcell.base
-            
+
                     v_states.append(out)
 
-                            
-                output_x = torch.cat(v_states,dim = 2) # First concat the cells to rows.
-
+                output_x = torch.cat(v_states, dim=2)  # concat cells -> row
                 h_states.append(output_x)
-            output_x = torch.cat(h_states,dim = 1) # Second, concat rows to layer.
-            output_x = output_x.reshape(x.size()[0],x.size()[1],x.size()[2]) # Restore to 3d source.  
+
+            output_x = torch.cat(h_states, dim=1)  # concat rows -> full layer
+            output_x = output_x.reshape(x1.size()[0], x1.size()[1], x1.size()[2])  # back to [B, T, C]
             return output_x
+
+        def matsepcalc_any(x2, contexts2, pn, divide):
+            """Run either in single-batch mode (original) or per-sample mode (new batched split_ratio/pt)."""
+            if (not batched_split) and (not batched_pt):
+                return matsepcalc_single(x2, contexts2, pn, divide, self.split_ratio, self.pt)
+
+            outs = []
+            bsz = x2.size()[0]
+            for b in range(bsz):
+                split_b = _get_per_sample(self.split_ratio, b) if batched_split else self.split_ratio
+                pt_b = _get_per_sample(self.pt, b) if batched_pt else self.pt
+                out_b = matsepcalc_single(x2[b : b + 1], contexts2[b : b + 1], pn, divide, split_b, pt_b)
+                outs.append(out_b)
+            return torch.cat(outs, dim=0)
+
+        # -------------------------
+        # Guidance handling (original structure)
+        # -------------------------
         if x.size()[0] == 1 * self.batch_size:
-            output_x = matsepcalc(x, contexts, self.pn, 1)
+            output_x = matsepcalc_any(x, contexts, self.pn, 1)
         else:
-            if self.isvanilla: # SBM Ddim reverses cond/uncond.
+            if self.isvanilla:  # SBM DDIM reverses cond/uncond.
                 nx, px = x.chunk(2)
-                conn,conp = contexts.chunk(2)
+                conn, conp = contexts.chunk(2)
             else:
                 px, nx = x.chunk(2)
-                conp,conn = contexts.chunk(2)
-            opx = matsepcalc(px, conp, True, 2)
-            onx = matsepcalc(nx, conn, False, 2)
-            if self.isvanilla: # SBM Ddim reverses cond/uncond.
+                conp, conn = contexts.chunk(2)
+
+            opx = matsepcalc_any(px, conp, True, 2)
+            onx = matsepcalc_any(nx, conn, False, 2)
+
+            if self.isvanilla:
                 output_x = torch.cat([onx, opx])
             else:
-                output_x = torch.cat([opx, onx]) 
-            
-            # px = x
-            # conp = contexts
-            # opx = matsepcalc(px, conp, True, 2)
-            # output_x = opx 
+                output_x = torch.cat([opx, onx])
+
         self.pn = not self.pn
         self.count = 0
-        # self.count += 1
-
-        # limit = 70 if self.isxl else 16
-
-        # if self.count == limit:
-        #     self.pn = not self.pn
-        #     self.count = 0
-        #     self.pfirst = False
-        #     self.condi += 1
         return output_x
 
     return forward
+
 
 def split_dims(x_t, height, width, self=None):
     """Split an attention layer dimension to height + width.

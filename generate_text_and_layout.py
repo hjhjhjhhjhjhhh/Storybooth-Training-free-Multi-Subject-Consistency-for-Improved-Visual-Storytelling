@@ -11,7 +11,6 @@ from tokens import HUGGINGFACE_TOKEN
 
 # ====== initial ======
 JSON_PATH = "datasets/scene_prompts_output.json"
-LLM_OUTPUT_PATH = "llm_outputs.json"
 
 llm_model_path = "meta-llama/Meta-Llama-3.1-8B-Instruct"
 #llm_model_path = "meta-llama/Llama-2-13b-chat-hf"
@@ -19,6 +18,7 @@ sd_model_path = "stabilityai/stable-diffusion-xl-base-1.0"
 
 index_key = "1" #only run the first index
 output_dir = f"output/{index_key}"
+LLM_OUTPUT_PATH = f"{output_dir}/llm_outputs.json"
 os.makedirs(output_dir, exist_ok=True)
 
 login(token=HUGGINGFACE_TOKEN) #放huggingface token, 不要push token到github上
