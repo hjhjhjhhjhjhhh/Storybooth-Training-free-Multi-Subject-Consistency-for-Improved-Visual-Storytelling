@@ -9,7 +9,7 @@ from StoryBooth import RegionalDiffusionXLPipeline
 from tokens import HUGGINGFACE_TOKEN
 
 JSON_PATH = "scene_prompts_output.json"
-LLM_OUTPUT_PATH = "/media/tsmc/D/314554044/RPG-DiffusionMaster/llm_outputs.json"
+LLM_OUTPUT_PATH = ""
 
 # sd_model_path = "stable-diffusion-v1-5/stable-diffusion-v1-5" # For VRAM only 12G 
 sd_model_path = "stabilityai/stable-diffusion-xl-base-1.0"
@@ -94,7 +94,9 @@ images = pipe(
         negative_prompt="",
         seed=1234,
         guidance_scale=15.0,
-        inter_neighbor_window=None,
+        inter_subject_k = 2,
+        subject_token = ["dog", "owl"],
+        beta_d = 0.5
     ).images
 
 K = 1

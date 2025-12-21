@@ -9,11 +9,47 @@
 #
 # It also supports classifier-free guidance batches where hidden_states batch
 # is 2x the prompt batch size by repeating layouts.
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union, Sequence
+import re
 
 import math
 import torch
 import xformers  # noqa: F401  (kept for parity; we use torch matmul here)
 from cross_attention import split_dims
+
+
+def _normalize_subject_ids_for_batch(self_obj, bsz: int):
+    """
+    Return subject_ids with length == bsz.
+    subject_ids[b] is a list[str] for that sample's BREAK segments (or region count later).
+    """
+    ids = getattr(self_obj, "inter_subject_ids_per_sample", None)
+    if ids is None:
+        return None
+
+    if not isinstance(ids, (list, tuple)) or len(ids) == 0:
+        return None
+
+    n = len(ids)
+    if n == bsz:
+        return list(ids)
+    if bsz == 2 * n:
+        return list(ids) + list(ids)  # CFG duplicate
+    # fallback repeat
+    return [ids[i % n] for i in range(bsz)]
+def _debug_print_region_subject_alignment_from_ids(
+    aligned_masks,
+    subject_ids,   # <-- 直接傳進來
+):
+    print("\n[Inter-SA][DEBUG] ===== Region ↔ Subject Alignment =====")
+    for b, masks in enumerate(aligned_masks):
+        print(f"[Frame {b}]")
+        ids_b = subject_ids[b] if b < len(subject_ids) else []
+        for k, m in enumerate(masks):
+            area = int(m.sum().item())
+            sid = ids_b[k] if k < len(ids_b) else "bg"   # <-- 這裡也別印 MISSING，補 bg
+            print(f"  region k={k:<2d}  subject={sid:<5s}  area={area}")
+    print("[Inter-SA][DEBUG] =====================================\n")
 
 
 def _is_row_obj(x):
@@ -97,6 +133,7 @@ def _build_region_masks_from_layout(layout, latent_h, latent_w, device):
 
 def _groups_for_cfg(layouts):
     B = len(layouts)
+    #print("len(layoyt):", B)
     if B % 2 == 0 and layouts[: B // 2] == layouts[B // 2 :]:
         return [list(range(0, B // 2)), list(range(B // 2, B))]
     return [list(range(B))]
@@ -106,48 +143,6 @@ def _iou_bool(a, b):
     inter = (a & b).sum().item(); uni = (a | b).sum().item()
     return float(inter) / float(uni) if uni else 0.0
 
-def _align_masks_across_frames(per_frame_masks):
-    """
-    Align each frame's subject masks to a reference frame (the one with max regions).
-    Returns: aligned[List[List[mask_k]]], K, ref_idx
-    """
-    B = len(per_frame_masks)
-    sizes = [len(m) for m in per_frame_masks]
-    b_ref = max(range(B), key=lambda i: sizes[i])
-    ref = per_frame_masks[b_ref]
-    K = len(ref)
-    if K == 0:
-        return per_frame_masks, 0, b_ref
-
-    ref_idx = sorted(range(K), key=lambda i: ref[i].sum().item(), reverse=True)
-    ref_sorted = [ref[i] for i in ref_idx]
-
-    aligned = []
-    for b in range(B):
-        cur = per_frame_masks[b]
-        if len(cur) == 0:
-            aligned.append([torch.zeros_like(ref_sorted[0]) for _ in range(K)])
-            continue
-        M = torch.zeros(len(cur), K, dtype=torch.float32, device=cur[0].device)
-        for i in range(len(cur)):
-            for j in range(K):
-                M[i, j] = _iou_bool(cur[i], ref_sorted[j])
-        taken_i, taken_j, pairs = set(), set(), []
-        while len(taken_j) < K and len(taken_i) < len(cur):
-            idx = torch.argmax(M).item()
-            i, j = idx // K, idx % K
-            if (i in taken_i) or (j in taken_j):
-                M.view(-1)[idx] = -1
-                continue
-            taken_i.add(i); taken_j.add(j); pairs.append((i, j))
-            M[i, :] = -1; M[:, j] = -1
-        aligned_b = [torch.zeros_like(ref_sorted[0]) for _ in range(K)]
-        for i, j in pairs:
-            aligned_b[j] = cur[i]
-        aligned.append(aligned_b)
-
-    aligned[b_ref] = ref_sorted
-    return aligned, K, b_ref
 
 # ---------- vanilla ----------
 def _vanilla_self_attention(module, x):
@@ -159,6 +154,34 @@ def _vanilla_self_attention(module, x):
     out = probs @ v
     out = module.batch_to_head_dim(out)
     out = module.to_out[0](out); out = module.to_out[1](out)
+    return out
+
+def _normalize_subject_ids_per_sample(self_obj, B: int, region_masks_per_frame: List[List[torch.Tensor]]):
+    """
+    Returns subject_ids_per_frame aligned to number of masks per frame:
+      subject_ids[b] length == len(region_masks_per_frame[b])
+    Source priority:
+      1) self_obj.inter_subject_ids_per_sample (from pipeline)
+      2) fallback: assume first inter_subject_k are subjects, rest bg
+    """
+    inter_k = int(getattr(self_obj, "inter_subject_k", 2))
+    subject_ids_in = getattr(self_obj, "inter_subject_ids_per_sample", None)
+
+    out: List[List[str]] = []
+    for b in range(B):
+        mlen = len(region_masks_per_frame[b])
+        if isinstance(subject_ids_in, (list, tuple)) and len(subject_ids_in) == B and isinstance(subject_ids_in[b], (list, tuple)):
+            ids_b = list(subject_ids_in[b])
+        else:
+            # fallback: first inter_k are "sub0/sub1", rest bg
+            ids_b = [f"sub{i}" for i in range(min(inter_k, mlen))] + ["bg"] * max(0, mlen - inter_k)
+
+        # trim/pad to masks length
+        if len(ids_b) < mlen:
+            ids_b = ids_b + ["bg"] * (mlen - len(ids_b))
+        if len(ids_b) > mlen:
+            ids_b = ids_b[:mlen]
+        out.append(ids_b)
     return out
 
 # ---------- Eq.(5)(6) inter-frame bounded SA ----------
@@ -184,10 +207,24 @@ def _compute_inter_bounded_self_attention(self_obj, module, hidden_states):
 
     # 1) per-frame masks
     layouts = _normalize_layouts_for_batch(self_obj, B)
-    pf_masks = [(_build_region_masks_from_layout(layouts[b], h, w, device) or []) for b in range(B)]
-    aligned, K, _ = _align_masks_across_frames(pf_masks)
-    if K == 0:
-        return _vanilla_self_attention(module, hidden_states)
+
+
+    # 先做 CFG duplication（5->10）
+    subject_ids_per_frame_in = _normalize_subject_ids_for_batch(self_obj, B)
+
+    # 把 region_masks 建好（每個 frame 的實際 region 數）
+    region_masks = [(_build_region_masks_from_layout(layouts[b], h, w, device) or []) for b in range(B)]
+
+    # 用 duplicated 的 subject id 來 pad/trim 到每個 frame 的 region 數
+    _old = getattr(self_obj, "inter_subject_ids_per_sample", None)
+    if subject_ids_per_frame_in is not None:
+        self_obj.inter_subject_ids_per_sample = subject_ids_per_frame_in
+
+    subject_ids = _normalize_subject_ids_per_sample(self_obj, B, region_masks)
+
+    self_obj.inter_subject_ids_per_sample = _old
+
+    
 
     # 2) groups (CFG)
     groups = _groups_for_cfg(layouts)
@@ -196,25 +233,36 @@ def _compute_inter_bounded_self_attention(self_obj, module, hidden_states):
 
     # optional frame window (not in paper; default None = all frames)
     Kwin = getattr(self_obj, "inter_neighbor_window", None)
+    allow = torch.zeros((BN, BN), dtype=torch.bool, device=device)
     #print(Kwin)
 
     # 3) build M_bar per group (Eq.6)
     for g in groups:
-        Bg = len(g)
+        Bg = len(g) # of frame = 5
         # indices slice map: frame index b -> BN slice [b*N : (b+1)*N]
         # build base empty (Bg*N, Bg*N)
         M_g = torch.zeros(Bg * N, Bg * N, dtype=torch.bool, device=device)
-
+        subj_set = []
+        #print("subject_ids", subject_ids)
+        for bi in g:
+            for sid in subject_ids[bi]:
+                if sid == "bg":#background
+                    continue
+                if sid not in subj_set:
+                    subj_set.append(sid)
+        K_subject = int(getattr(self_obj, "inter_subject_k", 2))
+        #print("subj_set:", subj_set)
         # (a) subject-outer sum: sum_k mk mk^T
-        for k_idx in range(K):
+        for k_idx in subj_set:
             # mk over group frames -> (Bg*N,)
             mk_parts = []
             for b in g:
-                mk_b = aligned[b][k_idx] if k_idx < len(aligned[b]) else torch.zeros(N, device=device, dtype=torch.bool)
-                if isinstance(Kwin, int):  # windowed: we'll still build full mk, window applied later
-                    mk_parts.append(mk_b.clone())
-                else:
-                    mk_parts.append(mk_b)
+                # union all region masks in this frame that match subject k_idx
+                mk_b = torch.zeros((N,), dtype=torch.bool, device=device)
+                for ridx, mk in enumerate(region_masks[b]):
+                    if subject_ids[b][ridx] == k_idx and mk is not None:
+                        mk_b |= mk
+                mk_parts.append(mk_b)
             mk = torch.cat(mk_parts, dim=0)  # (Bg*N,)
             if not mk.any():
                 continue

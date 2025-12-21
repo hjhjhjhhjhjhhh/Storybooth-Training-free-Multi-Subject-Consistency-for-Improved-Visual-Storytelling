@@ -72,6 +72,57 @@ else:
 
 logger = logging.get_logger(__name__)  # pylint: disable=invalid-name
 
+import re
+from typing import List, Optional
+
+def build_inter_subject_ids_for_prompt(
+    prompt: str,
+    subject_tokens: Optional[List[str]],
+    inter_subject_k: int = 2,
+):
+    """
+    classify subject
+    # of subject <= inter_subject_k
+    """
+    parts = [p.strip() for p in prompt.split(" BREAK ")]
+    if not subject_tokens:
+        return ["bg"] * len(parts)
+
+    tokens = [t.lower() for t in subject_tokens]
+    patterns = [(t, re.compile(rf"\b{re.escape(t)}\b", re.IGNORECASE)) for t in tokens]
+
+    subject_ids = []
+    used = 0
+    for seg in parts:
+        seg_l = seg.lower()
+        print("seg:",seg)
+        sid = "bg"
+        best_pos = None
+        best_tok = None
+
+        for t, pat in patterns:
+            m = pat.search(seg_l)
+            if not m:
+                continue
+            pos = m.start()
+            if best_pos is None or pos < best_pos:
+                best_pos = pos
+                best_tok = t
+
+        if best_tok is not None:
+            sid = best_tok
+
+        if sid != "bg":
+            if used < inter_subject_k:
+                subject_ids.append(sid)
+                used += 1
+            else:
+                subject_ids.append("bg")
+        else:
+            subject_ids.append("bg")
+
+    return subject_ids
+
 EXAMPLE_DOC_STRING = """
     Examples:
         ```py
@@ -936,6 +987,8 @@ class RegionalDiffusionXLPipeline(
         callback_on_step_end: Optional[Callable[[int, int, Dict], None]] = None,
         callback_on_step_end_tensor_inputs: List[str] = ["latents"],
         inter_neighbor_window = None,
+        inter_subject_k: int = 2,
+        subject_token: Optional[List[str]] = None,
         **kwargs,
     ):
         r"""
@@ -1129,7 +1182,7 @@ class RegionalDiffusionXLPipeline(
         self.enable_attn_relax   = kwargs.pop("enable_attn_relax", False) # 先關掉隨機鬆綁
         self.base_prompt = base_prompt_list[0] if (isinstance(base_prompt, str) and batch_size_eff == 1) else base_prompt_list
         self.split_ratio = split_ratio_list[0] if (isinstance(split_ratio, str) and batch_size_eff == 1) else split_ratio_list
-
+        self.inter_subject_k = inter_subject_k
         # Combine base_prompt + prompt per sample (if enabled)
         if self.usebase:
             combined = []
@@ -1139,6 +1192,23 @@ class RegionalDiffusionXLPipeline(
             self.prompt = combined
         else:
             self.prompt = prompt_list if batch_size_eff > 1 else (prompt_list[0] if len(prompt_list) == 1 else prompt)
+
+        prompt_list_for_subject = prompt_list
+
+        # construct subject id for all the frames
+        print("Sub:", subject_token)
+        self.inter_subject_ids_per_sample = [
+            build_inter_subject_ids_for_prompt(
+                p,
+                subject_tokens=subject_token,
+                inter_subject_k=inter_subject_k,
+            )
+            for p in prompt_list_for_subject
+        ]
+
+        print("inter_subject_ids_per_sample:")
+        for i, ids in enumerate(self.inter_subject_ids_per_sample):
+            print(f" frame {i}: {ids}")
 
         self.original_prompt = self.prompt
         self.h = height
@@ -1313,7 +1383,7 @@ class RegionalDiffusionXLPipeline(
                 batch_size * num_images_per_prompt,
                 self.do_classifier_free_guidance,
             )
-            
+
         # 8. Denoising loop
         num_warmup_steps = max(len(timesteps) - num_inference_steps * self.scheduler.order, 0)
 
