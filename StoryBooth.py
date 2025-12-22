@@ -95,7 +95,7 @@ def build_inter_subject_ids_for_prompt(
     used = 0
     for seg in parts:
         seg_l = seg.lower()
-        print("seg:",seg)
+        #print("seg:",seg)
         sid = "bg"
         best_pos = None
         best_tok = None
@@ -378,8 +378,8 @@ class RegionalDiffusionXLPipeline(
         region_counts = [len(p.split("BREAK")) for p in prompt_list]
         region_num_max = max(region_counts) if len(region_counts) > 0 else 1
         
-        print("in pile ")
-        print(f'region counts": {region_counts}, region num max: {region_num_max}')
+        ##print("in pile ")
+        ##print(f'region counts": {region_counts}, region num max: {region_num_max}')
 
         if prompt_embeds is None:
             prompt_embeds_list = []
@@ -875,8 +875,8 @@ class RegionalDiffusionXLPipeline(
         for pstr in prompt_list:
             ppl = pstr.split('BREAK')
             targets = [p.split(",")[-1] for p in ppl[:]]
-            print("targets is ")
-            print(targets)
+            #print("targets is ")
+            #print(targets)
 
             pt, ppt = [], []
             padd = 0
@@ -1196,7 +1196,7 @@ class RegionalDiffusionXLPipeline(
         prompt_list_for_subject = prompt_list
 
         # construct subject id for all the frames
-        print("Sub:", subject_token)
+        #print("Sub:", subject_token)
         self.inter_subject_ids_per_sample = [
             build_inter_subject_ids_for_prompt(
                 p,
@@ -1206,9 +1206,9 @@ class RegionalDiffusionXLPipeline(
             for p in prompt_list_for_subject
         ]
 
-        print("inter_subject_ids_per_sample:")
-        for i, ids in enumerate(self.inter_subject_ids_per_sample):
-            print(f" frame {i}: {ids}")
+        #print("inter_subject_ids_per_sample:")
+        #for i, ids in enumerate(self.inter_subject_ids_per_sample):
+            #print(f" frame {i}: {ids}")
 
         self.original_prompt = self.prompt
         self.h = height
@@ -1222,22 +1222,22 @@ class RegionalDiffusionXLPipeline(
 
         # Build per-sample region token spans used by cross-attn masking
         self.regional_info(self.prompt)
-        print("orig self split ratio is ")
-        print(self.split_ratio)
-        print("orig self base ratio is ")
-        print(self.base_ratio)
+        #print("orig self split ratio is ")
+        #print(self.split_ratio)
+        #print("orig self base ratio is ")
+        #print(self.base_ratio)
 
         # Convert "BREAK" prompts into (ADDROW/ADDCOL/ADDBASE) anchors and parse split/base ratios.
         keyconverter(self, self.split_ratio, self.usebase)
         matrixdealer(self, self.split_ratio, self.base_ratio)  # base prompt latent ratio for each region
-        print("self pt is ")
-        print(self.pt)
-        print("self ppt is ")
-        print(self.ppt)
-        print("self split ratio is ")
-        print(self.split_ratio)
-        print("self base ratio is ")
-        print(self.baseratio)
+        #print("self pt is ")
+        #print(self.pt)
+        #print("self ppt is ")
+        #print(self.ppt)
+        #print("self split ratio is ")
+        #print(self.split_ratio)
+        #print("self base ratio is ")
+        #print(self.baseratio)
         if (seed > 0):
             self.torch_fix_seed(seed=seed)
         callback = kwargs.pop("callback", None)

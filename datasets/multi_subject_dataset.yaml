@@ -152,8 +152,8 @@
 - index: 7
   subjects:
     - "A large brown bear with thick fur"
-    - "A small duck with bright yellow feathers"
-  subject_tokens: ["bear", "duck"]
+    - "A small duckling with bright yellow feathers"
+  subject_tokens: ["bear", "duckling"]
   description_levels: ["generic", "generic"]
   superclass: "animals"
   style: "A watercolor illustration of"
@@ -165,11 +165,11 @@
     - "in a quiet desert oasis"
   settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
   prompts:
-    - "A watercolor illustration of a large brown bear with thick fur and a small duck with bright yellow feathers, beside a peaceful lake"
-    - "A watercolor illustration of a large brown bear with thick fur and a small duck with bright yellow feathers, in a dense forest clearing"
-    - "A watercolor illustration of a large brown bear with thick fur and a small duck with bright yellow feathers, in a bustling marketplace"
-    - "A watercolor illustration of a large brown bear with thick fur and a small duck with bright yellow feathers, on a rooftop overlooking a city"
-    - "A watercolor illustration of a large brown bear with thick fur and a small duck with bright yellow feathers, in a quiet desert oasis"
+    - "A watercolor illustration of a large brown bear with thick fur and a small duckling with bright yellow feathers, beside a peaceful lake"
+    - "A watercolor illustration of a large brown bear with thick fur and a small duckling with bright yellow feathers, in a dense forest clearing"
+    - "A watercolor illustration of a large brown bear with thick fur and a small duckling with bright yellow feathers, in a bustling marketplace"
+    - "A watercolor illustration of a large brown bear with thick fur and a small duckling with bright yellow feathers, on a rooftop overlooking a city"
+    - "A watercolor illustration of a large brown bear with thick fur and a small duckling with bright yellow feathers, in a quiet desert oasis"
 
 - index: 8
   subjects:
@@ -197,7 +197,7 @@
   subjects:
     - "A spotted piglet with a round face"
     - "A sleek tiger with orange and black stripes"
-  subject_tokens: ["pig", "tiger"]
+  subject_tokens: ["piglet", "tiger"]
   description_levels: ["generic", "detailed"]
   superclass: "animals"
   style: "A digital illustration of"
@@ -241,7 +241,7 @@
   subjects:
     - "A brown horse with a silky mane"
     - "A pink piglet with tiny hooves"
-  subject_tokens: ["horse", "pig"]
+  subject_tokens: ["horse", "piglet"]
   description_levels: ["generic", "detailed"]
   superclass: "animals"
   style: "A storybook illustration of"
@@ -351,7 +351,7 @@
   subjects:
     - "A bright yellow duckling with tiny wings"
     - "A spotted piglet with short legs"
-  subject_tokens: ["duck", "pig"]
+  subject_tokens: ["duckling", "piglet"]
   description_levels: ["generic", "generic"]
   superclass: "animals"
   style: "A storybook illustration of"
@@ -465,7 +465,7 @@
   subjects:
     - "A sleek black wolf with glowing green eyes"
     - "A bright yellow duckling with a tiny beak"
-  subject_tokens: ["wolf", "duck"]
+  subject_tokens: ["wolf", "duckling"]
   description_levels: ["detailed", "generic"]
   superclass: "animals"
   style: "A hyper-realistic digital painting of"
@@ -575,7 +575,7 @@
   subjects:
     - "A cheerful piglet with round cheeks"
     - "A sleepy owl with wide golden eyes"
-  subject_tokens: ["pig", "owl"]
+  subject_tokens: ["piglet", "owl"]
   description_levels: ["generic", "detailed"]
   superclass: "animals"
   style: "A storybook illustration of"
@@ -729,7 +729,7 @@
   subjects:
     - "A tall deer with thin graceful legs"
     - "A cheerful piglet with round cheeks"
-  subject_tokens: ["deer", "pig"]
+  subject_tokens: ["deer", "piglet"]
   description_levels: ["generic", "generic"]
   superclass: "animals"
   style: "A 3D animation of"
@@ -749,9 +749,9 @@
 
 - index: 34
   subjects:
-    - "A bright yellow duck with round black eyes"
+    - "A bright yellow duckling with round black eyes"
     - "A tiny squirrel with a fluffy tail"
-  subject_tokens: ["duck", "squirrel"]
+  subject_tokens: ["duckling", "squirrel"]
   description_levels: ["generic", "detailed"]
   superclass: "animals"
   style: "A watercolor illustration of"
@@ -763,11 +763,11 @@
     - "beside a peaceful lake"
   settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
   prompts:
-    - "A watercolor illustration of a bright yellow duck with round black eyes and a tiny squirrel with a fluffy tail, in a quiet meadow"
-    - "A watercolor illustration of a bright yellow duck with round black eyes and a tiny squirrel with a fluffy tail, inside a cozy cottage"
-    - "A watercolor illustration of a bright yellow duck with round black eyes and a tiny squirrel with a fluffy tail, in a snowy mountain town"
-    - "A watercolor illustration of a bright yellow duck with round black eyes and a tiny squirrel with a fluffy tail, in a cyberpunk neon plaza"
-    - "A watercolor illustration of a bright yellow duck with round black eyes and a tiny squirrel with a fluffy tail, beside a peaceful lake"
+    - "A watercolor illustration of a bright yellow duckling with round black eyes and a tiny squirrel with a fluffy tail, in a quiet meadow"
+    - "A watercolor illustration of a bright yellow duckling with round black eyes and a tiny squirrel with a fluffy tail, inside a cozy cottage"
+    - "A watercolor illustration of a bright yellow duckling with round black eyes and a tiny squirrel with a fluffy tail, in a snowy mountain town"
+    - "A watercolor illustration of a bright yellow duckling with round black eyes and a tiny squirrel with a fluffy tail, in a cyberpunk neon plaza"
+    - "A watercolor illustration of a bright yellow duckling with round black eyes and a tiny squirrel with a fluffy tail, beside a peaceful lake"
 
 - index: 35
   subjects:
@@ -953,7 +953,7 @@
   subjects:
     - "A tiny hedgehog with soft brown spikes"
     - "A bright yellow duckling with round black eyes"
-  subject_tokens: ["hedgehog", "duck"]
+  subject_tokens: ["hedgehog", "duckling"]
   description_levels: ["detailed", "generic"]
   superclass: "animals"
   style: "A storybook illustration of"
@@ -1063,7 +1063,7 @@
   subjects:
     - "A cheerful piglet with a round belly"
     - "A bright yellow duckling with tiny wings"
-  subject_tokens: ["pig", "duck"]
+  subject_tokens: ["piglet", "duckling"]
   description_levels: ["generic", "generic"]
   superclass: "animals"
   style: "A storybook illustration of"
@@ -1215,9 +1215,9 @@
 
 - index: 55
   subjects:
-    - "A bright yellow duck with round black eyes"
+    - "A bright yellow duckling with round black eyes"
     - "A fluffy sheep with curled wool"
-  subject_tokens: ["duck", "sheep"]
+  subject_tokens: ["duckling", "sheep"]
   description_levels: ["generic", "generic"]
   superclass: "animals"
   style: "A watercolor illustration of"
@@ -1229,11 +1229,11 @@
     - "beside a quiet river"
   settings_types: [background_changing, background_changing, background_changing, background_changing, background_changing]
   prompts:
-    - "A watercolor illustration of a bright yellow duck with round black eyes and a fluffy sheep with curled wool, in a peaceful garden"
-    - "A watercolor illustration of a bright yellow duck with round black eyes and a fluffy sheep with curled wool, inside a bakery"
-    - "A watercolor illustration of a bright yellow duck with round black eyes and a fluffy sheep with curled wool, on a snowy hill"
-    - "A watercolor illustration of a bright yellow duck with round black eyes and a fluffy sheep with curled wool, in a futuristic neon district"
-    - "A watercolor illustration of a bright yellow duck with round black eyes and a fluffy sheep with curled wool, beside a quiet river"
+    - "A watercolor illustration of a bright yellow duckling with round black eyes and a fluffy sheep with curled wool, in a peaceful garden"
+    - "A watercolor illustration of a bright yellow duckling with round black eyes and a fluffy sheep with curled wool, inside a bakery"
+    - "A watercolor illustration of a bright yellow duckling with round black eyes and a fluffy sheep with curled wool, on a snowy hill"
+    - "A watercolor illustration of a bright yellow duckling with round black eyes and a fluffy sheep with curled wool, in a futuristic neon district"
+    - "A watercolor illustration of a bright yellow duckling with round black eyes and a fluffy sheep with curled wool, beside a quiet river"
 
 - index: 56
   subjects:
@@ -1283,7 +1283,7 @@
   subjects:
     - "A spotted piglet with small hooves"
     - "A bright orange fox with pointed ears"
-  subject_tokens: ["pig", "fox"]
+  subject_tokens: ["piglet", "fox"]
   description_levels: ["generic", "detailed"]
   superclass: "animals"
   style: "A hyper-realistic digital painting of"
@@ -1419,7 +1419,7 @@
   subjects:
     - "A round panda cub with fuzzy ears"
     - "A bright yellow duckling with tiny wings"
-  subject_tokens: ["panda", "duck"]
+  subject_tokens: ["panda", "duckling"]
   description_levels: ["detailed", "generic"]
   superclass: "animals"
   style: "A 3D animation of"
@@ -1551,7 +1551,7 @@
   subjects:
     - "A graceful horse with a long mane"
     - "A bright yellow duckling with tiny wings"
-  subject_tokens: ["horse", "duck"]
+  subject_tokens: ["horse", "duckling"]
   description_levels: ["generic", "generic"]
   superclass: "animals"
   style: "A storybook illustration of"
@@ -1683,7 +1683,7 @@
   subjects:
     - "A gentle horse with smooth fur"
     - "A cheerful piglet with round cheeks"
-  subject_tokens: ["horse", "pig"]
+  subject_tokens: ["horse", "piglet"]
   description_levels: ["generic", "generic"]
   superclass: "animals"
   style: "A digital illustration of"
@@ -1797,7 +1797,7 @@
   subjects:
     - "A bright yellow duckling with tiny wings"
     - "A mischievous monkey with glowing eyes"
-  subject_tokens: ["duck", "monkey"]
+  subject_tokens: ["duckling", "monkey"]
   description_levels: ["generic", "detailed"]
   superclass: "animals"
   style: "A storybook illustration of"
@@ -1860,7 +1860,7 @@
   subjects:
     - "A fluffy koala with soft grey fur"
     - "A playful piglet with tiny hooves"
-  subject_tokens: ["koala", "pig"]
+  subject_tokens: ["koala", "piglet"]
   description_levels: ["generic", "generic"]
   superclass: "animals"
   style: "A digital illustration of"
@@ -1965,7 +1965,7 @@
   subjects:
     - "A fluffy sheep with soft white wool"
     - "A cheerful piglet with pink cheeks"
-  subject_tokens: ["sheep", "pig"]
+  subject_tokens: ["sheep", "piglet"]
   description_levels: ["generic", "generic"]
   superclass: "animals"
   style: "A watercolor illustration of"
@@ -2195,8 +2195,8 @@
 - index: 100
   subjects:
     - "A large brown bear with thick fur"
-    - "A bright yellow duck with tiny wings"
-  subject_tokens: ["bear", "duck"]
+    - "A bright yellow duckling with tiny wings"
+  subject_tokens: ["bear", "duckling"]
   description_levels: ["detailed", "generic"]
   superclass: "animals"
   style: "A watercolor illustration of"
@@ -2207,8 +2207,8 @@
     - "in a futuristic neon-lit plaza"
     - "beside a shimmering river"
   prompts:
-    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duck with tiny wings, in a snowy forest"
-    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duck with tiny wings, inside a cabin"
-    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duck with tiny wings, on a snowy mountain path"
-    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duck with tiny wings, in a futuristic neon-lit plaza"
-    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duck with tiny wings, beside a shimmering river"
+    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duckling with tiny wings, in a snowy forest"
+    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duckling with tiny wings, inside a cabin"
+    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duckling with tiny wings, on a snowy mountain path"
+    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duckling with tiny wings, in a futuristic neon-lit plaza"
+    - "A watercolor illustration of a large brown bear with thick fur and a bright yellow duckling with tiny wings, beside a shimmering river"
