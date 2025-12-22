@@ -9,7 +9,7 @@ from StoryBooth import RegionalDiffusionXLPipeline
 from tokens import HUGGINGFACE_TOKEN
 
 JSON_PATH = "scene_prompts_output.json"
-LLM_OUTPUT_PATH = ""
+LLM_OUTPUT_PATH = "output/1/llm_outputs.json"
 
 # sd_model_path = "stable-diffusion-v1-5/stable-diffusion-v1-5" # For VRAM only 12G 
 sd_model_path = "stabilityai/stable-diffusion-xl-base-1.0"

@@ -203,6 +203,112 @@ def _iou_bool(a, b):
 
 
 # ---------- vanilla ----------
+
+
+# ---------- token merging (Eq.7) ----------
+def _token_merge_alpha(self_obj, t: Optional[int] = None) -> float:
+    """Return alpha for token merging/unmerging based on diffusion timestep."""
+    if t is None:
+        return 0.0
+
+    # defaults from StoryBooth paper
+    pos_alpha = float(getattr(self_obj, "token_merge_alpha_pos", 0.4))
+    neg_alpha = float(getattr(self_obj, "token_merge_alpha_neg", -0.5))  # negative == early "unmerge"
+
+    pos_t_max = int(getattr(self_obj, "token_merge_t_pos_max", 950))
+    pos_t_min = int(getattr(self_obj, "token_merge_t_pos_min", 600))
+
+    neg_t_max = int(getattr(self_obj, "token_merge_t_neg_max", 1000))
+    neg_t_min = int(getattr(self_obj, "token_merge_t_neg_min", 950))
+
+    # Important: avoid overlap ambiguity at t=neg_t_min==pos_t_max (paper mentions both).
+    # We use: (neg_t_min, neg_t_max] for negative, [pos_t_min, pos_t_max] for positive.
+    if (neg_t_min < t) and (t <= neg_t_max):
+        return neg_alpha
+    if (pos_t_min <= t) and (t <= pos_t_max):
+        return pos_alpha
+    return 0.0
+
+
+def _token_merge_from_attention(
+    self_obj,
+    O_src: torch.Tensor,            # (B, N, C)
+    Abar: torch.Tensor,             # (BN, BN) averaged over heads
+    groups: List[List[int]],        # frame groups (CFG handled outside)
+    B: int,
+    N: int,
+    subject_mask_flat: Optional[torch.Tensor] = None,  # (BN,) bool; True for subject tokens
+) -> torch.Tensor:
+    """
+    Implements StoryBooth Eq.(7) using cross-frame attention:
+      O_target = O_src[argmax(Abar ⊙ H)]
+      O_merge  = (1-α)O_src + α O_target
+    where H zeros out same-frame blocks (Kronecker delta constraint).
+    We additionally (optionally) restrict matching to subject tokens only.
+    """
+    if not bool(getattr(self_obj, "enable_token_merging", True)):
+        return O_src
+
+    t = getattr(self_obj, "cur_step", None)
+    alpha = _token_merge_alpha(self_obj, t)
+    if alpha == 0.0:
+        return O_src
+
+    device = O_src.device
+    BN = B * N
+    C = O_src.shape[-1]
+    flat = O_src.reshape(BN, C)
+    target = flat.clone()
+
+    NEG_INF = -5e4 # torch.float16 has min val -65504
+
+    for g in groups:
+        if len(g) <= 1:
+            continue  # need >=2 frames to merge across frames
+
+        token_ids = torch.cat([torch.arange(b * N, (b + 1) * N, device=device) for b in g], dim=0)
+        A = Abar.index_select(0, token_ids).index_select(1, token_ids)  # (Bg*N, Bg*N)
+        NEG_INF = torch.finfo(A.dtype).min
+
+        # Optional: restrict candidates/rows to subject tokens
+        if subject_mask_flat is not None:
+            subj_sub = subject_mask_flat.index_select(0, token_ids)  # (Bg*N,)
+            # mask columns not in subject
+            A = A.masked_fill(~subj_sub[None, :], NEG_INF)
+        else:
+            subj_sub = None
+
+        # H: forbid selecting tokens from the same frame (zero diagonal frame-blocks)
+        for i in range(len(g)):
+            sl = slice(i * N, (i + 1) * N)
+            A[sl, sl] = NEG_INF
+
+        # Pick best match per token
+        best = A.argmax(dim=-1)                  # (Bg*N,)
+        maxv = A.max(dim=-1).values              # (Bg*N,)
+
+        # Fallback: if a row has no valid candidate, map to itself
+        self_idx = torch.arange(A.shape[0], device=device)
+        best = torch.where(maxv > (NEG_INF / 2), best, self_idx)
+
+        tgt_global = token_ids.index_select(0, best)   # (Bg*N,)
+        src_global = token_ids                         # (Bg*N,)
+
+        # Only apply merging to subject tokens if requested
+        if subj_sub is not None:
+            keep = subj_sub
+            src_global = src_global[keep]
+            tgt_global = tgt_global[keep]
+
+        if src_global.numel() == 0:
+            continue
+
+        matched = flat.index_select(0, tgt_global)
+        target.index_copy_(0, src_global, matched)
+
+    merged = (1.0 - alpha) * flat + alpha * target
+    return merged.view(B, N, C)
+
 def _vanilla_self_attention(module, x):
     q = module.to_q(x); k = module.to_k(x); v = module.to_v(x)
     q = module.head_to_batch_dim(q); k = module.head_to_batch_dim(k); v = module.head_to_batch_dim(v)
@@ -282,7 +388,17 @@ def _compute_inter_bounded_self_attention(self_obj, module, hidden_states):
 
     self_obj.inter_subject_ids_per_sample = _old
 
-    #_debug_print_frame_regions(self_obj, layouts, region_masks, subject_ids)
+    # subject token mask (True for tokens belonging to any non-background region)
+    subject_mask = torch.zeros((B, N), dtype=torch.bool, device=device)
+    for b in range(B):
+        mk_b = torch.zeros((N,), dtype=torch.bool, device=device)
+        for ridx, mk in enumerate(region_masks[b]):
+            if ridx < len(subject_ids[b]) and subject_ids[b][ridx] != "bg":
+                mk_b |= mk
+        subject_mask[b] = mk_b
+    subject_mask_flat = subject_mask.view(-1)  # (BN,)
+
+    
 
     # 2) groups (CFG)
     groups = _groups_for_cfg(layouts)
@@ -368,8 +484,15 @@ def _compute_inter_bounded_self_attention(self_obj, module, hidden_states):
     scores = scores + bias.expand(n_heads, BN, BN)
 
     probs = scores.softmax(dim=-1)
+
+    # Ā in the paper: average attention map over heads, shape (BN, BN)
+    Abar = probs.mean(dim=0)
+
     out = probs @ v
-    out = module.batch_to_head_dim(out).reshape(B, N, -1)
+    out = module.batch_to_head_dim(out).reshape(B, N, -1)  # O_src
+
+    # Token merging / early "unmerging" (Eq.7): uses cross-frame Ā and forbids same-frame matches
+    out = _token_merge_from_attention(self_obj, out, Abar, groups, B, N, subject_mask_flat=subject_mask_flat)
 
     out = module.to_out[0](out)
     out = module.to_out[1](out)
@@ -394,5 +517,5 @@ def hook_forwards_self(self_obj, root_module: torch.nn.Module):
     Attach to self-attn ('attn1'). You can expand to down/mid as needed.
     """
     for name, module in root_module.named_modules():
-        if ("attn1" in name) and (module.__class__.__name__ == "Attention") and (("up_blocks" in name)):
+        if ("attn1" in name) and (module.__class__.__name__ == "Attention") and ("up_blocks" in name):
             module.forward = hook_self_forward(self_obj, module)

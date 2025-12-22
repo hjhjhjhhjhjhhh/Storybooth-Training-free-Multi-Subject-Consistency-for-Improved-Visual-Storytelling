@@ -5,7 +5,7 @@
 ```bash
 git clone https://github.com/YangLing0818/RPG-DiffusionMaster
 cd RPG-DiffusionMaster
-conda create -n RPG python==3.9
+conda create -n RPG python==3.10
 conda activate RPG
 pip install -r requirements.txt
 pip install protobuf
