@@ -17,6 +17,64 @@ import torch
 import xformers  # noqa: F401  (kept for parity; we use torch matmul here)
 from cross_attention import split_dims
 
+def _debug_print_frame_regions(self_obj, layouts, region_masks, subject_ids, max_prompt_chars=120):
+    """
+    Print:
+      - per-frame region count
+      - region -> subject id
+      - region -> prompt snippet (if available)
+    Notes:
+      - prompts may come from different places in different pipelines; we try a few common attributes.
+    """
+    B = len(region_masks)
+
+    # ---- try to fetch per-frame per-region prompts ----
+    # You can adapt these keys to your pipeline.
+    # Expected shape: prompts_per_frame[b][ridx] = str
+    prompts_per_frame = None
+
+    # (A) Most explicit: self_obj.inter_region_prompts_per_sample: List[List[str]]
+    p = getattr(self_obj, "inter_region_prompts_per_sample", None)
+    if isinstance(p, (list, tuple)) and len(p) == B and (len(p) == 0 or isinstance(p[0], (list, tuple))):
+        prompts_per_frame = [list(x) for x in p]
+
+    # (B) Another possible: self_obj.regional_prompts_per_sample
+    if prompts_per_frame is None:
+        p = getattr(self_obj, "regional_prompts_per_sample", None)
+        if isinstance(p, (list, tuple)) and len(p) == B and (len(p) == 0 or isinstance(p[0], (list, tuple))):
+            prompts_per_frame = [list(x) for x in p]
+
+    # (C) Fallback: self_obj.prompt might be a list[str] (one per frame) that contains BREAK segments
+    #     If so, we can split by "BREAK" into region prompts.
+    if prompts_per_frame is None:
+        p = getattr(self_obj, "prompt", None)
+        if isinstance(p, (list, tuple)) and len(p) == B and all(isinstance(s, str) for s in p):
+            prompts_per_frame = [re.split(r"\s*BREAK\s*", s) for s in p]
+
+    print("\n[Inter-SA][DEBUG] ===== Per-frame regions / subject / prompt =====")
+    for b in range(B):
+        mlen = len(region_masks[b])
+        print(f"[Frame {b}] regions={mlen}")
+
+        ids_b = subject_ids[b] if b < len(subject_ids) else []
+        pr_b = prompts_per_frame[b] if (prompts_per_frame is not None and b < len(prompts_per_frame)) else None
+
+        for ridx in range(mlen):
+            sid = ids_b[ridx] if ridx < len(ids_b) else "bg"
+            area = int(region_masks[b][ridx].sum().item()) if region_masks[b][ridx] is not None else 0
+
+            prompt_snip = ""
+            if pr_b is not None and ridx < len(pr_b) and isinstance(pr_b[ridx], str):
+                s = pr_b[ridx].strip().replace("\n", " ")
+                prompt_snip = (s[:max_prompt_chars] + "…") if len(s) > max_prompt_chars else s
+
+            if prompt_snip:
+                print(f"  - region {ridx:02d} | subject={sid:<6s} | area={area:<6d} | prompt='{prompt_snip}'")
+            else:
+                print(f"  - region {ridx:02d} | subject={sid:<6s} | area={area:<6d}")
+
+    print("[Inter-SA][DEBUG] ===============================================\n")
+
 
 def _normalize_subject_ids_for_batch(self_obj, bsz: int):
     """
@@ -224,7 +282,7 @@ def _compute_inter_bounded_self_attention(self_obj, module, hidden_states):
 
     self_obj.inter_subject_ids_per_sample = _old
 
-    
+    #_debug_print_frame_regions(self_obj, layouts, region_masks, subject_ids)
 
     # 2) groups (CFG)
     groups = _groups_for_cfg(layouts)
@@ -336,5 +394,5 @@ def hook_forwards_self(self_obj, root_module: torch.nn.Module):
     Attach to self-attn ('attn1'). You can expand to down/mid as needed.
     """
     for name, module in root_module.named_modules():
-        if ("attn1" in name) and (module.__class__.__name__ == "Attention") and (("up_blocks" in name) or ("mid_block" in name) or ("down_blocks" in name)):
+        if ("attn1" in name) and (module.__class__.__name__ == "Attention") and (("up_blocks" in name)):
             module.forward = hook_self_forward(self_obj, module)
