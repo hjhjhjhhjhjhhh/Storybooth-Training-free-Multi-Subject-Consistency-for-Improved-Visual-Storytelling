@@ -46,10 +46,10 @@ python output_image.py
 ```
 - Right now, the default setting only generates the image for index = 1. Later on, I might change it so that each index has its own folder containing the LLM output JSON file and its images.
 ## TODO
-- [x] Intra-image self-attention bounding
-- [ ] Inter-image self-attention bounding
-- [ ] Cross-frame token merging
-- [ ] Early negative token unmerging
+We currently adopt the split_ratio-based region splitting strategy from RPG-DiffusionMaster. In practice, we observe that background regions across different frames often bleed into one another, leading to undesired blending. A pixel-level region partitioning scheme may be more effective at preventing such background leakage. As this re-implementation is our final project, there remains substantial room for optimization, and we welcome feedback and suggestions from the community.
+
+## Acknowledgements
+Our implementation is built on top of [RPG-DiffusionMaster](https://github.com/YangLing0818/RPG-DiffusionMaster). We thank the authors for making their excellent work publicly available.
 
 
 
